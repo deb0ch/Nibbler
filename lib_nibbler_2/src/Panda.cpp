@@ -1,10 +1,11 @@
 #include <iostream>
-#include "Panda.hh"
+#include "../include/Panda.hh"
+#include "../../interface/Message.hh"
 
 //Implementation of method talk()
-void Panda::talk() const
+void Panda::talk(const Message & msg) const
 {
-	std::cout << "Panda says PONEY PONEY !" << std::endl;
+  std::cout << msg.str() << std::endl;
 }
 
 //Function to create a Panda
@@ -12,8 +13,8 @@ void Panda::talk() const
 
 extern "C"
 {
-	IAssistant* create_assistant()
-	{
-		return new Panda();
-	}
+  IAssistant* create_assistant()
+  {
+    return new Panda();
+  }
 }

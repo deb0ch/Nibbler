@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 10:16:12 2014 chauvo_t
-## Last update Wed Apr  2 12:23:14 2014 chauvo_t
+## Last update Wed Apr  2 13:11:38 2014 chauvo_t
 ##
 
 CXX			:= g++
@@ -22,7 +22,7 @@ HDRDIR			:= include
 HDRDIR			+= ../interface
 
 SRCS			:=	main.cpp		\
-#				other_file.cpp
+				Message.cpp
 
 OBJS			:= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 SRCS			:= $(addprefix $(SRCDIR)/, $(SRCS))
