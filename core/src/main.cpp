@@ -1,5 +1,7 @@
 #include <iostream>
 #include <dlfcn.h>
+#include "../include/Core.hh"
+
 // #include "../../interface/IAssistant.hh" //Include only the interface
 
 int main(int ac, char** av)
