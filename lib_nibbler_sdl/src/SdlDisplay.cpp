@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 chauvo_t
-// Last update Tue Apr  1 23:28:45 2014 
+// Last update Tue Apr  1 23:36:39 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -15,11 +15,6 @@ extern "C"
   IDisplay*	createDisplay()
   {
     return (new SdlDisplay);
-  }
-
-  void	print_hello()
-  {
-    std::cout << "Hello, World !" << std::endl;
   }
 }
 
@@ -34,15 +29,15 @@ void		SdlDisplay::update(const GameBoard & game)
 {
   SDL_FillRect(this->_screen, NULL, SDL_MapRGB(this->_screen->format, 0, 0, 0));
   background(game);
-  snake(game);
+  snakePart(game);
   SDL_Flip(this->_screen);
 }
 
-void		SdlDisplay::getKey() const
+IDisplay::eKey		SdlDisplay::getKey() const
 {
   SDL_Event	event;
 
-  SDL_PollEvent(event);
+  SDL_PollEvent(&event);
   if (event.type == SDL_KEYDOWN)
     {
       if (event.key.keysym.sym == SDLK_ESCAPE)
