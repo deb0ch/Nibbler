@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 chauvo_t
-// Last update Tue Apr  1 22:27:19 2014 
+// Last update Tue Apr  1 23:28:45 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -40,16 +40,37 @@ void		SdlDisplay::update(const GameBoard & game)
 
 void		SdlDisplay::getKey() const
 {
+  SDL_Event	event;
 
+  SDL_PollEvent(event);
+  if (event.type == SDL_KEYDOWN)
+    {
+      if (event.key.keysym.sym == SDLK_ESCAPE)
+	return (KEY_ESC);
+      else if (event.key.keysym.sym == SDL_QUIT)
+	return (KEY_ESC);
+      else if (event.key.keysym.sym == SDLK_LEFT)
+	return (KEY_LEFT);
+      else if (event.key.keysym.sym == SDLK_RIGHT)
+	return (KEY_RIGHT);
+      else if (event.key.keysym.sym == SDLK_UP)
+	return (KEY_UP);
+      else if (event.key.keysym.sym == SDLK_DOWN)
+	return (KEY_DOWN);
+      else if (event.key.keysym.sym == SDLK_SPACE)
+	return (KEY_SPACE);
+      else
+	return (KEY_NONE);
+    }
 }
 
-void		SdlDisplay::snake(const GameBoard &game)
+void		SdlDisplay::snakePart(const GameBoard &game)
 {
   this->_snakeDisplay = SDL_LoadBMP("sprit/bmp_sdl/snake.bmp");
   if (this->_snakeDisplay == NULL)
     throw Exception("[ERROR] : Snake failed LoadBMP");
   SDL_SetColorKey(this->_snakeDisplay, SDL_SRCCOLORKEYC, SDL_MapRGB(this->_screen->format, 0, 0, 0));
-  SDL_BlitSurface(this->_snakeDisplay, NULL, this->_screen, game.snake();
+  SDL_BlitSurface(this->_snakeDisplay, NULL, this->_screen, game.snake());
 }
 
 void		SdlDisplay::background(const GameBoard &game)
@@ -69,14 +90,17 @@ void		SdlDisplay::initWindow(const GameBoard & game)
   if (SDL_Init(SDL_INIT_VIDEO) != 0)
     throw Exception("[ERROR] : SDL_INIT_VIDEO failled");
 
-  this->_screen = SDL_SetVideoMode(NB_PIX_X * game.width(), NB_PIX_Y * game.height(),
-				   COLOR, SDL_HWSURFACE);
+  this->_screen = SDL_SetVideoMode((NB_PIX_X * game.width()), (NB_PIX_Y * game.height()), COLOR, SDL_HWSURFACE);
 
   SDL_WM_SetCaption("Nibbler (SDL)" , NULL);
   SDL_FillRect(this->_screen, NULL, SDL_MapRGB(this->_screen->format, 0, 0, 0));
   SDL_Flip(this->_screen);
 }
 
+int		SdlDisplay::setFps() const
+{
+  return (50);
+}
 
 void		SdlDisplay::init(const GameBoard & game)
 {

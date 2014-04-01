@@ -27,12 +27,13 @@ private:
   void			init(const GameBoard & game);
   void			initWindow(const GameBoard & game);
   void			background(const GameBoard & game);
-  void			snake(const GameBoard & game);
+  void			snakePart(const GameBoard & game);
   void			getKey() const;
   void			update(const GameBoard & game); // refresh full
   void			refreshBg();
   void			refreshSnake();
   void			close() const; // free & return esc
+  int			setFps() const;
 
   SdlDisplay(const SdlDisplay &);
   SdlDisplay &operator=(const SdlDisplay &);
