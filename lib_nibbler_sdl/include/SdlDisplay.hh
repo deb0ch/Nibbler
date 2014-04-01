@@ -5,7 +5,7 @@
 # include <string>
 # include <fstream>
 # include <SDL/SDL.h>>
-# include "../../interface/"
+# include "../../interface/Exception.hh"
 # include "../../interface/IDisplay.hh"
 
 #define NB_PIX_X	20
