@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 chauvo_t
-// Last update Tue Apr  1 23:36:39 2014 
+// Last update Wed Apr  2 01:16:39 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -22,7 +22,7 @@ void		SdlDisplay::close() const
 {
   SDL_FreeSurface(this->_snakeDisplay);
   SDL_FreeSurface(this->_screen);
-  SDL_FreeSurface(/*Fruits, wall, div items*/);
+  //  SDL_FreeSurface(/*Fruits, wall, div items*/);
 }
 
 void		SdlDisplay::update(const GameBoard & game)
@@ -59,13 +59,27 @@ IDisplay::eKey		SdlDisplay::getKey() const
     }
 }
 
-void		SdlDisplay::snakePart(const GameBoard &game)
+void		SdlDisplay::snakeIterator(const GameBoard & game)
+{
+  std::list<SnakeRing*>::const_iterator it;
+
+  it = game.snake().begin();
+  while (it != game.snake().end());
+  {
+    this->_snakePos->x = (*it).posx() * 50;
+    this->_snakePos->y = (*it).posy() * 50;
+    snakePart(it);
+    ++it;
+  }
+}
+
+void		SdlDisplay::snakePart(std::list<SnakeRing*>::const_iterator it)
 {
   this->_snakeDisplay = SDL_LoadBMP("sprit/bmp_sdl/snake.bmp");
   if (this->_snakeDisplay == NULL)
     throw Exception("[ERROR] : Snake failed LoadBMP");
   SDL_SetColorKey(this->_snakeDisplay, SDL_SRCCOLORKEYC, SDL_MapRGB(this->_screen->format, 0, 0, 0));
-  SDL_BlitSurface(this->_snakeDisplay, NULL, this->_screen, game.snake());
+  SDL_BlitSurface(this->_snakeDisplay, NULL, this->_screen, this->_snakePos);
 }
 
 void		SdlDisplay::background(const GameBoard &game)

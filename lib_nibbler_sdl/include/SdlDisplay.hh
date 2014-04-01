@@ -23,12 +23,14 @@ private:
   //  SDL_Surface		*_screenStart;
   SDL_Surface		*_backgroundDisplay;
   SDL_Surface		*_snakeDisplay;
+  SDL_Rect		*_snakePos;
 
   void			init(const GameBoard & game);
   void			initWindow(const GameBoard & game);
   void			background(const GameBoard & game);
-  void			snakePart(const GameBoard & game);
+  void			snakePart(std::list<SnakeRing*>::const_iterator it);
   eKey			getKey() const;
+  void			snakeIterator(const GameBoard & game);
   void			update(const GameBoard & game); // refresh full
   void			refreshBg();
   void			refreshSnake();
