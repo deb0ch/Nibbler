@@ -26,8 +26,8 @@ private:
 
   void			init(const GameBoard & game);
   void			initWindow(const GameBoard & game);
-  void			initBackground(const GameBoard & game);
-  void			initSnake(const GameBoard & game);
+  void			background(const GameBoard & game);
+  void			snake(const GameBoard & game);
   void			getKey() const;
   void			update(const GameBoard & game); // refresh full
   void			refreshBg();

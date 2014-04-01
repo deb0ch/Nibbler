@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 chauvo_t
-// Last update Tue Apr  1 22:07:34 2014 
+// Last update Tue Apr  1 22:27:19 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -23,7 +23,7 @@ extern "C"
   }
 }
 
-void		SdlDisplay::close()
+void		SdlDisplay::close() const
 {
   SDL_FreeSurface(this->_snakeDisplay);
   SDL_FreeSurface(this->_screen);
@@ -32,15 +32,18 @@ void		SdlDisplay::close()
 
 void		SdlDisplay::update(const GameBoard & game)
 {
-
+  SDL_FillRect(this->_screen, NULL, SDL_MapRGB(this->_screen->format, 0, 0, 0));
+  background(game);
+  snake(game);
+  SDL_Flip(this->_screen);
 }
 
-void		SdlDisplay::getKey()
+void		SdlDisplay::getKey() const
 {
 
 }
 
-void		SdlDisplay::initSnake(const GameBoard &game)
+void		SdlDisplay::snake(const GameBoard &game)
 {
   this->_snakeDisplay = SDL_LoadBMP("sprit/bmp_sdl/snake.bmp");
   if (this->_snakeDisplay == NULL)
@@ -49,7 +52,7 @@ void		SdlDisplay::initSnake(const GameBoard &game)
   SDL_BlitSurface(this->_snakeDisplay, NULL, this->_screen, game.snake();
 }
 
-void		SdlDisplay::initBackground(const GameBoard &game)
+void		SdlDisplay::background(const GameBoard &game)
 {
   SDL_Rect	pos;
 
@@ -77,7 +80,7 @@ void		SdlDisplay::initWindow(const GameBoard & game)
 
 void		SdlDisplay::init(const GameBoard & game)
 {
-  initWindow(&game);
-  initBackground(&game);
-  initSnake(&game);
+  initWindow(game);
+  background(game);
+  snake(game);
 }
