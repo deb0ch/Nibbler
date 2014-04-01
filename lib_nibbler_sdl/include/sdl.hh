@@ -13,12 +13,12 @@ public:
   virtual ~sdl();
 
 private:
-  void		sdl_init(); // malloc & load bmp
-  void		sdl_main_loop();
-  void		sdl_refresh(); // refresh full
-  void		sdl_background();
-  void		sdl_snake();
-  void		sdl_close(); // free & return esc
+  void		init(); // malloc & load bmp
+  void		main_loop();
+  void		update(); // refresh full
+  void		background();
+  void		snake();
+  void		close(); // free & return esc
 
   sdl(const sdl &);
   sdl &operator=(const sdl &);
