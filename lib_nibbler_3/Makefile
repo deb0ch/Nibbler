@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 22:16:30 2014 chauvo_t
-## Last update Wed Apr  2 11:38:46 2014 chauvo_t
+## Last update Wed Apr  2 12:22:58 2014 chauvo_t
 ##
 
 CXX			:= g++
@@ -28,7 +28,7 @@ OBJS			:= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 SRCS			:= $(addprefix $(SRCDIR)/, $(SRCS))
 
 CXXFLAGS		+= -Werror -Wextra -Wall -W
-CXXFLAGS		+= $(addprefix "-I./", $(HDRDIR))
+CXXFLAGS		+= $(addprefix -I./, $(HDRDIR))
 CXXFLAGS		+= -O2 -fPIC
 $(DEBUG): CXXFLAGS	+= -g3 -ggdb
 

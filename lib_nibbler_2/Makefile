@@ -4,7 +4,7 @@
 ## Made by Thomas de Beauchene
 ## Login   <chauvo_t@epitech.net>
 ##
-## Last update Wed Apr  2 11:39:05 2014 chauvo_t
+## Last update Wed Apr  2 12:23:05 2014 chauvo_t
 ## Last update Sun Dec 15 00:24:02 2013 chauvo_t
 ##
 
@@ -28,7 +28,7 @@ OBJS			:= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 SRCS			:= $(addprefix $(SRCDIR)/, $(SRCS))
 
 CXXFLAGS		+= -Werror -Wextra -Wall -W
-CXXFLAGS		+= $(addprefix "-I./", $(HDRDIR))
+CXXFLAGS		+= $(addprefix -I./, $(HDRDIR))
 CXXFLAGS		+= -O2 -fPIC
 $(DEBUG): CXXFLAGS	+= -g3 -ggdb
 

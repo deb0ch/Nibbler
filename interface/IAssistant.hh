@@ -3,8 +3,8 @@
 
 class IAssistant
 {
-	public:
-		virtual void talk() const = 0;
+public:
+  virtual void talk() const = 0;
 };
 
 #endif
