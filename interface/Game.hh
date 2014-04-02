@@ -5,11 +5,15 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 14:12:15 2014 chauvo_t
-// Last update Wed Apr  2 14:16:22 2014 chauvo_t
+// Last update Wed Apr  2 14:39:25 2014 bourge_i
 //
 
 #ifndef		GAME_H_
 # define	GAME_H_
+
+# include <list>
+# include "Fruit.hh"
+# include "Snake.hh"
 
 class Game
 {
@@ -20,8 +24,9 @@ public:
 private:
   Game(const Game &);
   Game &operator=(const Game &);
-protected:
 
-};
+private:
+  Snake			snake;
+  std::list<Fruit>	fruits;
 
 #endif /* !GAME_H_ */
