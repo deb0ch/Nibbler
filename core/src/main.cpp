@@ -13,7 +13,7 @@ int main(int ac, char** av)
   IAssistant* (*external_creator)();
   void* dlhandle;
   char	*error;
-  Message	msg;
+  Message	msg("Coucou =)");
 
   dlhandle = dlopen(av[1], RTLD_LAZY);
   if (dlhandle == NULL)
@@ -31,21 +31,21 @@ int main(int ac, char** av)
   bob->talk(msg); //Call the code of an unknown object from the code !
   dlclose(dlhandle);
 
-  // dlhandle = dlopen(av[2], RTLD_LAZY);
-  // if (dlhandle == NULL)
-  //   return(1);
-  // dlerror();
-  // external_creator = reinterpret_cast<IAssistant* (*)()>(dlsym(dlhandle, "create_assistant"));
-  // if ((error = dlerror()) != NULL)
-  //   {
-  //     std::cerr << error << std::endl;
-  //     return(1);
-  //   }
+  dlhandle = dlopen(av[2], RTLD_LAZY);
+  if (dlhandle == NULL)
+    return(1);
+  dlerror();
+  external_creator = reinterpret_cast<IAssistant* (*)()>(dlsym(dlhandle, "create_assistant"));
+  if ((error = dlerror()) != NULL)
+    {
+      std::cerr << error << std::endl;
+      return(1);
+    }
 
-  // bob = external_creator(); //Object included from the library !
+  bob = external_creator(); //Object included from the library !
 
-  // bob->talk(msg); //Call the code of an unknown object from the code !
-  // dlclose(dlhandle);
+  bob->talk(msg); //Call the code of an unknown object from the code !
+  dlclose(dlhandle);
 
   return (0);
 }

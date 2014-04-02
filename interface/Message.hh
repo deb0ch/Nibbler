@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 13:07:10 2014 chauvo_t
-// Last update Wed Apr  2 13:09:02 2014 chauvo_t
+// Last update Wed Apr  2 13:21:51 2014 chauvo_t
 //
 
 #ifndef		MESSAGE_H_
@@ -19,7 +19,7 @@ class Message
   std::string	_msg;
 
   public:
-  Message();
+  Message(const std::string & msg);
   const std::string &	str() const;
 };
 
