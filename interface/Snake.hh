@@ -2,7 +2,7 @@
 # define	SNAKE_H_
 
 # include <list>
-# include "coord.hh"
+# include "SnakeElem.hh"
 
 class Snake
 {
@@ -15,8 +15,6 @@ private:
   Snake &operator=(const Snake &);
 
 private:
-  std::list<t_coord>	positions;
-
-};
+  std::list<SnakeElem>	bodyParts;
 
 #endif /* !SNAKE_H_ */

@@ -1,9 +1,9 @@
 #ifndef		FRUIT_H_
 # define	FRUIT_H_
 
-# include "coord.hh"
+# include "Item.hh"
 
-class Fruit
+class Fruit : public Item
 {
 public:
   Fruit();
@@ -14,7 +14,6 @@ private:
   Fruit &operator=(const Fruit &);
 
 private:
-  t_coord	position;
 
 };
 
