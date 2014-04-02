@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 22:16:44 2014 chauvo_t
-## Last update Tue Apr  1 22:28:03 2014 chauvo_t
+## Last update Wed Apr  2 11:38:54 2014 chauvo_t
 ##
 
 CXX			:= g++
@@ -45,6 +45,8 @@ NAME			:= ../lib_nibbler_sdl.so
 
 all:		$(NAME)
 
+$(DEBUG):	fclean $(NAME)
+
 $(OBJDIR)/%.o:	$(SRCDIR)/%.cpp
 		$(COMPILE.cpp) $(OUTPUT_OPTION) $<
 
@@ -58,9 +60,11 @@ $(OBJDIR):
 
 clean:
 	@$(RM) $(TMPS)
+	@echo "Object files cleaned"
 
 fclean:	clean
 	@$(RM) $(NAME)
+	@echo "Executable cleaned"
 
 re:	fclean all
 

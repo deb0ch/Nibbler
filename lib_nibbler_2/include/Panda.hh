@@ -8,4 +8,5 @@ class Panda : public IAssistant
 	public:
 		virtual void talk() const;
 };
+
 #endif

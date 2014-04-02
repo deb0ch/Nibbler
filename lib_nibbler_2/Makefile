@@ -4,7 +4,7 @@
 ## Made by Thomas de Beauchene
 ## Login   <chauvo_t@epitech.net>
 ##
-## Last update Tue Apr  1 22:27:26 2014 chauvo_t
+## Last update Wed Apr  2 11:39:05 2014 chauvo_t
 ## Last update Sun Dec 15 00:24:02 2013 chauvo_t
 ##
 
@@ -45,6 +45,8 @@ NAME			:= ../lib_panda.so
 
 all:		$(NAME)
 
+$(DEBUG):	fclean $(NAME)
+
 $(OBJDIR)/%.o:	$(SRCDIR)/%.cpp
 		$(COMPILE.cpp) $(OUTPUT_OPTION) $<
 
@@ -58,9 +60,11 @@ $(OBJDIR):
 
 clean:
 	@$(RM) $(TMPS)
+	@echo "Object files cleaned"
 
 fclean:	clean
 	@$(RM) $(NAME)
+	@echo "Executable cleaned"
 
 re:	fclean all
 
