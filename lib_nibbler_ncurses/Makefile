@@ -4,7 +4,7 @@
 ## Made by Thomas de Beauchene
 ## Login   <chauvo_t@epitech.net>
 ##
-## Last update Wed Apr  2 12:23:05 2014 chauvo_t
+## Last update Wed Apr  2 17:55:34 2014 chauvo_t
 ## Last update Sun Dec 15 00:24:02 2013 chauvo_t
 ##
 
@@ -27,9 +27,12 @@ SRCS			:=	Panda.cpp	\
 OBJS			:= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 SRCS			:= $(addprefix $(SRCDIR)/, $(SRCS))
 
+DEPS			:= $(OBJS:.o=.d)
+
 CXXFLAGS		+= -Werror -Wextra -Wall -W
 CXXFLAGS		+= $(addprefix -I./, $(HDRDIR))
-CXXFLAGS		+= -O2 -fPIC
+CXXFLAGS		+= -O2
+CXXFLAGS		+= -fPIC
 $(DEBUG): CXXFLAGS	+= -g3 -ggdb
 
 LDFLAGS			+= -shared #-Wl,--whole-archive
@@ -46,6 +49,8 @@ NAME			:= ../lib_panda.so
 all:		$(NAME)
 
 $(DEBUG):	fclean $(NAME)
+
+-include $(DEPS)
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.cpp
 		$(COMPILE.cpp) $(OUTPUT_OPTION) $<
