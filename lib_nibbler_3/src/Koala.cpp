@@ -1,10 +1,11 @@
 #include <iostream>
-#include "Koala.hh"
+#include "../include/Koala.hh"
+#include "../../interface/Message.hh"
 
 //Implementation of method talk()
-void Koala::talk() const
+void Koala::talk(const Message & msg) const
 {
-	std::cout << "Koala says KREOOOOOOOOOOG !" << std::endl;
+  std::cout << "Koala says KREOOOOOOOOOOG !" << msg.str() << std::endl;
 }
 
 //Function to create a Koala
@@ -12,8 +13,8 @@ void Koala::talk() const
 
 extern "C"
 {
-	IAssistant* create_assistant()
-	{
-		return new Koala();
-	}
+  IAssistant* create_assistant()
+  {
+    return new Koala();
+  }
 }

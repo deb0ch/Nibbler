@@ -1,11 +1,12 @@
 #ifndef __KOALA_HH__
 # define __KOALA_HH__
 
-# include "IAssistant.hh" //Must include the interface from core
+# include "../../interface/IAssistant.hh" //Must include the interface from core
 
 class Koala : public IAssistant
 {
-	public:
-		virtual void talk() const;
+public:
+  virtual void talk(const Message & msg) const;
 };
+
 #endif
