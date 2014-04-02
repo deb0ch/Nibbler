@@ -1,22 +1,24 @@
 #ifndef		CORE_H_
 # define	CORE_H_
 
-#include <string>
+# include <string>
+# include "../../interface/Game.hh"
 
 class Core
 {
 public:
   Core(std::string lib_path, int width, int height);
-  openLib();
-  gameLoop();
-  closeLib();
+  void	openLib();
+  void	gameLoop();
+  void	closeLib();
   virtual ~Core();
 
 private:
   Core(const Core &);
   Core &operator=(const Core &);
-protected:
 
+private:
+  Game	game;
 };
 
 #endif /* !CORE_H_ */
