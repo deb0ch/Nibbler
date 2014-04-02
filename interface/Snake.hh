@@ -15,6 +15,6 @@ private:
   Snake &operator=(const Snake &);
 
 private:
-  std::list<SnakeElem>	bodyParts;
+  std::list<SnakeElem>	rings;
 
 #endif /* !SNAKE_H_ */

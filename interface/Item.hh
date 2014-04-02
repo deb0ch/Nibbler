@@ -12,7 +12,10 @@ public:
       TYPE_LAST
     }		eType;
 
-  Item();
+  Item(int posx, int posy);
+  int	getPosx() const;
+  int	getPosy() const;
+  eType	getType() const;
   virtual ~Item();
 
 private:
