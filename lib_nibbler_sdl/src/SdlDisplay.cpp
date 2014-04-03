@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 19:45:55 2014 
+// Last update Thu Apr  3 20:17:42 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -36,36 +36,37 @@ void		SdlDisplay::update(const GameBoard & game)
 
 IDisplay::eKey		SdlDisplay::getKey()
 {
-  SDL_Event	event;
+  SDL_Event		event;
+  IDisplay::eKey	output;
 
   event.type = SDL_NOEVENT;
-  SDL_PollEvent(&event);
-  if (event.type == SDL_KEYDOWN)
+  while (SDL_PollEvent(&event))
     {
-      if (event.key.keysym.sym == SDLK_ESCAPE)
-	return (NIB_KEY_ESC);
-      else if (event.key.keysym.sym == SDL_QUIT)
-	return (NIB_KEY_ESC);
-      else if (event.key.keysym.sym == SDLK_LEFT)
+      if (event.type == SDL_KEYDOWN)
 	{
-	  this->_leftRigth = -1;
-	  orient();
-	  return (NIB_KEY_LEFT);
+	  if (event.key.keysym.sym == SDLK_ESCAPE)
+	    output = IDisplay::NIB_KEY_ESC;
+	  else if (event.key.keysym.sym == SDL_QUIT)
+	    output = IDisplay::NIB_KEY_ESC;
+	  else if (event.key.keysym.sym == SDLK_LEFT)
+	    {
+	      this->_leftRigth = -1;
+	      orient();
+	      output = IDisplay::NIB_KEY_LEFT;
+	    }
+	  else if (event.key.keysym.sym == SDLK_RIGHT)
+	    {
+	      this->_leftRigth = 1;
+	      orient();
+	      output = IDisplay::NIB_KEY_RIGHT;
+	    }
+	  else if (event.key.keysym.sym == SDLK_SPACE)
+	    output = IDisplay::NIB_KEY_SPACE;
+	  else if (event.key.keysym.sym == SDLK_RETURN)
+	    output = IDisplay::NIB_KEY_ENTER;
 	}
-      else if (event.key.keysym.sym == SDLK_RIGHT)
-	{
-	  this->_leftRigth = 1;
-	  orient();
-	  return (NIB_KEY_RIGHT);
-	}
-      else if (event.key.keysym.sym == SDLK_UP)
-	return (NIB_KEY_UP);
-      else if (event.key.keysym.sym == SDLK_DOWN)
-	return (NIB_KEY_DOWN);
-      else if (event.key.keysym.sym == SDLK_SPACE)
-	return (NIB_KEY_SPACE);
+      return (output);
     }
-  return (NIB_KEY_NONE);
 }
 
 void		SdlDisplay::orient()
