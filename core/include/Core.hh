@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Thu Apr  3 17:03:10 2014 chauvo_t
+// Last update Thu Apr  3 17:27:28 2014 bourge_i
 //
 
 #ifndef		CORE_H_
@@ -13,6 +13,7 @@
 
 # include <string>
 # include <vector>
+# include <dlfcn.h>
 # include "../include/Exception.hh"
 # include "../include/Timer.hh"
 # include "../../interface/GameBoard.hh"
@@ -21,12 +22,12 @@
 class Core
 {
 public:
-  void			startGame(int height, int width, const std::vector<std::string> & libs);
+  void			startGame(int height, int width);
   void			switchLib();
   void			endGame();
 
 public:
-  Core();
+  Core(const std::vector<std::string> & libs);
   ~Core();
 
 private:
