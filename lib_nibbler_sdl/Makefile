@@ -5,10 +5,10 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 22:16:44 2014 chauvo_t
-## Last update Wed Apr  2 17:55:00 2014 chauvo_t
+## Last update Wed Apr  2 01:50:47 2014 
 ##
 
-CXX			:= g++
+CXX			:= clang
 
 RM			:= rm -f
 
@@ -21,7 +21,7 @@ OBJDIR			:= build
 HDRDIR			:= include
 HDRDIR			+= ../interface
 
-SRCS			:=	lib_nibbler_sdl.cpp	\
+SRCS			:=	SdlDisplay.cpp	\
 #				other_file.cpp
 
 OBJS			:= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
@@ -43,7 +43,7 @@ TMPS			:=	$(OBJS)			\
 				$(SRCS:.cpp=.cpp~)	\
 				Makefile~
 
-NAME			:= ../lib_nibbler_sdl.so
+NAME			:= ../SdlDisplay.so
 
 
 all:		$(NAME)

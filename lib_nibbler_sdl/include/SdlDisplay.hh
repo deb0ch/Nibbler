@@ -4,7 +4,7 @@
 # include <iostream>
 # include <string>
 # include <fstream>
-# include <SDL/SDL.h>>
+# include <SDL/SDL.h>
 # include "../../interface/Exception.hh"
 # include "../../interface/IDisplay.hh"
 
@@ -27,8 +27,8 @@ private:
 
   void			init(const GameBoard & game);
   void			initWindow(const GameBoard & game);
-  void			background(const GameBoard & game);
-  void			snakePart(std::list<SnakeRing*>::const_iterator it);
+  void			background();
+  void			snakePart();
   eKey			getKey() const;
   void			snakeIterator(const GameBoard & game);
   void			update(const GameBoard & game); // refresh full
