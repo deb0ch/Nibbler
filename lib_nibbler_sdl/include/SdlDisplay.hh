@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Sat Apr  5 19:58:34 2014 laguet_p
-// Last update Sat Apr  5 20:33:22 2014 chauvo_t
+// Last update Thu Apr  3 15:13:09 2014 
 //
 
 #ifndef		SDL_H_
@@ -21,6 +21,8 @@
 # define NB_PIX_X	50
 # define NB_PIX_Y	50
 # define COLOR		32
+# define MAX_X		32
+# define MAX_Y		26
 
 class	SdlDisplay : public IDisplay
 {
@@ -33,6 +35,7 @@ private:
   //  SDL_Surface		*_screenStart;
   SDL_Surface		*_backgroundDisplay;
   SDL_Surface		*_snakeDisplay;
+  int			_snakeBmp;
   SDL_Rect		_snakePos;
 
   void			init(const GameBoard & game);
