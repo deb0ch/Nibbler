@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Thu Apr  3 18:48:02 2014 bourge_i
+// Last update Thu Apr  3 19:10:32 2014 bourge_i
 //
 
 #include "../include/Core.hh"
@@ -22,6 +22,8 @@ void	Core::startGame(int height, int width)
     {
       std::cerr << e.what() << std::endl;
     }
+  this->gameLoop();
+  this->closeLib();
 }
 
 // Private
@@ -34,6 +36,7 @@ Core::Core(const std::vector<std::string> &libs)
 
 Core::~Core()
 {
+
 }
 
 void	Core::openLib()
@@ -67,9 +70,18 @@ void	Core::openLib()
     throw Exception("dlsym error loading init symbol: " + std::string(error));
 }
 
-void	Core::gameLoop()
+void			Core::gameLoop()
 {
+  IDisplay::eKey	key;
 
+  key = IDisplay::KEY_LAST;
+  while (key != IDisplay::KEY_ESC)
+    {
+      key = this->_getKey();
+      this->_update(this->_gameBoard);
+      // TODO : setter key dans GAMEBOARD
+      this->_timer.milliSleep(1000/50):
+    }
 }
 
 void	Core::closeLib()
