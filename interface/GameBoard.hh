@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 14:12:15 2014 chauvo_t
-// Last update Wed Apr  2 17:30:14 2014 chauvo_t
+// Last update Thu Apr  3 17:22:53 2014 chauvo_t
 //
 
 #ifndef		GAMEBOARD_H_
@@ -18,20 +18,24 @@
 class GameBoard
 {
 public:
-  GameBoard(int width, int height);
-  int	getWidth() const;
-  int	getHeight() const;
-  virtual ~GameBoard();
+  int			getWidth() const;
+  int			getHeight() const;
+  void			setWidth(int width);
+  void			setHeight(int height);
+
+public:
+  GameBoard();
+  ~GameBoard();
 
 private:
   GameBoard(const GameBoard &);
   GameBoard &operator=(const GameBoard &);
 
 private:
-  Snake			snake;
-  std::list<Fruit>	fruits;
-  int			width;
-  int			height;
+  Snake			_snake;
+  std::list<Fruit>	_fruits;
+  int			_width;
+  int			_height;
 };
 
 #endif /* !GAMEBOARD_H_ */
