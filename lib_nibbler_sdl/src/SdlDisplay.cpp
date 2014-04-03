@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 17:56:43 2014 
+// Last update Thu Apr  3 17:57:37 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -98,39 +98,6 @@ void		SdlDisplay::snakeLoad(const GameBoard & game)
     throw Exception("[ERROR] : Snake failed LoadBMP");
   snakeIterator(game);
 }
-
-
-/*void		SdlDisplay::snakeLoad(const GameBoard & game)
-{
-  std::list<SnakeRing*>::const_iterator it;
-
-  it = game.snake().begin();
-  while (it != game.snake().end())
-    {
-      if (it == game.snake().begin())
-	{
-	  this->_snakeHead = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head.bmp");
-	  if (this->_snakeDisplay == NULL)
-	    throw Exception("[ERROR] : Snake_head failed LoadBMP");
-	}
-      else if ((*it) == game.snake().back())
-	{
-	  this->_snakeEnd = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_end.bmp");
-	  if (this->_snakeDisplay == NULL)
-	    throw Exception("[ERROR] : Snake_end failed LoadBMP");
-	}
-      else
-	{
-	  this->_snakeBody = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake.bmp");
-	  if (this->_snakeDisplay == NULL)
-	    throw Exception("[ERROR] : Snake failed LoadBMP");
-	}
-      this->_snakePos.x = (*it)->posx() * NB_PIX_X;
-      this->_snakePos.y = (*it)->posy() * NB_PIX_Y;
-      snakeIterator(game);
-      ++it;
-    }
-    }*/
 
 void		SdlDisplay::snakePart()
 {
