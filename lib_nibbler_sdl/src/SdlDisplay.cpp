@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 17:39:01 2014 
+// Last update Thu Apr  3 17:45:22 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -87,6 +87,21 @@ void		SdlDisplay::snakeIterator(const GameBoard & game)
 
 void		SdlDisplay::snakeLoad(const GameBoard & game)
 {
+  this->_snakeHead = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head.bmp");
+  if (this->_snakeHead == NULL)
+    throw Exception("[ERROR] : Snake_head failed LoadBMP");
+  this->_snakeEnd = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_end.bmp");
+  if (this->_snakeEnd == NULL)
+    throw Exception("[ERROR] : Snake_end failed LoadBMP");
+  this->_snakeBody = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake.bmp");
+  if (this->_snakeBody == NULL)
+    throw Exception("[ERROR] : Snake failed LoadBMP");
+  snakeIterator(game);
+}
+
+
+/*void		SdlDisplay::snakeLoad(const GameBoard & game)
+{
   std::list<SnakeRing*>::const_iterator it;
 
   it = game.snake().begin();
@@ -115,7 +130,7 @@ void		SdlDisplay::snakeLoad(const GameBoard & game)
       snakeIterator(game);
       ++it;
     }
-}
+    }*/
 
 void		SdlDisplay::snakePart()
 {
