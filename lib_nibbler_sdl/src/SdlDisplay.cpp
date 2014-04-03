@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 23:18:56 2014 
+// Last update Thu Apr  3 23:42:40 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -236,6 +236,16 @@ void		SdlDisplay::initWindow(const GameBoard & game)
 int		SdlDisplay::getFps() const
 {
   return (50);
+}
+
+int		SdlDisplay::getMaxWidth() const
+{
+  return (MAX_X);
+}
+
+int		SdlDisplay::getMaxHeight() const
+{
+  return (MAX_Y);
 }
 
 void		SdlDisplay::init(const GameBoard & game)

@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Sat Apr  5 19:58:34 2014 laguet_p
-// Last update Thu Apr  3 23:16:28 2014 
+// Last update Thu Apr  3 23:44:55 2014 
 //
 
 #ifndef		SDL_H_
@@ -68,7 +68,9 @@ private:
   void			fruitLoad(const GameBoard & game);
   void			update(const GameBoard & game); // refresh full
   void			close() const; // free & return esc
-  int			getFps() const;
+  virtual  int		getFps() const;
+  virtual  int		getMaxWidth() const;
+  int			getMaxHeight() const;
 
   SdlDisplay(const SdlDisplay &);
   SdlDisplay &operator=(const SdlDisplay &);
