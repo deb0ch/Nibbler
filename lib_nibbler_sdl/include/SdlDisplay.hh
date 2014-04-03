@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Sat Apr  5 19:58:34 2014 laguet_p
-// Last update Thu Apr  3 19:43:21 2014 
+// Last update Thu Apr  3 21:30:57 2014 
 //
 
 #ifndef		SDL_H_
@@ -32,7 +32,6 @@ public:
 
 private:
   SDL_Surface		*_screen;
-  //  SDL_Surface		*_screenStart;
   SDL_Surface		*_backgroundDisplay;
   SDL_Surface		*_snakeDisplay;
   SDL_Surface		*_fruitsDisplay;
@@ -44,9 +43,9 @@ private:
   SDL_Surface		*_snakeEnd1;
   SDL_Surface		*_snakeEnd2;
   SDL_Surface		*_fruit;
+  SDL_Surface		*_fruit2;
   int			_snakeBmp;
-  int			_leftRigth;
-  int			_sens;
+  int			_compt;
   SDL_Rect		_snakePos;
   SDL_Rect		_fruitPos;
   SDL_Rect		_backgroundPos;
@@ -58,15 +57,14 @@ private:
   void			fruitPart();
   eKey			getKey();
   void			snakeIterator(const GameBoard & game);
-  void			snakeHead();
-  void			snakeEnd();
+  void			snakeHead(const GameBoard & game);
+  void			snakeEnd(const GameBoard & game);
   void			fruitIterator(const GameBoard & game);
   void			snakeLoad(const GameBoard & game);
   void			fruitLoad(const GameBoard & game);
   void			update(const GameBoard & game); // refresh full
   void			close() const; // free & return esc
   int			getFps() const;
-  void			orient();
 
   SdlDisplay(const SdlDisplay &);
   SdlDisplay &operator=(const SdlDisplay &);
