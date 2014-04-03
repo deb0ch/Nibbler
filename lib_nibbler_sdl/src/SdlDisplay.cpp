@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 20:17:42 2014 
+// Last update Thu Apr  3 20:23:12 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -39,6 +39,7 @@ IDisplay::eKey		SdlDisplay::getKey()
   SDL_Event		event;
   IDisplay::eKey	output;
 
+  output = IDisplay::NIB_KEY_NONE;
   event.type = SDL_NOEVENT;
   while (SDL_PollEvent(&event))
     {
@@ -65,8 +66,8 @@ IDisplay::eKey		SdlDisplay::getKey()
 	  else if (event.key.keysym.sym == SDLK_RETURN)
 	    output = IDisplay::NIB_KEY_ENTER;
 	}
-      return (output);
     }
+  return (output);
 }
 
 void		SdlDisplay::orient()
