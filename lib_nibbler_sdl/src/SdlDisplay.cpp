@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 17:57:37 2014 
+// Last update Thu Apr  3 19:07:38 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -30,6 +30,7 @@ void		SdlDisplay::update(const GameBoard & game)
   SDL_FillRect(this->_screen, NULL, SDL_MapRGB(this->_screen->format, 0, 0, 0));
   SDL_BlitSurface(this->_backgroundDisplay, NULL, this->_screen, &(this->_backgroundPos));
   snakeIterator(game);
+  fruitIterator(game);
   SDL_Flip(this->_screen);
 }
 
@@ -48,11 +49,13 @@ IDisplay::eKey		SdlDisplay::getKey()
       else if (event.key.keysym.sym == SDLK_LEFT)
 	{
 	  this->_leftRigth = -1;
+	  orient();
 	  return (NIB_KEY_LEFT);
 	}
       else if (event.key.keysym.sym == SDLK_RIGHT)
 	{
 	  this->_leftRigth = 1;
+	  orient();
 	  return (NIB_KEY_RIGHT);
 	}
       else if (event.key.keysym.sym == SDLK_UP)
@@ -65,6 +68,15 @@ IDisplay::eKey		SdlDisplay::getKey()
   return (NIB_KEY_NONE);
 }
 
+void		SdlDisplay::orient()
+{
+  this->_sens = this->_sens + this->_leftRigth;
+  if (this->_sens > 3)
+    this->_sens = 0;
+  if (this->_sens < 0)
+    this->_sens = 3;
+}
+
 void		SdlDisplay::snakeIterator(const GameBoard & game)
 {
   std::list<SnakeRing*>::const_iterator it;
@@ -73,7 +85,7 @@ void		SdlDisplay::snakeIterator(const GameBoard & game)
   while (it != game.snake().end())
     {
       if (it == game.snake().begin())
-	this->_snakeDisplay = this->_snakeHead;
+	snakeHead();
       else if ((*it) == game.snake().back())
 	this->_snakeDisplay = this->_snakeEnd;
       else
@@ -85,11 +97,47 @@ void		SdlDisplay::snakeIterator(const GameBoard & game)
     }
 }
 
+void		SdlDisplay::snakeHead()
+{
+  if (this->_sens == 0)
+    this->_snakeDisplay = this->_snakeHead0;
+  else if (this->_sens == 1)
+    this->_snakeDisplay = this->_snakeHead1;
+  else if (this->_sens == 2)
+    this->_snakeDisplay = this->_snakeHead2;
+  else if (this->_sens == 3)
+    this->_snakeDisplay = this->_snakeHead3;
+}
+
+void		SdlDisplay::fruitIterator(const GameBoard & game)
+{
+  std::list<Fruit*>::const_iterator it;
+
+  it = game.fruits().begin();
+  while (it != game.fruits().end())
+    {
+      this->_fruitsDisplay = this->_fruit;
+      this->_fruitPos.x = (*it)->posx() * NB_PIX_X;
+      this->_fruitPos.y = (*it)->posy() * NB_PIX_Y;
+      fruitPart();
+      ++it;
+    }
+}
+
 void		SdlDisplay::snakeLoad(const GameBoard & game)
 {
-  this->_snakeHead = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head.bmp");
-  if (this->_snakeHead == NULL)
-    throw Exception("[ERROR] : Snake_head failed LoadBMP");
+  this->_snakeHead0 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head0.bmp");
+  if (this->_snakeHead0 == NULL)
+    throw Exception("[ERROR] : Snake_head0 failed LoadBMP");
+  this->_snakeHead1 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head1.bmp");
+  if (this->_snakeHead1 == NULL)
+    throw Exception("[ERROR] : Snake_head1 failed LoadBMP");
+  this->_snakeHead2 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head2.bmp");
+  if (this->_snakeHead2 == NULL)
+    throw Exception("[ERROR] : Snake_head2 failed LoadBMP");
+  this->_snakeHead3 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head3.bmp");
+  if (this->_snakeHead3 == NULL)
+    throw Exception("[ERROR] : Snake_head3 failed LoadBMP");
   this->_snakeEnd = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_end.bmp");
   if (this->_snakeEnd == NULL)
     throw Exception("[ERROR] : Snake_end failed LoadBMP");
@@ -99,10 +147,24 @@ void		SdlDisplay::snakeLoad(const GameBoard & game)
   snakeIterator(game);
 }
 
+void		SdlDisplay::fruitLoad(const GameBoard & game)
+{
+  this->_fruit = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/fruit.bmp");
+  if (this->_fruit == NULL)
+    throw Exception("[ERROR] : fruit failed LoadBMP");
+  fruitIterator(game);
+}
+
 void		SdlDisplay::snakePart()
 {
   SDL_SetColorKey(this->_snakeDisplay, SDL_SRCCOLORKEY, SDL_MapRGB(this->_screen->format, 0, 0, 0));
   SDL_BlitSurface(this->_snakeDisplay, NULL, this->_screen, &(this->_snakePos));
+}
+
+void		SdlDisplay::fruitPart()
+{
+  SDL_SetColorKey(this->_fruitsDisplay, SDL_SRCCOLORKEY, SDL_MapRGB(this->_screen->format, 0, 0, 0));
+  SDL_BlitSurface(this->_fruitsDisplay, NULL, this->_screen, &(this->_fruitPos));
 }
 
 void		SdlDisplay::background()
@@ -140,4 +202,5 @@ void		SdlDisplay::init(const GameBoard & game)
   initWindow(game);
   background();
   snakeLoad(game);
+  fruitLoad(game);
 }
