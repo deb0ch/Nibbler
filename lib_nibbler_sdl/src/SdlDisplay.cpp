@@ -1,11 +1,11 @@
 //
 // lib_nibbler_sdl.cpp for nibbler in /home/ubuntu/rendu/cpp_nibbler
 //
-// Made by chauvo_t
-// Login   <chauvo_t@epitech.net>
+// Made by laguet_p
+// Login   <laguet_p@epitech.net>
 //
-// Started on  Tue Apr  1 21:22:02 2014 chauvo_t
-// Last update Thu Apr  3 12:18:50 2014 
+// Started on  Tue Apr  1 21:22:02 2014 laguet_p
+// Last update Sun Apr  6 09:14:58 2014 chauvo_t
 //
 
 # include "../include/SdlDisplay.hh"
