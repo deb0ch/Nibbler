@@ -2,8 +2,6 @@
 #include <dlfcn.h>
 #include "../include/Core.hh"
 
-Core*	Core::_core = NULL;
-
 int main(int ac, char** av)
 {
   (void)ac;

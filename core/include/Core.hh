@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Thu Apr  3 17:27:28 2014 bourge_i
+// Last update Thu Apr  3 17:48:03 2014 bourge_i
 //
 
 #ifndef		CORE_H_
@@ -13,6 +13,7 @@
 
 # include <string>
 # include <vector>
+# include <iostream>
 # include <dlfcn.h>
 # include "../include/Exception.hh"
 # include "../include/Timer.hh"
@@ -35,15 +36,15 @@ private:
   Core &operator=(const Core &);
 
 private:
-  Timer					_timer;
-  GameBoard				_gameBoard;
-  const std::vector<std::string>	_libs;
-  std::vector<std::string>::iterator	_libsIt;
-  void					*_libHandle;
-  void					(*_init)(const GameBoard & game);
-  void					(*_update)(const GameBoard & game);
-  IDisplay::eKey			(*_getKey)();
-  void					(*_close)();
+  Timer						_timer;
+  GameBoard					_gameBoard;
+  const std::vector<std::string>		_libs;
+  std::vector<std::string>::const_iterator	_libsIt;
+  void						*_libHandle;
+  void						(*_init)(const GameBoard & game);
+  void						(*_update)(const GameBoard & game);
+  IDisplay::eKey				(*_getKey)();
+  void						(*_close)();
 
 private:
   void			openLib();
