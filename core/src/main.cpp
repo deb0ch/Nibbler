@@ -2,54 +2,18 @@
 #include <dlfcn.h>
 #include "../include/Core.hh"
 
-// #include "../../interface/IAssistant.hh" //Include only the interface
+Core*	Core::_core = NULL;
 
 int main(int ac, char** av)
 {
   (void)ac;
   (void)av;
-  // if (ac < 2)
-  //   {
-  //     std::cerr << "Usage : ./exemple4 <libXXX.so> <libYYY.so>" << std::endl;
-  //     return(1);
-  //   }
+  if (ac < 2)
+    {
+      std::cerr << "Usage : " << av[0] << " [libXXX.so] ..." << std::endl;
+      return(1);
+    }
 
-  // IAssistant* (*external_creator)();
-  // void* dlhandle;
-  // char	*error;
-  // Message	msg("Coucou =)");
 
-  // dlhandle = dlopen(av[1], RTLD_LAZY);
-  // if (dlhandle == NULL)
-  //   return(1);
-  // dlerror();
-  // external_creator = reinterpret_cast<IAssistant* (*)()>(dlsym(dlhandle, "create_assistant"));
-  // if ((error = dlerror()) != NULL)
-  //   {
-  //     std::cerr << error << std::endl;
-  //     return(1);
-  //   }
-
-  // IAssistant* bob = external_creator(); //Object included from the library !
-
-  // bob->talk(msg); //Call the code of an unknown object from the code !
-  // dlclose(dlhandle);
-
-  // dlhandle = dlopen(av[2], RTLD_LAZY);
-  // if (dlhandle == NULL)
-  //   return(1);
-  // dlerror();
-  // external_creator = reinterpret_cast<IAssistant* (*)()>(dlsym(dlhandle, "create_assistant"));
-  // if ((error = dlerror()) != NULL)
-  //   {
-  //     std::cerr << error << std::endl;
-  //     return(1);
-  //   }
-
-  // bob = external_creator(); //Object included from the library !
-
-  // bob->talk(msg); //Call the code of an unknown object from the code !
-  // dlclose(dlhandle);
-
-  // return (0);
+  return (0);
 }
