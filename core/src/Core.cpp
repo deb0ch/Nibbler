@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Thu Apr  3 19:10:32 2014 bourge_i
+// Last update Thu Apr  3 19:41:51 2014 chauvo_t
 //
 
 #include "../include/Core.hh"
@@ -53,21 +53,25 @@ void	Core::openLib()
     throw Exception("dlopen error");
 
   dlerror();
-  this->_init   = reinterpret_cast<void (*)(const GameBoard & game)>(dlsym(this->_libHandle, "init"));
+  this->_init = reinterpret_cast<void (*)(const GameBoard &)>(dlsym(this->_libHandle,
+									   "init"));
   if ((error = dlerror()) != NULL)
     throw Exception("dlsym error loading init symbol: " + std::string(error));
   dlerror();
-  this->_update = reinterpret_cast<void (*)(const GameBoard & game)>(dlsym(this->_libHandle, "update"));
+  this->_update = reinterpret_cast<void (*)(const GameBoard &)>(dlsym(this->_libHandle,
+									   "update"));
   if ((error = dlerror()) != NULL)
-    throw Exception("dlsym error loading init symbol: " + std::string(error));
+    throw Exception("dlsym error loading update symbol: " + std::string(error));
   dlerror();
-  this->_getKey = reinterpret_cast<IDisplay::eKey (*)()>(dlsym(this->_libHandle, "getKey"));
+  this->_getKey = reinterpret_cast<IDisplay::eKey (*)()>(dlsym(this->_libHandle,
+							       "getKey"));
   if ((error = dlerror()) != NULL)
-    throw Exception("dlsym error loading init symbol: " + std::string(error));
+    throw Exception("dlsym error loading getkey symbol: " + std::string(error));
   dlerror();
-  this->_close  = reinterpret_cast<void (*)()>(dlsym(this->_libHandle, "close"));
+  this->_close  = reinterpret_cast<void (*)()>(dlsym(this->_libHandle,
+						     "close"));
   if ((error = dlerror()) != NULL)
-    throw Exception("dlsym error loading init symbol: " + std::string(error));
+    throw Exception("dlsym error loading close symbol: " + std::string(error));
 }
 
 void			Core::gameLoop()

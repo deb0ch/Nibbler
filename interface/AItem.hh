@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 17:53:45 2014 chauvo_t
-// Last update Thu Apr  3 18:00:22 2014 chauvo_t
+// Last update Fri Apr  4 00:09:43 2014 chauvo_t
 //
 
 #ifndef		AITEM_H_
@@ -20,7 +20,7 @@ public:
       SNAKE,
       FRUIT,
       TYPE_LAST
-    }		eType;
+    }			eType;
 
 public:
   int			posx() const;
@@ -28,10 +28,11 @@ public:
   virtual eType		type() const = 0;
 
 public:
-  AItem(int posx, int posy);
-  virtual ~AItem();
+  AItem(int posx, int posy) : _posx(posx), _posy(posy) {}
+  virtual ~AItem() {}
 
 private:
+  AItem();
   AItem(const AItem &);
   AItem			&operator=(const AItem &);
 

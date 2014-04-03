@@ -5,25 +5,26 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:35:36 2014 chauvo_t
-// Last update Wed Apr  2 17:36:05 2014 chauvo_t
+// Last update Thu Apr  3 23:16:44 2014 chauvo_t
 //
 
 #ifndef		SNAKERING_H_
 # define	SNAKERING_H_
 
-# include	"Item.hh"
+# include "../interface/AItem.hh"
 
-class SnakeRing : public Item
+class SnakeRing : public AItem
 {
 public:
-  SnakeRing();
+  virtual eType		type() const { return (SNAKE); }
+
+public:
   virtual ~SnakeRing();
 
 private:
+  SnakeRing();
   SnakeRing(const SnakeRing &);
   SnakeRing &operator=(const SnakeRing &);
-protected:
-
 };
 
 #endif /* !SNAKERING_H_ */
