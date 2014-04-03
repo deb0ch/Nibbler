@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 17:45:22 2014 
+// Last update Thu Apr  3 17:56:43 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -29,7 +29,6 @@ void		SdlDisplay::update(const GameBoard & game)
 {
   SDL_FillRect(this->_screen, NULL, SDL_MapRGB(this->_screen->format, 0, 0, 0));
   SDL_BlitSurface(this->_backgroundDisplay, NULL, this->_screen, &(this->_backgroundPos));
-  //  background();
   snakeIterator(game);
   SDL_Flip(this->_screen);
 }
@@ -38,6 +37,7 @@ IDisplay::eKey		SdlDisplay::getKey()
 {
   SDL_Event	event;
 
+  event.type = SDL_NOEVENT;
   SDL_PollEvent(&event);
   if (event.type == SDL_KEYDOWN)
     {
