@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Thu Apr  3 17:48:03 2014 bourge_i
+// Last update Thu Apr  3 18:35:53 2014 bourge_i
 //
 
 #ifndef		CORE_H_
@@ -50,6 +50,7 @@ private:
   void			openLib();
   void			gameLoop();
   void			closeLib();
+  void			openError();
 };
 
 #endif /* !CORE_H_ */
