@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Fri Apr  4 00:00:25 2014 
+// Last update Fri Apr  4 00:30:05 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -66,8 +66,6 @@ IDisplay::eKey		SdlDisplay::getKey()
 	    output = IDisplay::NIB_KEY_RIGHT;
 	  else if (event.key.keysym.sym == SDLK_SPACE)
 	    output = IDisplay::NIB_KEY_SPACE;
-	  else if (event.key.keysym.sym == SDLK_RETURN)
-	    output = IDisplay::NIB_KEY_ENTER;
 	}
     }
   return (output);
