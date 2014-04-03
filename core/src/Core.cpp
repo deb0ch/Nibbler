@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Thu Apr  3 18:43:48 2014 bourge_i
+// Last update Thu Apr  3 18:48:02 2014 bourge_i
 //
 
 #include "../include/Core.hh"
@@ -41,7 +41,7 @@ void	Core::openLib()
   char	*error;
 
   if (this->_libsIt == this->_libs.end())
-    this->_libsIt = this->libs.begin();
+    this->_libsIt = this->_libs.begin();
   else
     ++this->_libsIt;
 
