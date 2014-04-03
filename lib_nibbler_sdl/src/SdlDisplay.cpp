@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 22:28:34 2014 
+// Last update Thu Apr  3 23:18:56 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -26,7 +26,10 @@ void		SdlDisplay::close() const
   SDL_FreeSurface(this->_snakeHead3);
   SDL_FreeSurface(this->_snakeEnd1);
   SDL_FreeSurface(this->_snakeEnd2);
-  SDL_FreeSurface(this->_snakeBody);
+  SDL_FreeSurface(this->_snakeBody0);
+  SDL_FreeSurface(this->_snakeBody1);
+  SDL_FreeSurface(this->_snakeBody2);
+  SDL_FreeSurface(this->_snakeBody3);
 
   SDL_FreeSurface(this->_backgroundDisplay);
 
@@ -85,7 +88,7 @@ void		SdlDisplay::snakeIterator(const GameBoard & game)
       else if ((*it) == game.snake().back())
 	snakeEnd(game);
       else
-	this->_snakeDisplay = this->_snakeBody;
+	snakeBody(it);
       this->_snakePos.x = (*it)->posx() * NB_PIX_X;
       this->_snakePos.y = (*it)->posy() * NB_PIX_Y;
       snakePart();
@@ -103,6 +106,18 @@ void		SdlDisplay::snakeHead(const GameBoard & game)
     this->_snakeDisplay = this->_snakeHead0;
   if (game.snake().front()->direction() == SnakeRing::RIGHT)
     this->_snakeDisplay = this->_snakeHead2;
+}
+
+void		SdlDisplay::snakeBody(std::list<SnakeRing*>::const_iterator it)
+{
+  if ((*it)->direction() == SnakeRing::UP)
+    this->_snakeDisplay = this->_snakeBody1;
+  if ((*it)->direction() == SnakeRing::DOWN)
+    this->_snakeDisplay = this->_snakeBody3;
+  if ((*it)->direction() == SnakeRing::LEFT)
+    this->_snakeDisplay = this->_snakeBody0;
+  if ((*it)->direction() == SnakeRing::RIGHT)
+    this->_snakeDisplay = this->_snakeBody2;
 }
 
 void		SdlDisplay::snakeEnd(const GameBoard & game)
@@ -156,9 +171,18 @@ void		SdlDisplay::snakeLoad(const GameBoard & game)
   this->_snakeEnd2 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_end/snake_end0.bmp");
   if (this->_snakeEnd2 == NULL)
     throw Exception("[ERROR] : Snake_end2 failed LoadBMP");
-  this->_snakeBody = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake.bmp");
-  if (this->_snakeBody == NULL)
-    throw Exception("[ERROR] : Snake failed LoadBMP");
+  this->_snakeBody0 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody00.bmp");
+  if (this->_snakeBody0 == NULL)
+    throw Exception("[ERROR] : SnakeBody0 failed LoadBMP");
+  this->_snakeBody1 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody01.bmp");
+  if (this->_snakeBody1 == NULL)
+    throw Exception("[ERROR] : SnakeBody1 failed LoadBMP");
+  this->_snakeBody2 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody02.bmp");
+  if (this->_snakeBody2 == NULL)
+    throw Exception("[ERROR] : SnakeBody2  failed LoadBMP");
+  this->_snakeBody3 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody03.bmp");
+  if (this->_snakeBody3 == NULL)
+    throw Exception("[ERROR] : SnakeBody3 failed LoadBMP");
   snakeIterator(game);
 }
 
