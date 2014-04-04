@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Fri Apr  4 19:42:28 2014 chauvo_t
+// Last update Fri Apr  4 20:00:37 2014 chauvo_t
 //
 
 #include "../include/Core.hh"
@@ -61,7 +61,7 @@ void	Core::openLib()
     throw Exception("dlopen error opening " + *_libsIt + ": " + strerror(errno));
   dlerror();
   _display = reinterpret_cast<IDisplay*>(dlsym(_libHandle,
-						     "createDisplay"));
+					       "createDisplay"));
   if ((error = dlerror()) != NULL)
     throw Exception("dlsym error loading library entry point: " + std::string(error));
 }
@@ -69,17 +69,19 @@ void	Core::openLib()
 void			Core::gameLoop()
 {
   IDisplay::eKey	key;
-  bool			exit = false;
 
+  _exit = false;
   key = IDisplay::KEY_NONE;
-  while (exit == false)
+  while (_exit == false)
     {
       _currentTime = _timer.getMilliTime();
       if (_currentTime - _previousTime > 1.0 / (_snakeSpeed / 1000.0))
 	{
 	  key = _display->getKey();
 	  (this->*_keyHandlers[key])();
-	  // Actions snake
+	  // Actions snake, update gameboard
+	  // move_snake
+	  // check_collision fruit or wall or snake itself
 	  _previousTime = _currentTime;
 	}
      _display->update(_gameBoard);
@@ -98,30 +100,33 @@ void	Core::closeLib()
 
 void	Core::keyUpHandler()
 {
-
+  if (_snakeDir != DOWN)
+    _snakeDir = UP;
 }
 
 void	Core::keyDownHandler()
 {
-
+  if (_snakeDir != UP)
+    _snakeDir = DOWN;
 }
 
 void	Core::keyLeftHandler()
 {
-
+  if (_snakeDir != RIGHT)
+    _snakeDir = LEFT;
 }
 
 void	Core::keyRightHandler()
 {
-
+  if (_snakeDir != LEFT)
+    _snakeDir = RIGHT;
 }
 
 void	Core::keySpaceHandler()
 {
-
 }
 
 void	Core::keyEscHandler()
 {
-
+  _exit = true;
 }

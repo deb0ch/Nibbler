@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Fri Apr  4 19:42:13 2014 chauvo_t
+// Last update Fri Apr  4 20:10:08 2014 chauvo_t
 //
 
 #ifndef		CORE_H_
@@ -36,24 +36,26 @@ private:
   Core			&operator=(const Core &);
 
 private:
-  Timer						_timer;
   GameBoard					_gameBoard;
   void						(Core::*_keyHandlers[IDisplay::KEY_LAST])();
   const std::vector<std::string>		_libs;
   std::vector<std::string>::const_iterator	_libsIt;
   void						*_libHandle;
   IDisplay					*_display;
-  int						_fps;
-  int						_snakeSpeed;
+  Timer						_timer;
   unsigned long					_currentTime;
   unsigned long					_previousTime;
+  int						_fps;
+  int						_snakeSpeed;
+  bool						_exit;
   typedef enum
     {
       UP,
       DOWN,
       RIGHT,
       LEFT
-    }						_snakeDirection;
+    }						_direction;
+  _direction					_snakeDir;
 
 private:			// Main private functions
   void			openLib();
@@ -68,6 +70,9 @@ private:			// Key handlers
   void			keyRightHandler();
   void			keySpaceHandler();
   void			keyEscHandler();
+
+private:			// Fruits effects
+
 };
 
 #endif /* !CORE_H_ */
