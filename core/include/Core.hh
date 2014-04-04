@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Fri Apr  4 16:20:39 2014 chauvo_t
+// Last update Fri Apr  4 18:33:01 2014 chauvo_t
 //
 
 #ifndef		CORE_H_
@@ -44,6 +44,9 @@ private:
   void						*_libHandle;
   IDisplay					*_display;
   int						_fps;
+  int						_snakeSpeed;
+  unsigned long					_currentTime;
+  unsigned long					_previousTime;
 
 private:
   void			openLib();
@@ -51,6 +54,7 @@ private:
   void			closeLib();
 
 private:
+  void			keyNoneHandler() {}
   void			keyUpHandler();
   void			keyDownHandler();
   void			keyLeftHandler();
