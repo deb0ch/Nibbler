@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Fri Apr  4 18:40:25 2014 chauvo_t
+// Last update Fri Apr  4 19:42:28 2014 chauvo_t
 //
 
 #include "../include/Core.hh"
@@ -46,6 +46,8 @@ Core::Core(const std::vector<std::string> &libs)
   _keyHandlers[IDisplay::KEY_ESC] = &Core::keyEscHandler;
   _currentTime = _timer.getMilliTime();
   _previousTime = _timer.getMilliTime();
+  _fps = 50;
+  _snakeSpeed = 2000;
 }
 
 // Private
@@ -73,13 +75,15 @@ void			Core::gameLoop()
   while (exit == false)
     {
       _currentTime = _timer.getMilliTime();
-      if (_currentTime - _previousTime > 1.0 / _snakeSpeed)
+      if (_currentTime - _previousTime > 1.0 / (_snakeSpeed / 1000.0))
 	{
+	  key = _display->getKey();
 	  (this->*_keyHandlers[key])();
 	  // Actions snake
+	  _previousTime = _currentTime;
 	}
-      _display->update(_gameBoard);
-      _timer.milliSleep(/**/);
+     _display->update(_gameBoard);
+     _timer.milliSleep((1 / _fps * 1000) - (_currentTime - _previousTime));
     }
 }
 
@@ -88,4 +92,36 @@ void	Core::closeLib()
   _display->close();
   dlclose(_libHandle);
   _libHandle = NULL;
+}
+
+// Key handlers
+
+void	Core::keyUpHandler()
+{
+
+}
+
+void	Core::keyDownHandler()
+{
+
+}
+
+void	Core::keyLeftHandler()
+{
+
+}
+
+void	Core::keyRightHandler()
+{
+
+}
+
+void	Core::keySpaceHandler()
+{
+
+}
+
+void	Core::keyEscHandler()
+{
+
 }

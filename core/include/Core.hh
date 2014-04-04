@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Fri Apr  4 18:33:01 2014 chauvo_t
+// Last update Fri Apr  4 19:42:13 2014 chauvo_t
 //
 
 #ifndef		CORE_H_
@@ -47,13 +47,20 @@ private:
   int						_snakeSpeed;
   unsigned long					_currentTime;
   unsigned long					_previousTime;
+  typedef enum
+    {
+      UP,
+      DOWN,
+      RIGHT,
+      LEFT
+    }						_snakeDirection;
 
-private:
+private:			// Main private functions
   void			openLib();
   void			gameLoop();
   void			closeLib();
 
-private:
+private:			// Key handlers
   void			keyNoneHandler() {}
   void			keyUpHandler();
   void			keyDownHandler();
