@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 17:53:45 2014 chauvo_t
-// Last update Fri Apr  4 00:09:43 2014 chauvo_t
+// Last update Fri Apr  4 20:57:34 2014 chauvo_t
 //
 
 #ifndef		AITEM_H_
@@ -16,6 +16,7 @@ class AItem
 public:
   typedef enum
     {
+      NONE,
       WALL,
       SNAKE,
       FRUIT,

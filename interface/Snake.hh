@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:30:43 2014 chauvo_t
-// Last update Fri Apr  4 18:32:14 2014 chauvo_t
+// Last update Fri Apr  4 22:56:11 2014 chauvo_t
 //
 
 #ifndef		SNAKE_H_
@@ -17,8 +17,12 @@
 class Snake
 {
 public:
-  Snake();
-  virtual ~Snake() {}
+  const std::list<SnakeRing>&	getRings() const;
+  std::list<SnakeRing>*		getSnake();
+
+public:
+  Snake() {}
+  ~Snake() {}
 
 private:
   Snake(const Snake &);

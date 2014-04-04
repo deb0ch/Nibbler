@@ -5,19 +5,19 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Fri Apr  4 16:24:06 2014 chauvo_t
-// Last update Fri Apr  4 16:29:05 2014 chauvo_t
+// Last update Fri Apr  4 22:59:57 2014 chauvo_t
 //
 
 #include "../../interface/Snake.hh"
 
-unsigned int	Snake::speed() const
+// Public
+
+const std::list<SnakeRing>&	Snake::getRings() const
 {
-  return (this->_speed);
+  return (_rings);
 }
 
-void	Snake::setSpeed(unsigned int speed)
+std::list<SnakeRing>*		Snake::getSnake()
 {
-  this->_speed = speed;
+  return (&_rings);
 }
-
-Snake::Snake() {}

@@ -5,12 +5,15 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 19:38:10 2014 chauvo_t
-// Last update Thu Apr  3 19:38:10 2014 chauvo_t
+// Last update Fri Apr  4 23:58:42 2014 chauvo_t
 //
 
 #include <iostream>
 #include <dlfcn.h>
 #include "../include/Core.hh"
+#include "../include/FruitFactory.hh"
+
+FruitFactory	*FruitFactory::_fruitFactory = NULL;
 
 int main(int ac, char** av)
 {

@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 18:21:18 2014 chauvo_t
-// Last update Thu Apr  3 16:34:51 2014 chauvo_t
+// Last update Fri Apr  4 23:16:39 2014 chauvo_t
 //
 
 #ifndef		TIMER_H_
@@ -24,7 +24,7 @@ class Timer
 {
 public:
   Timer();
-  ~Timer();
+  ~Timer() {}
 
 public:
   unsigned long		getMilliTime();

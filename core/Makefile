@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 10:16:12 2014 chauvo_t
-## Last update Thu Apr  3 17:52:16 2014 bourge_i
+## Last update Sat Apr  5 00:15:55 2014 chauvo_t
 ##
 
 CXX			:= clang++
@@ -22,12 +22,13 @@ HDRDIR			:= include
 HDRDIR			+= ../interface
 
 SRCS			:=	main.cpp		\
+				AItem.cpp		\
 				Core.cpp  		\
 				Exception.cpp		\
-				Fruit.cpp		\
 				FruitFactory.cpp	\
 				GameBoard.cpp		\
 				Snake.cpp		\
+				SnakeRing.cpp		\
 				Timer.cpp
 
 OBJS			:= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))

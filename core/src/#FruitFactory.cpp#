@@ -14,7 +14,7 @@
 
 FruitFactory	*FruitFactory::getInstance()
 {
-  if (_fruitFactory == NULL)
+  if (_fuitFactory == NULL)
     _fruitFactory = new FruitFactory;
   return (_fruitFactory);
 }

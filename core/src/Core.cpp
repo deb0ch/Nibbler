@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Fri Apr  4 20:00:37 2014 chauvo_t
+// Last update Fri Apr  4 21:15:34 2014 chauvo_t
 //
 
 #include "../include/Core.hh"
@@ -31,7 +31,6 @@ void	Core::startGame(int height, int width)
 }
 
 // To do: void	Core::switchLib();
-// To do: void	Core::endGame();
 
 Core::Core(const std::vector<std::string> &libs)
   : _libs(libs)
@@ -66,6 +65,13 @@ void	Core::openLib()
     throw Exception("dlsym error loading library entry point: " + std::string(error));
 }
 
+void	Core::closeLib()
+{
+  _display->close();
+  dlclose(_libHandle);
+  _libHandle = NULL;
+}
+
 void			Core::gameLoop()
 {
   IDisplay::eKey	key;
@@ -79,21 +85,30 @@ void			Core::gameLoop()
 	{
 	  key = _display->getKey();
 	  (this->*_keyHandlers[key])();
-	  // Actions snake, update gameboard
-	  // move_snake
-	  // check_collision fruit or wall or snake itself
+	  gameTick();
 	  _previousTime = _currentTime;
 	}
      _display->update(_gameBoard);
      _timer.milliSleep((1 / _fps * 1000) - (_currentTime - _previousTime));
     }
+  // To do: void	Core::endGame();
 }
 
-void	Core::closeLib()
+// Snake actions
+
+void			Core::gameTick()
 {
-  _display->close();
-  dlclose(_libHandle);
-  _libHandle = NULL;
+
+}
+
+void			Core::moveSnake()
+{
+
+}
+
+AItem::eType		Core::checkCollision()
+{
+  return (AItem::NONE);
 }
 
 // Key handlers

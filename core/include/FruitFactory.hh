@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 23:29:44 2014 chauvo_t
-// Last update Fri Apr  4 00:28:21 2014 chauvo_t
+// Last update Fri Apr  4 23:21:02 2014 chauvo_t
 //
 
 #ifndef		FRUITFACTORY_HH_
@@ -35,7 +35,7 @@ private:
   static FruitFactory		*_fruitFactory;
 
 private:
-  Fruit				*createFruit(int posx, int posy) const;
+  Fruit				*createBasicFruit(int posx, int posy) const;
 };
 
 #endif /* !FRUITFACTORY_HH_ */
