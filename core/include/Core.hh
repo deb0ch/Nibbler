@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Thu Apr  3 18:35:53 2014 bourge_i
+// Last update Fri Apr  4 16:20:39 2014 chauvo_t
 //
 
 #ifndef		CORE_H_
@@ -29,28 +29,34 @@ public:
 
 public:
   Core(const std::vector<std::string> & libs);
-  ~Core();
+  ~Core() {}
 
 private:
   Core(const Core &);
-  Core &operator=(const Core &);
+  Core			&operator=(const Core &);
 
 private:
   Timer						_timer;
   GameBoard					_gameBoard;
+  void						(Core::*_keyHandlers[IDisplay::KEY_LAST])();
   const std::vector<std::string>		_libs;
   std::vector<std::string>::const_iterator	_libsIt;
   void						*_libHandle;
-  void						(*_init)(const GameBoard & game);
-  void						(*_update)(const GameBoard & game);
-  IDisplay::eKey				(*_getKey)();
-  void						(*_close)();
+  IDisplay					*_display;
+  int						_fps;
 
 private:
   void			openLib();
   void			gameLoop();
   void			closeLib();
-  void			openError();
+
+private:
+  void			keyUpHandler();
+  void			keyDownHandler();
+  void			keyLeftHandler();
+  void			keyRightHandler();
+  void			keySpaceHandler();
+  void			keyEscHandler();
 };
 
 #endif /* !CORE_H_ */
