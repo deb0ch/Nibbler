@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 10:02:19 2014 chauvo_t
-// Last update Thu Apr  3 10:37:03 2014 chauvo_t
+// Last update Sat Apr  5 11:09:40 2014 chauvo_t
 //
 
 #ifndef	EXCEPTION_HH_
@@ -15,7 +15,7 @@
 # include <sstream>
 # include <string>
 
-class			Exception: public std::exception
+class	Exception : public std::exception
 {
 private:
   std::string		_error;
