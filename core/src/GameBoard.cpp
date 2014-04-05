@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 14:12:21 2014 chauvo_t
-// Last update Thu Apr  3 17:46:45 2014 chauvo_t
+// Last update Sat Apr  5 11:30:59 2014 chauvo_t
 //
 
 #include "../../interface/GameBoard.hh"
@@ -30,6 +30,11 @@ void	GameBoard::setWidth(int width)
 void	GameBoard::setHeight(int height)
 {
   this->_height = height;
+}
+
+Snake			&GameBoard::snake() const
+{
+  return (this->_snake);
 }
 
 Snake			&GameBoard::snake()
