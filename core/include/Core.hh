@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Sat Apr  5 15:32:14 2014 chauvo_t
+// Last update Sat Apr  5 16:48:27 2014 chauvo_t
 //
 
 #ifndef		CORE_H_
@@ -53,10 +53,10 @@ private:
   bool						_gameOver;
   typedef enum
     {
-      UP,
-      DOWN,
-      RIGHT,
-      LEFT
+      UP = 0,
+      RIGHT = 1,
+      DOWN = 2,
+      LEFT = 3
     } direction;
   direction					_snakeDir;
 
@@ -65,9 +65,9 @@ private:			// Main private functions
   void			switchLib(); // To do
   void			closeLib();
   void			initGame(const std::vector<std::string> & libs, int width, int height);
-  void			initGameBoard(int width, int height); // To do
+  void			initGameBoard(int width, int height);
   void			gameLoop();
-  void			endGame(); // To do
+  void			endGame();
 
 private:			// Utils
   int			rangeRand(int from, int to);

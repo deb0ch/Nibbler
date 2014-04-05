@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Sat Apr  5 16:01:40 2014 chauvo_t
+// Last update Sat Apr  5 17:02:49 2014 chauvo_t
 //
 
 #include "../include/Core.hh"
@@ -63,6 +63,7 @@ void	Core::switchLib()	// To do
 void	Core::closeLib()
 {
   _display->close();
+  delete _display;
   _display = NULL;
   dlclose(_libHandle);
   _libHandle = NULL;
@@ -107,16 +108,19 @@ void			Core::gameLoop()
 	  _previousTime = _currentTime;
 	}
      _display->update(_gameBoard);
-     _timer.milliSleep((1 / _fps * 1000) - (_currentTime - _previousTime));
+     _timer.milliSleep((1.0 / _fps * 1000.0) - (_currentTime - _previousTime));
     }
 }
 
-void	Core::endGame()		// To do
+void	Core::endGame()
 {
-  std::list<Fruit*>::iterator	it;
+  std::list<SnakeRing*>::iterator	snakeIt;
+  std::list<Fruit*>::iterator		fruitIt;
 
-  for (it = _gameBoard.fruits().begin(); it != _gameBoard.fruits().end(); ++it)
-    delete *it;
+  for (fruitIt = _gameBoard.fruits().begin(); fruitIt != _gameBoard.fruits().end(); ++fruitIt)
+    delete *fruitIt;
+  for (snakeIt = _gameBoard.snake().begin(); snakeIt != _gameBoard.snake().end(); ++snakeIt)
+    delete *snakeIt;
   this->closeLib();
 }
 
@@ -133,7 +137,9 @@ int	Core::rangeRand(int from, int to)
 
 void	Core::moveSnake() // To do
 {
-
+  // Check next position
+  // if no death, push head
+  // if no fruit, pop tail
 }
 
 AItem::eType	Core::checkCollision(int posx, int posy)
@@ -188,27 +194,19 @@ void	Core::spawnSpecialFruit() // To do
 // Key handlers
 
 void	Core::keyUpHandler()
-{
-  if (_snakeDir != DOWN)
-    _snakeDir = UP;
-}
+{}
 
 void	Core::keyDownHandler()
-{
-  if (_snakeDir != UP)
-    _snakeDir = DOWN;
-}
+{}
 
 void	Core::keyLeftHandler()
 {
-  if (_snakeDir != RIGHT)
-    _snakeDir = LEFT;
+  _snakeDir = static_cast<direction>((_snakeDir - 1) % 4);
 }
 
 void	Core::keyRightHandler()
 {
-  if (_snakeDir != LEFT)
-    _snakeDir = RIGHT;
+  _snakeDir = static_cast<direction>((_snakeDir + 1) % 4);
 }
 
 void	Core::keySpaceHandler()

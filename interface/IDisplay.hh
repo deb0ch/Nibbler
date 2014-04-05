@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 12:06:04 2014 chauvo_t
-// Last update Sat Apr  5 11:28:26 2014 chauvo_t
+// Last update Sat Apr  5 17:01:04 2014 chauvo_t
 //
 
 #ifndef		IDISPLAY_H_
@@ -33,6 +33,9 @@ public:
   virtual void		update(const GameBoard & game) = 0;
   virtual eKey		getKey() = 0;
   virtual void		close() const  = 0;
+
+public:
+  virtual ~IDisplay() {}
 };
 
 #endif /* !IDISPLAY_H_ */
