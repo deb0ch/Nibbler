@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Sat Apr  5 17:02:49 2014 chauvo_t
+// Last update Sat Apr  5 19:08:16 2014 chauvo_t
 //
 
 #include "../include/Core.hh"
@@ -135,11 +135,43 @@ int	Core::rangeRand(int from, int to)
 
 // Game actions
 
-void	Core::moveSnake() // To do
+void		Core::moveSnake()
 {
-  // Check next position
-  // if no death, push head
-  // if no fruit, pop tail
+  std::list<Fruit*>::iterator	fruitIt;
+  AItem::eType			newPosType;
+  int				newPosx;
+  int				newPosy;
+
+  newPosx = _gameBoard.snake().front()->posx();
+  newPosy = _gameBoard.snake().front()->posy();
+  newPosx += (_snakeDir == RIGHT) - (_snakeDir == LEFT);
+  newPosy += (_snakeDir == DOWN) - (_snakeDir == UP);
+  newPosType = checkCollision(newPosx, newPosy);
+  if (newPosType == AItem::WALL || newPosType == AItem::SNAKE)
+    {
+      _gameOver = true;
+      return ;
+    }
+  _gameBoard.snake().push_front(new SnakeRing(newPosx, newPosy));
+  if (newPosType == AItem::NONE)
+    {
+      delete _gameBoard.snake().back();
+      _gameBoard.snake().pop_back();
+    }
+  if (newPosType == AItem::FRUIT)
+    {
+      for (fruitIt = _gameBoard.fruits().begin();
+	   fruitIt != _gameBoard.fruits().end();
+	   ++fruitIt)
+	{
+	  if ((*fruitIt)->posx() == newPosx && (*fruitIt)->posy() == newPosy)
+	    {
+	      _gameBoard.fruits().erase(fruitIt);
+	      break ;
+	    }
+	}
+      this->spawnBasicFruit();
+    }
 }
 
 AItem::eType	Core::checkCollision(int posx, int posy)
@@ -201,12 +233,12 @@ void	Core::keyDownHandler()
 
 void	Core::keyLeftHandler()
 {
-  _snakeDir = static_cast<direction>((_snakeDir - 1) % 4);
+  _snakeDir = static_cast<eDirection>((_snakeDir - 1) % 4);
 }
 
 void	Core::keyRightHandler()
 {
-  _snakeDir = static_cast<direction>((_snakeDir + 1) % 4);
+  _snakeDir = static_cast<eDirection>((_snakeDir + 1) % 4);
 }
 
 void	Core::keySpaceHandler()
