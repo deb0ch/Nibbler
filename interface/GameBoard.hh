@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 14:12:15 2014 chauvo_t
-// Last update Sat Apr  5 15:38:18 2014 chauvo_t
+// Last update Sat Apr  5 15:55:18 2014 chauvo_t
 //
 
 #ifndef		GAMEBOARD_H_
@@ -22,10 +22,10 @@ public:
   int				height() const;
   void				setWidth(int width);
   void				setHeight(int height);
-  const std::list<SnakeRing>&	snake() const;
-  std::list<SnakeRing>&		snake();
-  const std::list<Fruit>&	fruits() const;
-  std::list<Fruit>&		fruits();
+  const std::list<SnakeRing*>&	snake() const;
+  std::list<SnakeRing*>&	snake();
+  const std::list<Fruit*>&	fruits() const;
+  std::list<Fruit*>&		fruits();
 
 public:
   GameBoard() {}
@@ -36,8 +36,8 @@ private:
   GameBoard&			operator=(const GameBoard &);
 
 private:
-  std::list<SnakeRing>		_snake;
-  std::list<Fruit>		_fruits;
+  std::list<SnakeRing*>		_snake;
+  std::list<Fruit*>		_fruits;
   int				_width;
   int				_height;
 };

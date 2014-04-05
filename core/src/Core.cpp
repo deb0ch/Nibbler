@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Sat Apr  5 15:41:32 2014 chauvo_t
+// Last update Sat Apr  5 16:01:40 2014 chauvo_t
 //
 
 #include "../include/Core.hh"
@@ -84,12 +84,10 @@ void	Core::initGameBoard(int width, int height) // To do
   _gameBoard.setHeight(height);
   _gameBoard.setWidth(width);
   for (i = 0; i < SNAKE_INIT_SIZE; ++i)
-    _gameBoard.snake().getSnake().push_back(SnakeRing((1/2)
-						      * (_gameBoard.width() - SNAKE_INIT_SIZE)
-						      + i,
-						      _gameBoard.height() / 2));
-
-  // To do: init first fruit
+    _gameBoard.snake().push_back(new SnakeRing((_gameBoard.width() / 2 - SNAKE_INIT_SIZE / 2)
+					       + i,
+					       _gameBoard.height() / 2));
+  this->spawnBasicFruit();
 }
 
 void			Core::gameLoop()
@@ -113,9 +111,9 @@ void			Core::gameLoop()
     }
 }
 
-void				Core::endGame()		// To do
+void	Core::endGame()		// To do
 {
-  std::list<Fruit>::iterator	it;
+  std::list<Fruit*>::iterator	it;
 
   for (it = _gameBoard.fruits().begin(); it != _gameBoard.fruits().end(); ++it)
     delete *it;
@@ -140,23 +138,24 @@ void	Core::moveSnake() // To do
 
 AItem::eType	Core::checkCollision(int posx, int posy)
 {
-  std::list<AItem>::iterator	it;
+  std::list<SnakeRing*>::iterator	snakeIt;
+  std::list<Fruit*>::iterator		fruitIt;
 
   if (posx < 0 || posx > _gameBoard.width()
       || posy < 0 || posy > _gameBoard.height())
-    return (AItem::WALL)
-  for (it = _gameBoard.snake().begin();
-       it != _gameBoard.snake().end();
-       ++it)
+    return (AItem::WALL);
+  for (snakeIt = _gameBoard.snake().begin();
+       snakeIt != _gameBoard.snake().end();
+       ++snakeIt)
     {
-      if ((*it).posx() == posx && (*it).posy() == posy)
+      if ((*snakeIt)->posx() == posx && (*snakeIt)->posy() == posy)
 	return (AItem::SNAKE);
     }
-  for (it = _gameBoard.fruits().begin();
-       it != _gameBoard.fruits().end();
-       ++it)
+  for (fruitIt = _gameBoard.fruits().begin();
+       fruitIt != _gameBoard.fruits().end();
+       ++fruitIt)
     {
-      if ((*it).posx() == posx && (*it).posy() == posy)
+      if ((*fruitIt)->posx() == posx && (*fruitIt)->posy() == posy)
 	return (AItem::FRUIT);
     }
   return (AItem::NONE);

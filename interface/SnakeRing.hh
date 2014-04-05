@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:35:36 2014 chauvo_t
-// Last update Sat Apr  5 14:34:09 2014 chauvo_t
+// Last update Sat Apr  5 16:03:17 2014 chauvo_t
 //
 
 #ifndef		SNAKERING_H_
@@ -20,7 +20,7 @@ public:
 
 public:
   SnakeRing(int posx, int posy) : AItem(posx, posy) {}
-  virtual ~SnakeRing();
+  virtual ~SnakeRing() {}
 
 private:
   SnakeRing();

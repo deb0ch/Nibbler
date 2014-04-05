@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 14:12:21 2014 chauvo_t
-// Last update Sat Apr  5 15:38:11 2014 chauvo_t
+// Last update Sat Apr  5 16:02:27 2014 chauvo_t
 //
 
 #include "../../interface/GameBoard.hh"
@@ -14,42 +14,42 @@
 
 int	GameBoard::width() const
 {
-  return (this->_width);
+  return (_width);
 }
 
 int	GameBoard::height() const
 {
-  return (this->_height);
+  return (_height);
 }
 
 void	GameBoard::setWidth(int width)
 {
-  this->_width = width;
+  _width = width;
 }
 
 void	GameBoard::setHeight(int height)
 {
-  this->_height = height;
+  _height = height;
 }
 
-const std::list<SnakeRing>&	GameBoard::snake() const
+const std::list<SnakeRing*>&	GameBoard::snake() const
 {
-  return (this->_snake);
+  return (_snake);
 }
 
-std::list<SnakeRing>&	GameBoard::snake()
+std::list<SnakeRing*>&	GameBoard::snake()
 {
-  return (this->_snake);
+  return (_snake);
 }
 
-const std::list<Fruit>&	GameBoard::fruits() const
+const std::list<Fruit*>&	GameBoard::fruits() const
 {
-  return (this->_fruits);
+  return (_fruits);
 }
 
-std::list<Fruit>&	GameBoard::fruits()
+std::list<Fruit*>&	GameBoard::fruits()
 {
-  return (this->_fruits);
+  return (_fruits);
 }
 
 // Private
