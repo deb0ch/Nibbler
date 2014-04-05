@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 19:38:10 2014 chauvo_t
-// Last update Sat Apr  5 12:04:23 2014 chauvo_t
+// Last update Sat Apr  5 14:38:51 2014 chauvo_t
 //
 
 #include <iostream>
@@ -16,19 +16,36 @@
 
 FruitFactory	*FruitFactory::_fruitFactory = NULL;
 
-int	main(int ac, char** av)
+int				main(int ac, char** av)
 {
-  Core	core;
-  int	mapWidth;
-  int	mapHeight;
+  Core				core;
+  std::vector<std::string>	libs;
+  int				mapWidth;
+  int				mapHeight;
+  int				i;
 
-  if (ac < 3
-      || (mapWidth = commute<int>(av[1])) < 5
-      || (mapHeight = commute<int>(av[2])) < 5)
+  if (ac < 4
+      || (mapWidth = commute<int>(av[1])) < 6
+      || (mapHeight = commute<int>(av[2])) < 6)
     {
-      std::cerr << "Usage : " << av[0] << "[width] [height] [libXXX.so] ..." << std::endl;
+      std::cerr << "Usage : " << av[0] << "[6 < width] [6 < height] [libXXX.so] ..."
+		<< std::endl;
       return(1);
     }
-
+  i = 3;
+  while (i < ac)
+    {
+      libs.push_back(av[i]);
+      ++i;
+    }
+  try
+    {
+      core.startGame(libs, mapWidth, mapHeight);
+      FruitFactory::deleteInstance();
+    }
+  catch (Exception e)
+    {
+      std::cerr << e.what() << std::endl;
+    }
   return (0);
 }

@@ -5,10 +5,10 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 10:02:24 2014 chauvo_t
-// Last update Thu Apr  3 10:37:12 2014 chauvo_t
+// Last update Sat Apr  5 13:19:51 2014 chauvo_t
 //
 
-#include "../include/Exception.hh"
+#include "../../interface/Exception.hh"
 
 Exception::Exception(const std::string &msg)
   : _error(msg)

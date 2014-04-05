@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 23:29:44 2014 chauvo_t
-// Last update Fri Apr  4 23:21:02 2014 chauvo_t
+// Last update Sat Apr  5 14:51:23 2014 chauvo_t
 //
 
 #ifndef		FRUITFACTORY_HH_
@@ -13,7 +13,7 @@
 
 # include <map>
 # include <cstdlib>
-# include "../include/Exception.hh"
+# include "../../interface/Exception.hh"
 # include "../../interface/Fruit.hh"
 
 class	FruitFactory
