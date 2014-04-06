@@ -69,7 +69,6 @@ void	Core::openLib()
       throw Exception("map too big for " + *_libsIt + " display");
     }
   _display = tmpLib;
-  std::cout << "Coucou lol =)" << *_libsIt << std::endl;
   _display->init(_gameBoard);
 }
 
