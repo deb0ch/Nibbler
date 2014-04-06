@@ -5,13 +5,16 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:19 2014 bourge_i
-// Last update Sun Apr  6 13:38:02 2014 bourge_i
+// Last update Sun Apr  6 14:52:02 2014 bourge_i
 //
 
 #ifndef		OPENGLDISPLAY_H_
 # define	OPENGLDISPLAY_H_
 
 # define	BLOCKSIZE 0.05
+
+# include <iostream>
+# include <unistd.h>
 
 # include <GL/gl.h>
 # include <GL/glut.h>
