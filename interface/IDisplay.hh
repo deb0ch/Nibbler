@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 12:06:04 2014 chauvo_t
-// Last update Sun Apr  6 17:43:11 2014 chauvo_t
+// Last update Sun Apr  6 18:57:46 2014 chauvo_t
 //
 
 #ifndef		IDISPLAY_H_
@@ -25,7 +25,7 @@ public:
       NIB_KEY_RIGHT,
       NIB_KEY_SPACE,
       NIB_KEY_ESC,
-      NIB_KEY_SWITCH,
+      NIB_KEY_ENTER,
       NIB_KEY_LAST
     };
 

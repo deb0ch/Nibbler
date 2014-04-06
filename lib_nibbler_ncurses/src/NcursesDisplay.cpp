@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:14 2014 chauvo_t
-// Last update Sun Apr  6 18:26:56 2014 chauvo_t
+// Last update Sun Apr  6 18:58:06 2014 chauvo_t
 //
 
 #include "../include/NcursesDisplay.hh"
@@ -100,7 +100,7 @@ IDisplay::eKey	NcursesDisplay::getKey()
       else if (ch == 27)
 	output = IDisplay::NIB_KEY_ESC;
       else if (ch == KEY_ENTER)
-	output = IDisplay::NIB_KEY_SWITCH;
+	output = IDisplay::NIB_KEY_ENTER;
     }
   return (output);
 }

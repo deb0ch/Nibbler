@@ -185,8 +185,8 @@ AItem::eType	Core::checkCollision(int posx, int posy)
   std::list<SnakeRing*>::iterator	snakeIt;
   std::list<Fruit*>::iterator		fruitIt;
 
-  if (posx < 0 || posx > _gameBoard.width()
-      || posy < 0 || posy > _gameBoard.height())
+  if (posx < 0 || posx >= _gameBoard.width()
+      || posy < 0 || posy >= _gameBoard.height())
     return (AItem::WALL);
   for (snakeIt = _gameBoard.snake().begin();
        snakeIt != _gameBoard.snake().end();
