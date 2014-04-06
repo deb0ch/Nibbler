@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 21:58:53 2014 
+// Last update Thu Apr  3 22:28:34 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -108,10 +108,10 @@ void		SdlDisplay::snakeHead(const GameBoard & game)
 void		SdlDisplay::snakeEnd(const GameBoard & game)
 {
   if (game.snake().back()->direction() == SnakeRing::UP ||
-      game.snake().front()->direction() == SnakeRing::DOWN)
+      game.snake().back()->direction() == SnakeRing::DOWN)
     this->_snakeDisplay = this->_snakeEnd1;
   else if (game.snake().back()->direction() == SnakeRing::LEFT ||
-      game.snake().front()->direction() == SnakeRing::RIGHT)
+      game.snake().back()->direction() == SnakeRing::RIGHT)
     this->_snakeDisplay = this->_snakeEnd2;
 }
 
