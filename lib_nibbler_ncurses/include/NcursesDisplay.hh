@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:28 2014 chauvo_t
-// Last update Sun Apr  6 16:41:18 2014 chauvo_t
+// Last update Sun Apr  6 21:06:15 2014 chauvo_t
 //
 
 #ifndef		NCURSESDISPLAY_H_
@@ -36,6 +36,11 @@ private:
 private:
   WINDOW*		_win;
   bool			_hasColors;
+  int			_maxHeight;
+  int			_maxWidth;
+
+private:
+
 };
 
 #endif /* !NCURSESDISPLAY_H_ */
