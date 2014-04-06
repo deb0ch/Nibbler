@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 19:38:10 2014 chauvo_t
-// Last update Sun Apr  6 15:33:21 2014 chauvo_t
+// Last update Sun Apr  6 22:25:22 2014 chauvo_t
 //
 
 #include <iostream>
@@ -26,9 +26,10 @@ int				main(int ac, char** av)
 
   if (ac < 4
       || (mapWidth = commute<int>(av[1])) < 6
-      || (mapWidth = commute<int>(av[1])) > 32
+      // || (mapWidth = commute<int>(av[1])) > 32
       || (mapHeight = commute<int>(av[2])) < 6
-      || (mapHeight = commute<int>(av[2])) > 26)
+      // || (mapHeight = commute<int>(av[2])) > 26)
+      )
     {
       std::cerr << "Usage : " << av[0] << "[6 < width < 32] [6 < height < 26] [libXXX.so] ..."
 		<< std::endl;

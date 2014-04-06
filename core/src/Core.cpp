@@ -42,7 +42,8 @@ Core::Core()
 void	Core::openLib()
 {
   IDisplay*	(*createDisplay)();
-  char	*error;
+  IDisplay*	tmpLib;
+  char*		error;
 
   _libHandle = dlopen((*(_libsIt)).c_str(), RTLD_LAZY);
   if (_libHandle == NULL)
@@ -52,7 +53,21 @@ void	Core::openLib()
 							  "createDisplay"));
   if ((error = dlerror()) != NULL)
     throw Exception("dlsym error loading library entry point: " + std::string(error));
-  _display = createDisplay();
+  tmpLib = createDisplay();
+  if (tmpLib->getMaxWidth() < _gameBoard.width()
+      || tmpLib->getMaxHeight() < _gameBoard.height())
+    {
+      delete tmpLib;
+      dlerror();
+      dlclose(_libHandle);
+      _libHandle = NULL;
+      if ((error = dlerror()) != NULL)
+	throw Exception("dlclose error closing library: "
+			+ std::string(error)
+			+ "\nmap too big for " + *_libsIt + " display");
+      throw Exception("map too big for " + *_libsIt + " display");
+    }
+  _display = tmpLib;
 }
 
 void	Core::switchLib()	// To do
@@ -62,20 +77,25 @@ void	Core::switchLib()	// To do
 
 void	Core::closeLib()
 {
+  char*		error;
+
   _display->close();
   delete _display;
   _display = NULL;
+  dlerror();
   dlclose(_libHandle);
   _libHandle = NULL;
+  if ((error = dlerror()) != NULL)
+    throw Exception("dlclose error closing library: " + std::string(error));
 }
 
 void	Core::initGame(const std::vector<std::string> & libs, int width, int height)
 {
   _libs = libs;
   _libsIt = _libs.begin();
+  this->initGameBoard(width, height);
   this->openLib();
   _fps = _display->getFps();
-  this->initGameBoard(width, height);
   _display->init(_gameBoard);
   _snakeDir = SnakeRing::RIGHT;
 }

@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 12:06:04 2014 chauvo_t
-// Last update Sun Apr  6 18:57:46 2014 chauvo_t
+// Last update Sun Apr  6 22:08:43 2014 chauvo_t
 //
 
 #ifndef		IDISPLAY_H_
@@ -31,6 +31,8 @@ public:
 
   virtual void		init(const GameBoard & game) = 0;
   virtual int		getFps() const = 0;
+  virtual int		getMaxWidth() const = 0;
+  virtual int		getMaxHeight() const = 0;
   virtual void		update(const GameBoard & game) = 0;
   virtual eKey		getKey() = 0;
   virtual void		close() const  = 0;

@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:14 2014 chauvo_t
-// Last update Sun Apr  6 21:35:01 2014 chauvo_t
+// Last update Sun Apr  6 22:35:35 2014 chauvo_t
 //
 
 #include "../include/NcursesDisplay.hh"
@@ -45,7 +45,10 @@ void	NcursesDisplay::init(const GameBoard & game) // To do: check error return v
   if ((_win = newwin(game.height() + 2, game.width() + 2,
 		     (_maxHeight / 2) - (game.height() / 2),
 		     (_maxWidth / 2) - (game.width() / 2))) == NULL)
-    throw Exception("ncurses: newwin() error");
+    {
+      endwin();
+      throw Exception("ncurses: newwin() error");
+    }
   if (nodelay(_win, TRUE) == ERR)
     throw Exception("ncurses: nodelay() error");
   if (keypad(_win, TRUE) == ERR)
@@ -66,6 +69,16 @@ void	NcursesDisplay::update(const GameBoard & game)
   this->putBorder();
   if (wrefresh(_win) == ERR)
     throw Exception("ncurses: refresh() error");
+}
+
+int	NcursesDisplay::getMaxWidth() const
+{
+  return (200);
+}
+
+int	NcursesDisplay::getMaxHeight() const
+{
+  return (50);
 }
 
 IDisplay::eKey	NcursesDisplay::getKey()

@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:28 2014 chauvo_t
-// Last update Sun Apr  6 21:22:02 2014 chauvo_t
+// Last update Sun Apr  6 22:13:32 2014 chauvo_t
 //
 
 #ifndef		NCURSESDISPLAY_H_
@@ -21,6 +21,8 @@ class NcursesDisplay : public IDisplay
 public:
   virtual void		init(const GameBoard & game);
   virtual int		getFps() const;
+  virtual int		getMaxWidth() const;
+  virtual int		getMaxHeight() const;
   virtual void		update(const GameBoard & game);
   virtual eKey		getKey();
   virtual void		close() const;
