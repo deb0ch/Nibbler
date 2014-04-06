@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:14 2014 chauvo_t
-// Last update Sun Apr  6 13:43:14 2014 chauvo_t
+// Last update Sun Apr  6 14:09:06 2014 chauvo_t
 //
 
 #include "../include/NcursesDisplay.hh"
@@ -20,6 +20,7 @@ extern "C"
 
 void	NcursesDisplay::init(const GameBoard & game) // To do: check error return values
 {
+  (void)game;
   initscr();
   raw();
   noecho();
@@ -63,7 +64,7 @@ void	NcursesDisplay::update(const GameBoard & game)
 
 IDisplay::eKey	NcursesDisplay::getKey()
 {
-  return (IDisplay::KEY_NONE);
+  return (IDisplay::NIB_KEY_NONE);
 }
 
 void	NcursesDisplay::close() const
