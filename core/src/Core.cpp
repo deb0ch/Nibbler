@@ -32,7 +32,7 @@ Core::Core()
   _display = NULL;
   _currentTime = _timer.getMilliTime();
   _previousTime = _timer.getMilliTime();
-  _snakeSpeed = 1000;
+  _snakeSpeed = 2000;
   _gameOver = false;
   srand(time(NULL));
 }
@@ -107,12 +107,13 @@ void			Core::gameLoop()
 	  (this->*_keyHandlers[key])();
 	  this->moveSnake();
 	  _previousTime = _currentTime;
+	  _display->update(_gameBoard);
 	}
-     _display->update(_gameBoard);
+      else
+	_timer.milliSleep(1000.0 / (_snakeSpeed / 1000.0) - (_currentTime - _previousTime));
      // std::cout << "Diff: " << (_currentTime - _previousTime) << std::endl;
      // std::cout << "fps: " << ((1.0 / _fps) * 1000.0) << std::endl;
      // std::cout << "Calcul: " << ((1.0 / _fps) * 1000.0) - (_currentTime - _previousTime) << std::endl;
-     _timer.milliSleep(20000);
     }
 }
 
