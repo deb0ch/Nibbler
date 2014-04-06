@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:28 2014 chauvo_t
-// Last update Sun Apr  6 21:06:15 2014 chauvo_t
+// Last update Sun Apr  6 21:22:02 2014 chauvo_t
 //
 
 #ifndef		NCURSESDISPLAY_H_
@@ -40,7 +40,9 @@ private:
   int			_maxWidth;
 
 private:
-
+  void			putSnake(const GameBoard & game);
+  void			putFruits(const GameBoard & game);
+  void			putBorder();
 };
 
 #endif /* !NCURSESDISPLAY_H_ */

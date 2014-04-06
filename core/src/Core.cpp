@@ -32,7 +32,7 @@ Core::Core()
   _display = NULL;
   _currentTime = _timer.getMilliTime();
   _previousTime = _timer.getMilliTime();
-  _snakeSpeed = 6000;
+  _snakeSpeed = 10000;
   _gameOver = false;
   srand(time(NULL));
 }

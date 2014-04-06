@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:14 2014 chauvo_t
-// Last update Sun Apr  6 21:01:13 2014 chauvo_t
+// Last update Sun Apr  6 21:35:01 2014 chauvo_t
 //
 
 #include "../include/NcursesDisplay.hh"
@@ -59,35 +59,11 @@ int	NcursesDisplay::getFps() const
 
 void	NcursesDisplay::update(const GameBoard & game)
 {
-  std::list<SnakeRing*>::const_iterator	snakeIt;
-  std::list<Fruit*>::const_iterator	fruitIt;
-
   if (wclear(_win) == ERR)
     std::cerr << "ncurses: clear() error" << std::endl;
-  if (_hasColors)
-    if (wattron(_win, COLOR_PAIR(AItem::SNAKE)) == ERR)
-      std::cerr << "ncurses: attron() error" << std::endl;
-  for (snakeIt = game.snake().begin(); snakeIt != game.snake().end(); ++snakeIt)
-    mvwaddch(_win, (*snakeIt)->posy() + 1, (*snakeIt)->posx() + 1, ' ');
-  mvwaddch(_win, game.snake().front()->posy() + 1, game.snake().front()->posx() + 1, '"');
-  if (_hasColors)
-    if (attroff(COLOR_PAIR(AItem::SNAKE)) == ERR)
-      std::cerr << "ncurses: attron() error" << std::endl;
-  if (_hasColors)
-    if (wattron(_win, COLOR_PAIR(AItem::FRUIT)) == ERR)
-      std::cerr << "ncurses: attron() error" << std::endl;
-  for (fruitIt = game.fruits().begin(); fruitIt != game.fruits().end(); ++fruitIt)
-    mvwaddch(_win, (*fruitIt)->posy() + 1, (*fruitIt)->posx() + 1, ' ');
-  if (_hasColors)
-    if (attroff(COLOR_PAIR(AItem::FRUIT)) == ERR)
-      std::cerr << "ncurses: attron() error" << std::endl;
-  if (_hasColors)
-    if (wattron(_win, COLOR_PAIR(AItem::WALL)) == ERR)
-      std::cerr << "ncurses: attron() error" << std::endl;
-  wborder(_win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
-  if (_hasColors)
-    if (wattron(_win, COLOR_PAIR(AItem::WALL)) == ERR)
-      std::cerr << "ncurses: attron() error" << std::endl;
+  this->putSnake(game);
+  this->putFruits(game);
+  this->putBorder();
   if (wrefresh(_win) == ERR)
     throw Exception("ncurses: refresh() error");
 }
@@ -120,13 +96,56 @@ IDisplay::eKey	NcursesDisplay::getKey()
 
 void	NcursesDisplay::close() const
 {
+  if (delwin(_win) == ERR)
+    std::cerr << "ncurses: delwin() error" << std::endl;
   if (endwin() == ERR)
     throw Exception("ncurses: endwin() error");
   if (curs_set(0) == ERR)
     std::cerr << "ncurses: curs_set() error" << std::endl;
-  // To do: free _win
 }
 
 NcursesDisplay::NcursesDisplay() {}
 
 NcursesDisplay::~NcursesDisplay() {}
+
+// Private
+
+void	NcursesDisplay::putSnake(const GameBoard & game)
+{
+  std::list<SnakeRing*>::const_iterator	snakeIt;
+
+  if (_hasColors)
+    if (wattron(_win, COLOR_PAIR(AItem::SNAKE)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+  for (snakeIt = game.snake().begin(); snakeIt != game.snake().end(); ++snakeIt)
+    mvwaddch(_win, (*snakeIt)->posy() + 1, (*snakeIt)->posx() + 1, ' ');
+  mvwaddch(_win, game.snake().front()->posy() + 1, game.snake().front()->posx() + 1, '"');
+  if (_hasColors)
+    if (attroff(COLOR_PAIR(AItem::SNAKE)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+}
+
+void	NcursesDisplay::putFruits(const GameBoard & game)
+{
+  std::list<Fruit*>::const_iterator	fruitIt;
+
+  if (_hasColors)
+    if (wattron(_win, COLOR_PAIR(AItem::FRUIT)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+  for (fruitIt = game.fruits().begin(); fruitIt != game.fruits().end(); ++fruitIt)
+    mvwaddch(_win, (*fruitIt)->posy() + 1, (*fruitIt)->posx() + 1, ' ');
+  if (_hasColors)
+    if (attroff(COLOR_PAIR(AItem::FRUIT)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+}
+
+void	NcursesDisplay::putBorder()
+{
+  if (_hasColors)
+    if (wattron(_win, COLOR_PAIR(AItem::WALL)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+  wborder(_win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+  if (_hasColors)
+    if (wattron(_win, COLOR_PAIR(AItem::WALL)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+}
