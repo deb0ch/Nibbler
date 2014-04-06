@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 21:13:58 2014 chauvo_t
-## Last update Wed Apr  2 14:09:45 2014 chauvo_t
+## Last update Sun Apr  6 14:27:20 2014 chauvo_t
 ##
 
 CORE_PATH	:= ./core
@@ -13,7 +13,7 @@ LIB_SDL_PATH	:= ./lib_nibbler_sdl
 LIB_NC_PATH	:= ./lib_nibbler_ncurses
 LIB_3_PATH	:= ./lib_nibbler_3
 
-all:	core lib_sdl lib_ncurses lib_3
+all:	core sdl ncurses opengl
 
 debug:
 	make debug -C $(CORE_PATH)
@@ -28,15 +28,15 @@ core:
 	make -C $(CORE_PATH)
 	@echo ""
 
-lib_sdl:
+sdl:
 	make -C $(LIB_SDL_PATH)
 	@echo ""
 
-lib_ncurses:
+ncurses:
 	make -C $(LIB_NC_PATH)
 	@echo ""
 
-lib_3:
+opengl:
 	make -C $(LIB_3_PATH)
 
 clean:
@@ -66,4 +66,4 @@ re:
 	@echo ""
 	make re -C $(LIB_3_PATH)
 
-.PHONY: all core lib_sdl lib_ncurses lib_3 clean fclean re
+.PHONY: all core sdl ncurses opengl clean fclean re
