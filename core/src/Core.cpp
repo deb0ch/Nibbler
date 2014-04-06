@@ -109,8 +109,10 @@ void			Core::gameLoop()
 	  _previousTime = _currentTime;
 	}
      _display->update(_gameBoard);
-     std::cout << ((1.0 / _fps) * 1000.0) - (_currentTime - _previousTime) << std::endl;
-     _timer.milliSleep(50000);
+     // std::cout << "Diff: " << (_currentTime - _previousTime) << std::endl;
+     // std::cout << "fps: " << ((1.0 / _fps) * 1000.0) << std::endl;
+     // std::cout << "Calcul: " << ((1.0 / _fps) * 1000.0) - (_currentTime - _previousTime) << std::endl;
+     _timer.milliSleep(20000);
     }
 }
 
