@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Sun Apr  6 09:14:58 2014 chauvo_t
+// Last update Thu Apr  3 15:22:32 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -65,17 +65,31 @@ void		SdlDisplay::snakeIterator(const GameBoard & game)
 
   it = game.snake().begin();
   while (it != game.snake().end())
-  {
-    this->_snakePos.x = (*it)->posx() * NB_PIX_X;
-    this->_snakePos.y = (*it)->posy() * NB_PIX_Y;
-    snakePart();
-    ++it;
-  }
+    {
+      if (it != game.snake().begin() && (*it) != game.snake().back())
+	this->_snakeBmp = 2;
+      else
+	{
+	  if (it == game.snake().begin())
+	    this->_snakeBmp = 1;
+	  if ((*it) == game.snake().front())
+	    this->_snakeBmp = 3;
+	}
+      this->_snakePos.x = (*it)->posx() * NB_PIX_X;
+      this->_snakePos.y = (*it)->posy() * NB_PIX_Y;
+      snakePart();
+      ++it;
+    }
 }
 
 void		SdlDisplay::snakePart()
 {
-  this->_snakeDisplay = SDL_LoadBMP("sprit/bmp_sdl/snake.bmp");
+  if (this->_snakeBmp == 1)
+    this->_snakeDisplay = SDL_LoadBMP("sprit/bmp_sdl/snake_head.bmp");
+  else if (this->_snakeBmp == 2)
+    this->_snakeDisplay = SDL_LoadBMP("sprit/bmp_sdl/snake.bmp");
+  else if (this->_snakeBmp == 3)
+    this->_snakeDisplay = SDL_LoadBMP("sprit/bmp_sdl/snake_end.bmp");
   if (this->_snakeDisplay == NULL)
     throw Exception("[ERROR] : Snake failed LoadBMP");
   SDL_SetColorKey(this->_snakeDisplay, SDL_SRCCOLORKEY, SDL_MapRGB(this->_screen->format, 0, 0, 0));
@@ -98,9 +112,10 @@ void		SdlDisplay::initWindow(const GameBoard & game)
 {
   if (SDL_Init(SDL_INIT_VIDEO) != 0)
     throw Exception("[ERROR] : SDL_INIT_VIDEO failled");
-
-  this->_screen = SDL_SetVideoMode((NB_PIX_X * game.width()), (NB_PIX_Y * game.height()), COLOR, SDL_HWSURFACE);
-
+  if (game.width() <= MAX_X && game.height() <= MAX_Y)
+    this->_screen = SDL_SetVideoMode((NB_PIX_X * game.width()), (NB_PIX_Y * game.height()), COLOR, SDL_HWSURFACE);
+  else
+    throw Exception("[ERROR] : Window too high, [MAX width = 32] [MAX height = 26]");
   SDL_WM_SetCaption("Nibbler (SDL)" , NULL);
   SDL_FillRect(this->_screen, NULL, SDL_MapRGB(this->_screen->format, 0, 0, 0));
   SDL_Flip(this->_screen);

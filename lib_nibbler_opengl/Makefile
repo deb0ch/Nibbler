@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 22:16:30 2014 chauvo_t
-## Last update Wed Apr  2 17:54:16 2014 chauvo_t
+## Last update Sun Apr  6 13:40:49 2014 bourge_i
 ##
 
 CXX			:= g++
@@ -21,29 +21,29 @@ OBJDIR			:= build
 HDRDIR			:= include
 HDRDIR			+= ../interface
 
-SRCS			:=	Koala.cpp	\
-#				other_file.cpp
+SRCS			:= openglDisplay.cpp	\
 
 OBJS			:= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 SRCS			:= $(addprefix $(SRCDIR)/, $(SRCS))
 
 DEPS			:= $(OBJS:.o=.d)
 
-CXXFLAGS		+= -Werror -Wextra -Wall -W
+CXXFLAGS		+= -Wextra -Wall -W
 CXXFLAGS		+= $(addprefix -I./, $(HDRDIR))
 CXXFLAGS		+= -O2 -MD
 CXXFLAGS		+= -fPIC
+
 $(DEBUG): CXXFLAGS	+= -g3 -ggdb
 
-LDFLAGS			+= -shared #-Wl,--whole-archive
-LDFLAGS			+= -lSDLmain -lSDL
+LDFLAGS			+= -shared #-Wl,-soname,lib_ogl.so
+LDFLAGS			+= -lGL -lglut -lGLU
 $(DEBUG): LDFLAGS	+= -g3 -ggdb
 
 TMPS			:=	$(OBJS)			\
 				$(SRCS:.cpp=.cpp~)	\
 				Makefile~
 
-NAME			:= ../lib_koala.so
+NAME			:= ../lib_ogl.so
 
 
 all:		$(NAME)
