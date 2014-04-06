@@ -77,6 +77,7 @@ void	Core::initGame(const std::vector<std::string> & libs, int width, int height
   _fps = _display->getFps();
   this->initGameBoard(width, height);
   _display->init(_gameBoard);
+  _snakeDir = RIGHT;
 }
 
 void	Core::initGameBoard(int width, int height)
@@ -86,7 +87,7 @@ void	Core::initGameBoard(int width, int height)
   _gameBoard.setHeight(height);
   _gameBoard.setWidth(width);
   for (i = 0; i < SNAKE_INIT_SIZE; ++i)
-    _gameBoard.snake().push_back(new SnakeRing((_gameBoard.width() / 2 - SNAKE_INIT_SIZE / 2)
+    _gameBoard.snake().push_front(new SnakeRing((_gameBoard.width() / 2 - SNAKE_INIT_SIZE / 2)
 					       + i,
 					       _gameBoard.height() / 2));
   this->spawnBasicFruit();

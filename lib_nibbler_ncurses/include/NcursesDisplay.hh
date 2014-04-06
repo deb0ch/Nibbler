@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:28 2014 chauvo_t
-// Last update Sun Apr  6 14:34:13 2014 chauvo_t
+// Last update Sun Apr  6 16:41:18 2014 chauvo_t
 //
 
 #ifndef		NCURSESDISPLAY_H_
@@ -34,6 +34,7 @@ private:
   NcursesDisplay&	operator=(const NcursesDisplay & other);
 
 private:
+  WINDOW*		_win;
   bool			_hasColors;
 };
 
