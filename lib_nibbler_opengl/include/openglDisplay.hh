@@ -5,7 +5,7 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:19 2014 bourge_i
-// Last update Sun Apr  6 21:27:49 2014 bourge_i
+// Last update Sun Apr  6 22:48:16 2014 Maxime Bourgeois
 //
 
 #ifndef		OPENGLDISPLAY_H_
@@ -38,6 +38,8 @@ public:
   virtual void			update(const GameBoard & game);
   virtual IDisplay::eKey	getKey();
   virtual void			close() const;
+  virtual int			getMaxWidth() const;
+  virtual int			getMaxHeight() const;
 
 public:
   OpenglDisplay();
@@ -51,10 +53,7 @@ private:
   OpenglDisplay(const OpenglDisplay &);
   OpenglDisplay &operator=(const OpenglDisplay &);
 
-public:
-  double		myoffX;
-  double		myoffY;
-  int			direction;
+private:
   IDisplay::eKey	key;
 
 };
