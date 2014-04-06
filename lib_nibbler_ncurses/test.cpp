@@ -1,3 +1,13 @@
+//
+// test.cpp for nibbler in /home/ubuntu/rendu/cpp_nibbler/lib_nibbler_ncurses
+//
+// Made by chauvo_t
+// Login   <chauvo_t@epitech.net>
+//
+// Started on  Sun Apr  6 14:39:56 2014 chauvo_t
+// Last update Sun Apr  6 14:39:57 2014 chauvo_t
+//
+
 #include <iostream>
 #include <cstdlib>
 #include <string.h>
