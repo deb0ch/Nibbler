@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:35:36 2014 chauvo_t
-// Last update Sat Apr  5 16:03:17 2014 chauvo_t
+// Last update Sun Apr  6 19:07:15 2014 chauvo_t
 //
 
 #ifndef		SNAKERING_H_
@@ -16,16 +16,29 @@
 class SnakeRing : public AItem
 {
 public:
-  virtual eType		type() const { return (SNAKE); }
+  typedef enum
+    {
+      UP = 0,
+      RIGHT = 1,
+      DOWN = 2,
+      LEFT = 3
+    } eDirection;
 
 public:
-  SnakeRing(int posx, int posy) : AItem(posx, posy) {}
+  virtual eType		type() const { return (SNAKE); }
+  eDirection		direction() const;
+
+public:
+  SnakeRing(eDirection dir, int posx, int posy) : AItem(posx, posy), _direction(dir) {}
   virtual ~SnakeRing() {}
 
 private:
   SnakeRing();
   SnakeRing(const SnakeRing &);
   SnakeRing &operator=(const SnakeRing &);
+
+private:
+  eDirection		_direction;
 };
 
 #endif /* !SNAKERING_H_ */

@@ -77,7 +77,7 @@ void	Core::initGame(const std::vector<std::string> & libs, int width, int height
   _fps = _display->getFps();
   this->initGameBoard(width, height);
   _display->init(_gameBoard);
-  _snakeDir = RIGHT;
+  _snakeDir = SnakeRing::RIGHT;
 }
 
 void	Core::initGameBoard(int width, int height)
@@ -87,7 +87,8 @@ void	Core::initGameBoard(int width, int height)
   _gameBoard.setHeight(height);
   _gameBoard.setWidth(width);
   for (i = 0; i < SNAKE_INIT_SIZE; ++i)
-    _gameBoard.snake().push_front(new SnakeRing((_gameBoard.width() / 2 - SNAKE_INIT_SIZE / 2)
+    _gameBoard.snake().push_front(new SnakeRing(SnakeRing::RIGHT,
+						(_gameBoard.width() / 2 - SNAKE_INIT_SIZE / 2)
 					       + i,
 					       _gameBoard.height() / 2));
   this->spawnBasicFruit();
@@ -112,11 +113,12 @@ void			Core::gameLoop()
 	}
       else
 	_timer.milliSleep(1000.0 / (_snakeSpeed / 1000.0) - (_currentTime - _previousTime));
-     // std::cout << "Diff: " << (_currentTime - _previousTime) << std::endl;
-     // std::cout << "fps: " << ((1.0 / _fps) * 1000.0) << std::endl;
-     // std::cout << "Calcul: " << ((1.0 / _fps) * 1000.0) - (_currentTime - _previousTime) << std::endl;
     }
 }
+// std::cout << "Diff: " << (_currentTime - _previousTime) << std::endl;
+// std::cout << "fps: " << ((1.0 / _fps) * 1000.0) << std::endl;
+// std::cout << "Calcul: " << ((1.0 / _fps) * 1000.0) - (_currentTime - _previousTime)
+// << std::endl;
 
 void	Core::endGame()
 {
@@ -150,15 +152,15 @@ void		Core::moveSnake()
 
   newPosx = _gameBoard.snake().front()->posx();
   newPosy = _gameBoard.snake().front()->posy();
-  newPosx += (_snakeDir == RIGHT) - (_snakeDir == LEFT);
-  newPosy += (_snakeDir == DOWN) - (_snakeDir == UP);
+  newPosx += (_snakeDir == SnakeRing::RIGHT) - (_snakeDir == SnakeRing::LEFT);
+  newPosy += (_snakeDir == SnakeRing::DOWN) - (_snakeDir == SnakeRing::UP);
   newPosType = checkCollision(newPosx, newPosy);
   if (newPosType == AItem::WALL || newPosType == AItem::SNAKE)
     {
       _gameOver = true;
       return ;
     }
-  _gameBoard.snake().push_front(new SnakeRing(newPosx, newPosy));
+  _gameBoard.snake().push_front(new SnakeRing(_snakeDir, newPosx, newPosy));
   if (newPosType == AItem::NONE)
     {
       delete _gameBoard.snake().back();
@@ -239,12 +241,14 @@ void	Core::keyDownHandler()
 
 void	Core::keyLeftHandler()
 {
-  _snakeDir = static_cast<eDirection>(_snakeDir != 0 ? (_snakeDir - 1) : LEFT);
+  _snakeDir = static_cast<SnakeRing::eDirection>(_snakeDir != 0
+						 ? (_snakeDir - 1)
+						 : SnakeRing::LEFT);
 }
 
 void	Core::keyRightHandler()
 {
-  _snakeDir = static_cast<eDirection>((_snakeDir + 1) % 4);
+  _snakeDir = static_cast<SnakeRing::eDirection>((_snakeDir + 1) % 4);
 }
 
 void	Core::keySpaceHandler()
