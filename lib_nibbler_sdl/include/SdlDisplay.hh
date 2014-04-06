@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Sat Apr  5 19:58:34 2014 laguet_p
-// Last update Thu Apr  3 23:44:55 2014 
+// Last update Fri Apr  4 00:07:43 2014 
 //
 
 #ifndef		SDL_H_
@@ -53,6 +53,7 @@ private:
   SDL_Rect		_fruitPos;
   SDL_Rect		_backgroundPos;
 
+public:
   void			init(const GameBoard & game);
   void			initWindow(const GameBoard & game);
   void			background();

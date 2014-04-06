@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 22:16:30 2014 chauvo_t
-## Last update Sun Apr  6 15:55:11 2014 chauvo_t
+## Last update Sun Apr  6 23:15:58 2014 Maxime Bourgeois
 ##
 
 CXX			:= g++
@@ -21,7 +21,7 @@ OBJDIR			:= build
 HDRDIR			:= include
 HDRDIR			+= ../interface
 
-SRCS			:= openglDisplay.cpp	\
+SRCS			:= OpenglDisplay.cpp	\
 
 OBJS			:= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 SRCS			:= $(addprefix $(SRCDIR)/, $(SRCS))
