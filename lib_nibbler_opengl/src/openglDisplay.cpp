@@ -5,7 +5,7 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:07 2014 bourge_i
-// Last update Sun Apr  6 21:48:12 2014 bourge_i
+// Last update Sun Apr  6 22:46:35 2014 Maxime Bourgeois
 //
 
 #include "../include/openglDisplay.hh"
@@ -57,8 +57,7 @@ static void	manageDirection(int key, int x, int y)
 
 OpenglDisplay::OpenglDisplay()
 {
-  this->myoffY = 0;
-  this->myoffX = 0;
+  this->key = IDisplay::NIB_KEY_NONE;
 }
 
 void			OpenglDisplay::init(const GameBoard & game)
@@ -179,6 +178,16 @@ void			OpenglDisplay::displayFruits(const GameBoard & game)
 	     rand() % 255, rand() % 255, rand() % 255);
       it++;
     }
+}
+
+int			OpenglDisplay::getMaxWidth() const
+{
+  return (30);
+}
+
+int			OpenglDisplay::getMaxHeight() const
+{
+  return (20);
 }
 
 IDisplay::eKey		OpenglDisplay::getKey()
