@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Sun Apr  6 13:29:57 2014 bourge_i
+// Last update Sun Apr  6 14:17:15 2014 chauvo_t
 //
 
 #include "../include/Core.hh"
@@ -21,13 +21,13 @@ void	Core::startGame(const std::vector<std::string> & libs, int width, int heigh
 
 Core::Core()
 {
-  _keyHandlers[IDisplay::KEY_NONE] = &Core::keyNoneHandler;
-  _keyHandlers[IDisplay::KEY_UP] = &Core::keyUpHandler;
-  _keyHandlers[IDisplay::KEY_DOWN] = &Core::keyDownHandler;
-  _keyHandlers[IDisplay::KEY_LEFT] = &Core::keyLeftHandler;
-  _keyHandlers[IDisplay::KEY_RIGHT] = &Core::keyRightHandler;
-  _keyHandlers[IDisplay::KEY_SPACE] = &Core::keySpaceHandler;
-  _keyHandlers[IDisplay::KEY_ESC] = &Core::keyEscHandler;
+  _keyHandlers[IDisplay::NIB_KEY_NONE] = &Core::keyNoneHandler;
+  _keyHandlers[IDisplay::NIB_KEY_UP] = &Core::keyUpHandler;
+  _keyHandlers[IDisplay::NIB_KEY_DOWN] = &Core::keyDownHandler;
+  _keyHandlers[IDisplay::NIB_KEY_LEFT] = &Core::keyLeftHandler;
+  _keyHandlers[IDisplay::NIB_KEY_RIGHT] = &Core::keyRightHandler;
+  _keyHandlers[IDisplay::NIB_KEY_SPACE] = &Core::keySpaceHandler;
+  _keyHandlers[IDisplay::NIB_KEY_ESC] = &Core::keyEscHandler;
   _libHandle = NULL;
   _display = NULL;
   _currentTime = _timer.getMilliTime();
@@ -47,7 +47,6 @@ void	Core::openLib()
   _libHandle = dlopen((*(_libsIt)).c_str(), RTLD_LAZY);
   if (_libHandle == NULL)
     throw Exception("dlopen error: " + std::string(dlerror()));
-  std::cout <<  (*(_libsIt)).c_str() << std::endl;
   dlerror();
   createDisplay = reinterpret_cast<IDisplay* (*)()>(dlsym(_libHandle,
 							  "createDisplay"));
@@ -76,6 +75,7 @@ void	Core::initGame(const std::vector<std::string> & libs, int width, int height
   _libsIt = _libs.begin();
   this->openLib();
   _fps = _display->getFps();
+  _display->init(_gameBoard);
   this->initGameBoard(width, height);
 }
 
@@ -97,9 +97,10 @@ void			Core::gameLoop()
   IDisplay::eKey	key;
 
   _gameOver = false;
-  key = IDisplay::KEY_NONE;
+  key = IDisplay::NIB_KEY_NONE;
   while (_gameOver == false)
     {
+      std::cout << "Coucou =)" << std::endl;
       _currentTime = _timer.getMilliTime();
       if (_currentTime - _previousTime > 1.0 / (_snakeSpeed / 1000.0))
 	{

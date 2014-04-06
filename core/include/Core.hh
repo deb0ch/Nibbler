@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Sun Apr  6 13:26:35 2014 chauvo_t
+// Last update Sun Apr  6 14:12:29 2014 chauvo_t
 //
 
 #ifndef		CORE_H_
@@ -40,7 +40,7 @@ private:
 
 private:
   GameBoard					_gameBoard;
-  void						(Core::*_keyHandlers[IDisplay::KEY_LAST])();
+  void						(Core::*_keyHandlers[IDisplay::NIB_KEY_LAST])();
   std::vector<std::string>			_libs;
   std::vector<std::string>::const_iterator	_libsIt;
   void						*_libHandle;
