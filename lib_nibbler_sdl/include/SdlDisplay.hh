@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Sat Apr  5 19:58:34 2014 laguet_p
-// Last update Thu Apr  3 21:30:57 2014 
+// Last update Thu Apr  3 23:16:28 2014 
 //
 
 #ifndef		SDL_H_
@@ -39,7 +39,10 @@ private:
   SDL_Surface		*_snakeHead1;
   SDL_Surface		*_snakeHead2;
   SDL_Surface		*_snakeHead3;
-  SDL_Surface		*_snakeBody;
+  SDL_Surface		*_snakeBody0;
+  SDL_Surface		*_snakeBody1;
+  SDL_Surface		*_snakeBody2;
+  SDL_Surface		*_snakeBody3;
   SDL_Surface		*_snakeEnd1;
   SDL_Surface		*_snakeEnd2;
   SDL_Surface		*_fruit;
@@ -58,6 +61,7 @@ private:
   eKey			getKey();
   void			snakeIterator(const GameBoard & game);
   void			snakeHead(const GameBoard & game);
+  void			snakeBody(std::list<SnakeRing*>::const_iterator it);
   void			snakeEnd(const GameBoard & game);
   void			fruitIterator(const GameBoard & game);
   void			snakeLoad(const GameBoard & game);

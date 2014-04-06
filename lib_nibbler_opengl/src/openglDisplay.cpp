@@ -5,7 +5,7 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:07 2014 bourge_i
-// Last update Sun Apr  6 21:37:47 2014 bourge_i
+// Last update Sun Apr  6 21:48:12 2014 bourge_i
 //
 
 #include "../include/openglDisplay.hh"
@@ -108,7 +108,7 @@ int			OpenglDisplay::getFps() const
 
 void			OpenglDisplay::update(const GameBoard & game)
 {
-  glClearColor(0, 0.05, 0, 0);
+  glClearColor(0, 0.1, 0, 0);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   this->displaySnake(game);
