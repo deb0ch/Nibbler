@@ -72,7 +72,29 @@ void	Core::openLib()
 
 void	Core::switchLib()	// To do
 {
+  size_t	i;
 
+  ++_libsIt;
+  for (i = 0; i < _libs.size(); ++i)
+    {
+      try
+	{
+	  this->closeLib();
+	  this->openLib();
+	}
+      catch (Exception e)
+	{
+	  std::cerr << e.what() << std::endl;
+	  ++_libsIt;
+	  if (_libsIt == _libs.end())
+	    {
+	      _libsIt = _libs.begin();
+	      break ;
+	    }
+	  continue ;
+	}
+      break ;
+    }
 }
 
 void	Core::closeLib()
