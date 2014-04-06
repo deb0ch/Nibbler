@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Sat Apr  5 19:58:34 2014 laguet_p
-// Last update Thu Apr  3 15:13:09 2014 
+// Last update Thu Apr  3 15:30:23 2014 
 //
 
 #ifndef		SDL_H_
@@ -42,7 +42,7 @@ private:
   void			initWindow(const GameBoard & game);
   void			background();
   void			snakePart();
-  eKey			getKey() const;
+  eKey			getKey();
   void			snakeIterator(const GameBoard & game);
   void			update(const GameBoard & game); // refresh full
   void			refreshBg();

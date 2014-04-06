@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 15:22:32 2014 
+// Last update Thu Apr  3 15:37:09 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -33,7 +33,7 @@ void		SdlDisplay::update(const GameBoard & game)
   SDL_Flip(this->_screen);
 }
 
-IDisplay::eKey		SdlDisplay::getKey() const
+IDisplay::eKey		SdlDisplay::getKey()
 {
   SDL_Event	event;
 
@@ -41,22 +41,21 @@ IDisplay::eKey		SdlDisplay::getKey() const
   if (event.type == SDL_KEYDOWN)
     {
       if (event.key.keysym.sym == SDLK_ESCAPE)
-	return (KEY_ESC);
+	return (NIB_KEY_ESC);
       else if (event.key.keysym.sym == SDL_QUIT)
-	return (KEY_ESC);
+	return (NIB_KEY_ESC);
       else if (event.key.keysym.sym == SDLK_LEFT)
-	return (KEY_LEFT);
+	return (NIB_KEY_LEFT);
       else if (event.key.keysym.sym == SDLK_RIGHT)
-	return (KEY_RIGHT);
+	return (NIB_KEY_RIGHT);
       else if (event.key.keysym.sym == SDLK_UP)
-	return (KEY_UP);
+	return (NIB_KEY_UP);
       else if (event.key.keysym.sym == SDLK_DOWN)
-	return (KEY_DOWN);
+	return (NIB_KEY_DOWN);
       else if (event.key.keysym.sym == SDLK_SPACE)
-	return (KEY_SPACE);
-      else
-	return (KEY_NONE);
+	return (NIB_KEY_SPACE);
     }
+  return (NIB_KEY_NONE);
 }
 
 void		SdlDisplay::snakeIterator(const GameBoard & game)
@@ -93,7 +92,7 @@ void		SdlDisplay::snakePart()
   if (this->_snakeDisplay == NULL)
     throw Exception("[ERROR] : Snake failed LoadBMP");
   SDL_SetColorKey(this->_snakeDisplay, SDL_SRCCOLORKEY, SDL_MapRGB(this->_screen->format, 0, 0, 0));
-  SDL_BlitSurface(this->_snakeDisplay, NULL, this->_screen, this->_snakePos);
+  SDL_BlitSurface(this->_snakeDisplay, NULL, this->_screen, &(this->_snakePos));
 }
 
 void		SdlDisplay::background()
