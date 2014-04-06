@@ -32,7 +32,7 @@ Core::Core()
   _display = NULL;
   _currentTime = _timer.getMilliTime();
   _previousTime = _timer.getMilliTime();
-  _snakeSpeed = 2000;
+  _snakeSpeed = 6000;
   _gameOver = false;
   srand(time(NULL));
 }
@@ -239,7 +239,7 @@ void	Core::keyDownHandler()
 
 void	Core::keyLeftHandler()
 {
-  _snakeDir = static_cast<eDirection>((_snakeDir - 1) % 4);
+  _snakeDir = static_cast<eDirection>(_snakeDir != 0 ? (_snakeDir - 1) : LEFT);
 }
 
 void	Core::keyRightHandler()

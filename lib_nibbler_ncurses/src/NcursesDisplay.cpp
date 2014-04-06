@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:14 2014 chauvo_t
-// Last update Sun Apr  6 17:49:58 2014 chauvo_t
+// Last update Sun Apr  6 18:26:56 2014 chauvo_t
 //
 
 #include "../include/NcursesDisplay.hh"
@@ -25,6 +25,8 @@ void	NcursesDisplay::init(const GameBoard & game) // To do: check error return v
     throw Exception("ncurses: initscr() error");
   if (raw() == ERR)
     std::cerr << "ncurses: raw() error" << std::endl;
+  if (nodelay(stdscr, TRUE) == ERR)
+    std::cerr << "ncurses: nodelay() error" << std::endl;
   if (noecho() == ERR)
     std::cerr << "ncurses: noecho() error" << std::endl;
   if (curs_set(0) == ERR)
@@ -79,11 +81,11 @@ void	NcursesDisplay::update(const GameBoard & game)
 
 IDisplay::eKey	NcursesDisplay::getKey()
 {
-  char			ch;
+  int			ch;
   IDisplay::eKey	output;
 
   output = IDisplay::NIB_KEY_NONE;
-  while (ch = getch() != ERR )
+  while ((ch = getch()) != ERR)
     {
       if (ch == KEY_UP)
 	output = IDisplay::NIB_KEY_UP;
