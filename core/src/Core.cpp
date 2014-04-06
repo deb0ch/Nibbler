@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Sun Apr  6 15:01:32 2014 chauvo_t
+// Last update Sun Apr  6 15:06:05 2014 chauvo_t
 //
 
 #include "../include/Core.hh"
@@ -101,7 +101,7 @@ void			Core::gameLoop()
   while (_gameOver == false)
     {
       _currentTime = _timer.getMilliTime();
-      if (_currentTime - _previousTime > 1.0 / (_snakeSpeed / 1000.0))
+      if (_currentTime - _previousTime > 1.0 / (_snakeSpeed))
 	{
 	  key = _display->getKey();
 	  (this->*_keyHandlers[key])();
