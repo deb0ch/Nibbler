@@ -5,10 +5,10 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:07 2014 bourge_i
-// Last update Sun Apr  6 23:10:52 2014 Maxime Bourgeois
+// Last update Sun Apr  6 23:15:23 2014 Maxime Bourgeois
 //
 
-#include "../include/openglDisplay.hh"
+#include "../include/OpenglDisplay.hh"
 
 static IDisplay::eKey	g_key;
 
