@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Sun Apr  6 19:28:04 2014 chauvo_t
+// Last update Sun Apr  6 23:30:56 2014 chauvo_t
 //
 
 #ifndef		CORE_H_
@@ -42,7 +42,7 @@ private:
   GameBoard					_gameBoard;
   void						(Core::*_keyHandlers[IDisplay::NIB_KEY_LAST])();
   std::vector<std::string>			_libs;
-  std::vector<std::string>::const_iterator	_libsIt;
+  std::vector<std::string>::iterator		_libsIt;
   void						*_libHandle;
   IDisplay					*_display;
   Timer						_timer;
@@ -54,8 +54,8 @@ private:
   SnakeRing::eDirection				_snakeDir;
 
 private:			// Main private functions
-  void			openLib();   // To do: try all libs while there are errors
-  void			switchLib(); // To do
+  void			openLib();
+  void			switchLib();
   void			closeLib();
   void			initGame(const std::vector<std::string> & libs, int width, int height);
   void			initGameBoard(int width, int height);
@@ -78,6 +78,7 @@ private:			// Key handlers
   void			keyLeftHandler();
   void			keyRightHandler();
   void			keySpaceHandler();
+  void			keyEnterHandler();
   void			keyEscHandler();
 
 private:			// Fruits effects

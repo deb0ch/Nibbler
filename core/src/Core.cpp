@@ -27,6 +27,7 @@ Core::Core()
   _keyHandlers[IDisplay::NIB_KEY_LEFT] = &Core::keyLeftHandler;
   _keyHandlers[IDisplay::NIB_KEY_RIGHT] = &Core::keyRightHandler;
   _keyHandlers[IDisplay::NIB_KEY_SPACE] = &Core::keySpaceHandler;
+  _keyHandlers[IDisplay::NIB_KEY_ENTER] = &Core::keyEnterHandler;
   _keyHandlers[IDisplay::NIB_KEY_ESC] = &Core::keyEscHandler;
   _libHandle = NULL;
   _display = NULL;
@@ -68,29 +69,31 @@ void	Core::openLib()
       throw Exception("map too big for " + *_libsIt + " display");
     }
   _display = tmpLib;
+  std::cout << "Coucou lol =)" << *_libsIt << std::endl;
+  _display->init(_gameBoard);
 }
 
-void	Core::switchLib()	// To do
+void	Core::switchLib()
 {
   size_t	i;
 
   ++_libsIt;
   for (i = 0; i < _libs.size(); ++i)
     {
+      this->closeLib();
       try
 	{
-	  this->closeLib();
+	  if (_libsIt == _libs.end())
+	    _libsIt = _libs.begin();
 	  this->openLib();
+	  break ;
 	}
       catch (Exception e)
 	{
 	  std::cerr << e.what() << std::endl;
 	  ++_libsIt;
 	  if (_libsIt == _libs.end())
-	    {
-	      _libsIt = _libs.begin();
-	      break ;
-	    }
+	    _libsIt = _libs.begin();
 	  continue ;
 	}
       break ;
@@ -118,7 +121,6 @@ void	Core::initGame(const std::vector<std::string> & libs, int width, int height
   this->initGameBoard(width, height);
   this->openLib();
   _fps = _display->getFps();
-  _display->init(_gameBoard);
   _snakeDir = SnakeRing::RIGHT;
 }
 
@@ -136,7 +138,7 @@ void	Core::initGameBoard(int width, int height)
   this->spawnBasicFruit();
 }
 
-void			Core::gameLoop()
+void	Core::gameLoop()
 {
   IDisplay::eKey	key;
 
@@ -157,10 +159,6 @@ void			Core::gameLoop()
 	_timer.milliSleep(1000.0 / (_snakeSpeed / 1000.0) - (_currentTime - _previousTime));
     }
 }
-// std::cout << "Diff: " << (_currentTime - _previousTime) << std::endl;
-// std::cout << "fps: " << ((1.0 / _fps) * 1000.0) << std::endl;
-// std::cout << "Calcul: " << ((1.0 / _fps) * 1000.0) - (_currentTime - _previousTime)
-// << std::endl;
 
 void	Core::endGame()
 {
@@ -300,6 +298,11 @@ void	Core::keySpaceHandler()
 void	Core::keyEscHandler()
 {
   _gameOver = true;
+}
+
+void	Core::keyEnterHandler()
+{
+  this->switchLib();
 }
 
 // Fruits effects
