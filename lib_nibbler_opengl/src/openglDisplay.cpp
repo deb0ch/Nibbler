@@ -5,7 +5,7 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:07 2014 bourge_i
-// Last update Sun Apr  6 22:46:35 2014 Maxime Bourgeois
+// Last update Sun Apr  6 22:59:40 2014 Maxime Bourgeois
 //
 
 #include "../include/openglDisplay.hh"
@@ -26,6 +26,8 @@ static void	manageKeyboard(unsigned char key, int x, int y)
   std::cout << "vous avez appuye sur " << key << std::endl;
   if (key == 27)
     g_key = IDisplay::NIB_KEY_ESC;
+  if (key == '\n')
+    g_key = IDisplay::NIB_KEY_ENTER;
   return ;
 }
 
@@ -65,24 +67,22 @@ void			OpenglDisplay::init(const GameBoard & game)
   int argc = 1;
   char *argv[1] = {(char*)"Something"};
 
-  glutInit(&argc, argv);
-  glutInitDisplayMode(GLUT_RGBA | GLUT_SINGLE);
-
-  float w = game.width();
-  float h = game.height();
   float r1;
   float r2;
 
-  if (w >= h)
+  if (game.width() >= game.height())
     {
-      r1 = w / h;
+      r1 = (float)game.width() / game.height();
       r2 = 1;
     }
   else
     {
-      r2 = h / w;
+      r2 = (float)game.height() / game.width();
       r1 = 1;
     }
+
+  glutInit(&argc, argv);
+  glutInitDisplayMode(GLUT_RGBA | GLUT_SINGLE);
 
   glutInitWindowSize((game.width() * BLOCKPX), (game.height() * BLOCKPX));
 
@@ -120,20 +120,17 @@ void			OpenglDisplay::update(const GameBoard & game)
 void			OpenglDisplay::displaySnake(const GameBoard & game)
 {
   std::list<SnakeRing*>::const_iterator it;
-
-  float w = game.width();
-  float h = game.height();
   float r1;
   float r2;
 
-  if (w >= h)
+  if (game.width() >= game.height())
     {
-      r1 = w / h;
+      r1 = (float)game.width() / game.height();
       r2 = 1;
     }
   else
     {
-      r2 = h / w;
+      r2 = (float)game.height() / game.width();
       r1 = 1;
     }
 
@@ -151,21 +148,17 @@ void			OpenglDisplay::displaySnake(const GameBoard & game)
 void			OpenglDisplay::displayFruits(const GameBoard & game)
 {
   std::list<Fruit*>::const_iterator it;
-
-  float w = game.width();
-  float h = game.height();
-
   float r1;
   float r2;
 
-  if (w >= h)
+  if (game.width() >= game.height())
     {
-      r1 = w / h;
+      r1 = (float)game.width() / game.height();
       r2 = 1;
     }
   else
     {
-      r2 = h / w;
+      r2 = (float)game.height() / game.width();
       r1 = 1;
     }
   it = game.fruits().begin();
