@@ -5,15 +5,17 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:19 2014 bourge_i
-// Last update Sun Apr  6 14:52:02 2014 bourge_i
+// Last update Sun Apr  6 21:27:49 2014 bourge_i
 //
 
 #ifndef		OPENGLDISPLAY_H_
 # define	OPENGLDISPLAY_H_
 
 # define	BLOCKSIZE 0.05
+# define	BLOCKPX 50
 
 # include <iostream>
+# include <list>
 # include <unistd.h>
 
 # include <GL/gl.h>
@@ -42,12 +44,8 @@ public:
   virtual ~OpenglDisplay() {}
 
 private:
-  // void	display();
-  // void	square(double x, double y, double offsetX, double offsetY,
-  // 	       int r, int v, int b); // todo creer structure
-  // void	manageKeyboard(unsigned char key, int x, int y);
-  // void	manageDirection(int key, int x, int y);
-  // void	timerCallback(int value);
+  void		displaySnake(const GameBoard & game);
+  void		displayFruits(const GameBoard & game);
 
 private:
   OpenglDisplay(const OpenglDisplay &);
