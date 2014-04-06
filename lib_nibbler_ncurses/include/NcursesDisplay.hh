@@ -5,13 +5,14 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:28 2014 chauvo_t
-// Last update Sat Apr  5 22:56:39 2014 chauvo_t
+// Last update Sun Apr  6 13:22:37 2014 chauvo_t
 //
 
 #ifndef		NCURSESDISPLAY_H_
 # define	NCURSESDISPLAY_H_
 
 # include <ncurses.h>
+# include "../../interface/Exception.hh"
 # include "../../interface/IDisplay.hh"
 
 class NcursesDisplay : public IDisplay
@@ -25,14 +26,14 @@ public:
 
 public:
   NcursesDisplay();
-  virtual ~NcursesDisplay() {}
+  virtual ~NcursesDisplay();
 
 private:
   NcursesDisplay(const NcursesDisplay & other);
   NcursesDisplay&	operator=(const NcursesDisplay & other);
 
 private:
-
+  bool			_hasColors;
 };
 
 #endif /* !NCURSESDISPLAY_H_ */

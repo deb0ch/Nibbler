@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Sat Apr  5 18:53:43 2014 chauvo_t
+// Last update Sun Apr  6 13:26:35 2014 chauvo_t
 //
 
 #ifndef		CORE_H_
@@ -61,7 +61,7 @@ private:
   eDirection					_snakeDir;
 
 private:			// Main private functions
-  void			openLib();
+  void			openLib();   // To do: try all libs while there are errors
   void			switchLib(); // To do
   void			closeLib();
   void			initGame(const std::vector<std::string> & libs, int width, int height);
