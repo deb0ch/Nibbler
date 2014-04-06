@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Sat Apr  5 19:58:34 2014 laguet_p
-// Last update Thu Apr  3 15:56:47 2014 
+// Last update Thu Apr  3 17:35:36 2014 
 //
 
 #ifndef		SDL_H_
@@ -35,8 +35,14 @@ private:
   //  SDL_Surface		*_screenStart;
   SDL_Surface		*_backgroundDisplay;
   SDL_Surface		*_snakeDisplay;
+  SDL_Surface		*_snakeHead;
+  SDL_Surface		*_snakeBody;
+  SDL_Surface		*_snakeEnd;
   int			_snakeBmp;
+  int			_leftRigth;
+  int			_sens;
   SDL_Rect		_snakePos;
+  SDL_Rect		_backgroundPos;
 
   void			init(const GameBoard & game);
   void			initWindow(const GameBoard & game);
@@ -44,6 +50,7 @@ private:
   void			snakePart();
   eKey			getKey();
   void			snakeIterator(const GameBoard & game);
+  void			snakeLoad(const GameBoard & game);
   void			update(const GameBoard & game); // refresh full
   void			close() const; // free & return esc
   int			getFps() const;
