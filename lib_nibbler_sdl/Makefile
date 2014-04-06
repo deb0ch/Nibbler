@@ -5,10 +5,10 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 22:16:44 2014 chauvo_t
-## Last update Sat Apr  5 20:24:59 2014 chauvo_t
+## Last update Sun Apr  6 09:15:32 2014 chauvo_t
 ##
 
-CXX			:= g++
+CXX			:= clang
 
 RM			:= rm -f
 
@@ -42,7 +42,7 @@ TMPS			:=	$(OBJS)			\
 				$(SRCS:.cpp=.cpp~)	\
 				Makefile~
 
-NAME			:= ../lib_nibbler_sdl.so
+NAME			:= ../SdlDisplay.so
 
 
 all:		$(NAME)

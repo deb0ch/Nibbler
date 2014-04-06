@@ -37,8 +37,8 @@ private:
 
   void			init(const GameBoard & game);
   void			initWindow(const GameBoard & game);
-  void			background(const GameBoard & game);
-  void			snakePart(std::list<SnakeRing*>::const_iterator it);
+  void			background();
+  void			snakePart();
   eKey			getKey() const;
   void			snakeIterator(const GameBoard & game);
   void			update(const GameBoard & game); // refresh full
