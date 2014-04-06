@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 20:23:12 2014 
+// Last update Thu Apr  3 21:58:53 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -20,9 +20,20 @@ extern "C"
 
 void		SdlDisplay::close() const
 {
-  SDL_FreeSurface(this->_snakeDisplay);
+  SDL_FreeSurface(this->_snakeHead0);
+  SDL_FreeSurface(this->_snakeHead1);
+  SDL_FreeSurface(this->_snakeHead2);
+  SDL_FreeSurface(this->_snakeHead3);
+  SDL_FreeSurface(this->_snakeEnd1);
+  SDL_FreeSurface(this->_snakeEnd2);
+  SDL_FreeSurface(this->_snakeBody);
+
+  SDL_FreeSurface(this->_backgroundDisplay);
+
+  SDL_FreeSurface(this->_fruit);
+  SDL_FreeSurface(this->_fruit2);
+
   SDL_FreeSurface(this->_screen);
-  //  SDL_FreeSurface(/*Fruits, wall, div items*/);
 }
 
 void		SdlDisplay::update(const GameBoard & game)
@@ -50,17 +61,9 @@ IDisplay::eKey		SdlDisplay::getKey()
 	  else if (event.key.keysym.sym == SDL_QUIT)
 	    output = IDisplay::NIB_KEY_ESC;
 	  else if (event.key.keysym.sym == SDLK_LEFT)
-	    {
-	      this->_leftRigth = -1;
-	      orient();
-	      output = IDisplay::NIB_KEY_LEFT;
-	    }
+	    output = IDisplay::NIB_KEY_LEFT;
 	  else if (event.key.keysym.sym == SDLK_RIGHT)
-	    {
-	      this->_leftRigth = 1;
-	      orient();
-	      output = IDisplay::NIB_KEY_RIGHT;
-	    }
+	    output = IDisplay::NIB_KEY_RIGHT;
 	  else if (event.key.keysym.sym == SDLK_SPACE)
 	    output = IDisplay::NIB_KEY_SPACE;
 	  else if (event.key.keysym.sym == SDLK_RETURN)
@@ -68,15 +71,6 @@ IDisplay::eKey		SdlDisplay::getKey()
 	}
     }
   return (output);
-}
-
-void		SdlDisplay::orient()
-{
-  this->_sens = this->_sens + this->_leftRigth;
-  if (this->_sens > 3)
-    this->_sens = 0;
-  if (this->_sens < 0)
-    this->_sens = 3;
 }
 
 void		SdlDisplay::snakeIterator(const GameBoard & game)
@@ -87,9 +81,9 @@ void		SdlDisplay::snakeIterator(const GameBoard & game)
   while (it != game.snake().end())
     {
       if (it == game.snake().begin())
-	snakeHead();
+	snakeHead(game);
       else if ((*it) == game.snake().back())
-	snakeEnd();
+	snakeEnd(game);
       else
 	this->_snakeDisplay = this->_snakeBody;
       this->_snakePos.x = (*it)->posx() * NB_PIX_X;
@@ -99,24 +93,26 @@ void		SdlDisplay::snakeIterator(const GameBoard & game)
     }
 }
 
-void		SdlDisplay::snakeHead()
+void		SdlDisplay::snakeHead(const GameBoard & game)
 {
-  if (this->_sens == 0)
-    this->_snakeDisplay = this->_snakeHead0;
-  else if (this->_sens == 1)
+  if (game.snake().front()->direction() == SnakeRing::UP)
     this->_snakeDisplay = this->_snakeHead1;
-  else if (this->_sens == 2)
-    this->_snakeDisplay = this->_snakeHead2;
-  else if (this->_sens == 3)
+  if (game.snake().front()->direction() == SnakeRing::DOWN)
     this->_snakeDisplay = this->_snakeHead3;
+  if (game.snake().front()->direction() == SnakeRing::LEFT)
+    this->_snakeDisplay = this->_snakeHead0;
+  if (game.snake().front()->direction() == SnakeRing::RIGHT)
+    this->_snakeDisplay = this->_snakeHead2;
 }
 
-void		SdlDisplay::snakeEnd()
+void		SdlDisplay::snakeEnd(const GameBoard & game)
 {
-  if (this->_sens == 0 || this->_sens == 2)
-    this->_snakeDisplay = this->_snakeEnd2;
-  else if (this->_sens == 1 || this->_sens == 3)
+  if (game.snake().back()->direction() == SnakeRing::UP ||
+      game.snake().front()->direction() == SnakeRing::DOWN)
     this->_snakeDisplay = this->_snakeEnd1;
+  else if (game.snake().back()->direction() == SnakeRing::LEFT ||
+      game.snake().front()->direction() == SnakeRing::RIGHT)
+    this->_snakeDisplay = this->_snakeEnd2;
 }
 
 void		SdlDisplay::fruitIterator(const GameBoard & game)
@@ -126,13 +122,19 @@ void		SdlDisplay::fruitIterator(const GameBoard & game)
   it = game.fruits().begin();
   while (it != game.fruits().end())
     {
-      this->_fruitsDisplay = this->_fruit;
+      if (this->_compt % 2 == 0)
+	this->_fruitsDisplay = this->_fruit;
+      if (this->_compt % 2 == 1)
+	this->_fruitsDisplay = this->_fruit2;
       this->_fruitPos.x = (*it)->posx() * NB_PIX_X;
       this->_fruitPos.y = (*it)->posy() * NB_PIX_Y;
       fruitPart();
       ++it;
     }
+  this->_compt = this->_compt + 1;
 }
+
+
 
 void		SdlDisplay::snakeLoad(const GameBoard & game)
 {
@@ -165,6 +167,9 @@ void		SdlDisplay::fruitLoad(const GameBoard & game)
   this->_fruit = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/fruit.bmp");
   if (this->_fruit == NULL)
     throw Exception("[ERROR] : fruit failed LoadBMP");
+  this->_fruit2 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/fruit02.bmp");
+  if (this->_fruit2 == NULL)
+    throw Exception("[ERROR] : fruit02 failed LoadBMP");
   fruitIterator(game);
 }
 
@@ -211,7 +216,7 @@ int		SdlDisplay::getFps() const
 
 void		SdlDisplay::init(const GameBoard & game)
 {
-  this->_sens = 2;
+  this->_compt = 0;
   initWindow(game);
   background();
   snakeLoad(game);
