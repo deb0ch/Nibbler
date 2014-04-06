@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Thu Apr  3 15:37:09 2014 
+// Last update Thu Apr  3 16:10:45 2014 
 //
 
 # include "../include/SdlDisplay.hh"
@@ -65,14 +65,23 @@ void		SdlDisplay::snakeIterator(const GameBoard & game)
   it = game.snake().begin();
   while (it != game.snake().end())
     {
-      if (it != game.snake().begin() && (*it) != game.snake().back())
-	this->_snakeBmp = 2;
+      if (it == game.snake().begin())
+	{
+	  this->_snakeDisplay = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head.bmp");
+	  if (this->_snakeDisplay == NULL)
+	    throw Exception("[ERROR] : Snake_head failed LoadBMP");
+	}
+      else if ((*it) == game.snake().back())
+	{
+	  this->_snakeDisplay = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head.bmp");
+	  if (this->_snakeDisplay == NULL)
+	    throw Exception("[ERROR] : Snake_end failed LoadBMP");
+	}
       else
 	{
-	  if (it == game.snake().begin())
-	    this->_snakeBmp = 1;
-	  if ((*it) == game.snake().front())
-	    this->_snakeBmp = 3;
+	  this->_snakeDisplay = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake.bmp");
+	  if (this->_snakeDisplay == NULL)
+	    throw Exception("[ERROR] : Snake failed LoadBMP");
 	}
       this->_snakePos.x = (*it)->posx() * NB_PIX_X;
       this->_snakePos.y = (*it)->posy() * NB_PIX_Y;
@@ -83,14 +92,6 @@ void		SdlDisplay::snakeIterator(const GameBoard & game)
 
 void		SdlDisplay::snakePart()
 {
-  if (this->_snakeBmp == 1)
-    this->_snakeDisplay = SDL_LoadBMP("sprit/bmp_sdl/snake_head.bmp");
-  else if (this->_snakeBmp == 2)
-    this->_snakeDisplay = SDL_LoadBMP("sprit/bmp_sdl/snake.bmp");
-  else if (this->_snakeBmp == 3)
-    this->_snakeDisplay = SDL_LoadBMP("sprit/bmp_sdl/snake_end.bmp");
-  if (this->_snakeDisplay == NULL)
-    throw Exception("[ERROR] : Snake failed LoadBMP");
   SDL_SetColorKey(this->_snakeDisplay, SDL_SRCCOLORKEY, SDL_MapRGB(this->_screen->format, 0, 0, 0));
   SDL_BlitSurface(this->_snakeDisplay, NULL, this->_screen, &(this->_snakePos));
 }
@@ -101,7 +102,7 @@ void		SdlDisplay::background()
 
   pos.x = 0;
   pos.y = 0;
-  this->_backgroundDisplay = SDL_LoadBMP("sprit/bmp_sdl/jungle.bmp");
+  this->_backgroundDisplay = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/jungle.bmp");
   if (this->_backgroundDisplay == NULL)
     throw Exception("[ERROR] : Background failed LoadBMP");
   SDL_BlitSurface(this->_backgroundDisplay, NULL, this->_screen, &pos);
@@ -120,7 +121,7 @@ void		SdlDisplay::initWindow(const GameBoard & game)
   SDL_Flip(this->_screen);
 }
 
-int		SdlDisplay::setFps() const
+int		SdlDisplay::getFps() const
 {
   return (50);
 }

@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Sat Apr  5 19:58:34 2014 laguet_p
-// Last update Thu Apr  3 15:30:23 2014 
+// Last update Thu Apr  3 15:56:47 2014 
 //
 
 #ifndef		SDL_H_
@@ -27,8 +27,8 @@
 class	SdlDisplay : public IDisplay
 {
 public:
-  SdlDisplay();
-  virtual ~SdlDisplay();
+  SdlDisplay(){}
+  virtual ~SdlDisplay(){}
 
 private:
   SDL_Surface		*_screen;
@@ -45,10 +45,8 @@ private:
   eKey			getKey();
   void			snakeIterator(const GameBoard & game);
   void			update(const GameBoard & game); // refresh full
-  void			refreshBg();
-  void			refreshSnake();
   void			close() const; // free & return esc
-  int			setFps() const;
+  int			getFps() const;
 
   SdlDisplay(const SdlDisplay &);
   SdlDisplay &operator=(const SdlDisplay &);
