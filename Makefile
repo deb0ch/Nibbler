@@ -5,13 +5,13 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 21:13:58 2014 chauvo_t
-## Last update Sun Apr  6 14:27:20 2014 chauvo_t
+## Last update Sun Apr  6 15:30:47 2014 chauvo_t
 ##
 
 CORE_PATH	:= ./core
 LIB_SDL_PATH	:= ./lib_nibbler_sdl
 LIB_NC_PATH	:= ./lib_nibbler_ncurses
-LIB_3_PATH	:= ./lib_nibbler_3
+LIB_3_PATH	:= ./lib_nibbler_opengl
 
 all:	core sdl ncurses opengl
 

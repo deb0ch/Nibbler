@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 22:16:44 2014 chauvo_t
-## Last update Sun Apr  6 09:15:32 2014 chauvo_t
+## Last update Sun Apr  6 15:30:02 2014 chauvo_t
 ##
 
 CXX			:= clang
@@ -39,10 +39,11 @@ LDFLAGS			+= -lSDLmain -lSDL
 $(DEBUG): LDFLAGS	+= -g3 -ggdb
 
 TMPS			:=	$(OBJS)			\
+				$(DEPS)			\
 				$(SRCS:.cpp=.cpp~)	\
 				Makefile~
 
-NAME			:= ../SdlDisplay.so
+NAME			:= ../lib_nibbler_sdl.so
 
 
 all:		$(NAME)

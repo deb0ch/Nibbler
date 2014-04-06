@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Thu Apr  3 16:35:36 2014 
+// Last updateThu Apr  3 16:35:36 2014
 //
 
 #include "../include/Core.hh"
@@ -75,11 +75,11 @@ void	Core::initGame(const std::vector<std::string> & libs, int width, int height
   _libsIt = _libs.begin();
   this->openLib();
   _fps = _display->getFps();
-  _display->init(_gameBoard);
   this->initGameBoard(width, height);
+  _display->init(_gameBoard);
 }
 
-void	Core::initGameBoard(int width, int height) // To do
+void	Core::initGameBoard(int width, int height)
 {
   int	i;
 
@@ -110,7 +110,7 @@ void			Core::gameLoop()
 	}
      _display->update(_gameBoard);
      std::cout << ((1.0 / _fps) * 1000.0) - (_currentTime - _previousTime) << std::endl;
-     _timer.milliSleep((1.0 / _fps * 1000.0) - (_currentTime - _previousTime));
+     _timer.milliSleep(50000);
     }
 }
 

@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Sun Apr  6 14:12:29 2014 chauvo_t
+// Last update Sun Apr  6 15:47:25 2014 chauvo_t
 //
 
 #ifndef		CORE_H_
@@ -23,7 +23,7 @@
 # include "../../interface/GameBoard.hh"
 # include "../../interface/IDisplay.hh"
 
-# define SNAKE_INIT_SIZE	4
+# define SNAKE_INIT_SIZE 4
 
 class	Core
 {

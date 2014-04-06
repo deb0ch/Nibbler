@@ -4,7 +4,7 @@
 ## Made by Thomas de Beauchene
 ## Login   <chauvo_t@epitech.net>
 ##
-## Last update Sat Apr  5 20:29:07 2014 chauvo_t
+## Last update Sun Apr  6 15:56:35 2014 chauvo_t
 ## Last update Sun Dec 15 00:24:02 2013 chauvo_t
 ##
 
@@ -30,7 +30,7 @@ DEPS			:= $(OBJS:.o=.d)
 
 CXXFLAGS		+= -Werror -Wextra -Wall -W
 CXXFLAGS		+= $(addprefix -I./, $(HDRDIR))
-CXXFLAGS		+= -O2
+CXXFLAGS		+= -O2 -MD
 CXXFLAGS		+= -fPIC
 $(DEBUG): CXXFLAGS	+= -g3 -ggdb
 
@@ -39,6 +39,7 @@ LDFLAGS			+= -lncurses
 $(DEBUG): LDFLAGS	+= -g3 -ggdb
 
 TMPS			:=	$(OBJS)			\
+				$(DEPS)			\
 				$(SRCS:.cpp=.cpp~)	\
 				Makefile~
 

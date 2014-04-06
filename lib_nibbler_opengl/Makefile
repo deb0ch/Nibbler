@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 22:16:30 2014 chauvo_t
-## Last update Sun Apr  6 13:40:49 2014 bourge_i
+## Last update Sun Apr  6 15:55:11 2014 chauvo_t
 ##
 
 CXX			:= g++
@@ -40,10 +40,11 @@ LDFLAGS			+= -lGL -lglut -lGLU
 $(DEBUG): LDFLAGS	+= -g3 -ggdb
 
 TMPS			:=	$(OBJS)			\
+				$(DEPS)			\
 				$(SRCS:.cpp=.cpp~)	\
 				Makefile~
 
-NAME			:= ../lib_ogl.so
+NAME			:= ../lib_nibbler_opengl.so
 
 
 all:		$(NAME)
