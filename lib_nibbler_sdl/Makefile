@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 22:16:44 2014 chauvo_t
-## Last update Wed Apr  2 17:55:00 2014 chauvo_t
+## Last update Sat Apr  5 20:24:59 2014 chauvo_t
 ##
 
 CXX			:= g++
@@ -21,8 +21,7 @@ OBJDIR			:= build
 HDRDIR			:= include
 HDRDIR			+= ../interface
 
-SRCS			:=	lib_nibbler_sdl.cpp	\
-#				other_file.cpp
+SRCS			:=	SdlDisplay.cpp
 
 OBJS			:= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 SRCS			:= $(addprefix $(SRCDIR)/, $(SRCS))

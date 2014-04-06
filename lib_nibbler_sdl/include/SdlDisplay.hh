@@ -1,16 +1,26 @@
+//
+// SdlDisplay.hh for nibbler in /home/ubuntu/rendu/cpp_nibbler
+//
+// Made by laguet_p
+// Login   <laguet_p@epitech.net>
+//
+// Started on  Sat Apr  5 19:58:34 2014 laguet_p
+// Last update Sat Apr  5 20:33:22 2014 chauvo_t
+//
+
 #ifndef		SDL_H_
 # define	SDL_H_
 
 # include <iostream>
 # include <string>
 # include <fstream>
-# include <SDL/SDL.h>>
+# include <SDL/SDL.h>
 # include "../../interface/Exception.hh"
 # include "../../interface/IDisplay.hh"
 
-#define NB_PIX_X	50
-#define NB_PIX_Y	50
-#define COLOR		32
+# define NB_PIX_X	50
+# define NB_PIX_Y	50
+# define COLOR		32
 
 class	SdlDisplay : public IDisplay
 {
@@ -39,8 +49,6 @@ private:
 
   SdlDisplay(const SdlDisplay &);
   SdlDisplay &operator=(const SdlDisplay &);
-protected:
-
 };
 
 #endif /* !SDL_H_ */

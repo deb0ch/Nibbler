@@ -5,7 +5,7 @@
 ** Login   <laguet_p@epitech.net>
 **
 ** Started on  Sat Mar  8 13:11:36 2014
-** Last update Mon Mar 31 09:46:34 2014 
+** Last update Sat Apr  5 19:59:13 2014 chauvo_t
 */
 
 #ifndef		HERO_H_
