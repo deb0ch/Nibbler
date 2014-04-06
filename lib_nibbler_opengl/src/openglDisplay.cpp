@@ -5,7 +5,7 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:07 2014 bourge_i
-// Last update Sun Apr  6 22:59:40 2014 Maxime Bourgeois
+// Last update Sun Apr  6 23:10:52 2014 Maxime Bourgeois
 //
 
 #include "../include/openglDisplay.hh"
@@ -23,7 +23,6 @@ extern "C"
 static void	manageKeyboard(unsigned char key, int x, int y)
 {
   (void)x; (void)y;
-  std::cout << "vous avez appuye sur " << key << std::endl;
   if (key == 27)
     g_key = IDisplay::NIB_KEY_ESC;
   if (key == '\n')
@@ -46,7 +45,6 @@ static void	square(double x, double y, double offsetX, double offsetY, int r, in
 static void	manageDirection(int key, int x, int y)
 {
   (void)x; (void)y;
-  std::cout << "vous avez appuye sur " << key << std::endl;
   if (key == GLUT_KEY_RIGHT)
     g_key = IDisplay::NIB_KEY_LEFT;
   if (key == GLUT_KEY_LEFT)
@@ -88,10 +86,10 @@ void			OpenglDisplay::init(const GameBoard & game)
 
   glutInitWindowPosition(glutGet(GLUT_SCREEN_WIDTH) / 2 - (game.width() * BLOCKPX) / 2,
   			 glutGet(GLUT_SCREEN_HEIGHT) / 2 - (game.height() * BLOCKPX) / 2);
-  glutCreateWindow("NIBBLER OPENGL");
+  glutCreateWindow("NIBBLER OPENGL/GLUT");
 
   glMatrixMode(GL_PROJECTION);
-  glOrtho(0, game.height() / r2, 0, game.width() / r1, -1, 1); // -> origin
+  glOrtho(0, game.height() / r2, 0, game.width() / r1, -1, 1);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 

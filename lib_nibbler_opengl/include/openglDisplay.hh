@@ -5,7 +5,7 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:19 2014 bourge_i
-// Last update Sun Apr  6 22:48:16 2014 Maxime Bourgeois
+// Last update Sun Apr  6 23:05:32 2014 Maxime Bourgeois
 //
 
 #ifndef		OPENGLDISPLAY_H_
@@ -14,7 +14,6 @@
 # define	BLOCKSIZE 0.05
 # define	BLOCKPX 50
 
-# include <iostream>
 # include <list>
 # include <unistd.h>
 
