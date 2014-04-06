@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 14:18:37 2014 chauvo_t
-// Last update Sat Apr  5 19:08:16 2014 chauvo_t
+// Last update Sun Apr  6 13:29:57 2014 bourge_i
 //
 
 #include "../include/Core.hh"
@@ -47,6 +47,7 @@ void	Core::openLib()
   _libHandle = dlopen((*(_libsIt)).c_str(), RTLD_LAZY);
   if (_libHandle == NULL)
     throw Exception("dlopen error: " + std::string(dlerror()));
+  std::cout <<  (*(_libsIt)).c_str() << std::endl;
   dlerror();
   createDisplay = reinterpret_cast<IDisplay* (*)()>(dlsym(_libHandle,
 							  "createDisplay"));

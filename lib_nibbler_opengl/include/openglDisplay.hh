@@ -5,7 +5,7 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:19 2014 bourge_i
-// Last update Sat Apr  5 22:45:19 2014 bourge_i
+// Last update Sun Apr  6 13:38:02 2014 bourge_i
 //
 
 #ifndef		OPENGLDISPLAY_H_
@@ -15,7 +15,7 @@
 
 # include <GL/gl.h>
 # include <GL/glut.h>
-# include <GL/freeglut_std.h>
+# include <GL/freeglut.h>
 # include <GL/glu.h>
 
 # include "../../interface/IDisplay.hh"
