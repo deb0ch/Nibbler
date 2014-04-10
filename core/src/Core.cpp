@@ -97,6 +97,7 @@ void	Core::gameLoop()
 	_timer.milliSleep(1000.0 / (_gameBoard.snakeSpeed() / 1000.0)
 			  - (_currentTime - _previousTime));
     }
+  this->keyPauseHandler();
 }
 
 void	Core::endGame()
@@ -323,13 +324,13 @@ void	Core::maxiFruitEffect()
 
 void	Core::speedFruitEffect()
 {
-  _gameBoard.addSnakeSpeed(3000);
+  _gameBoard.addSnakeSpeed(1000);
 }
 
 void	Core::slowFruitEffect()
 {
-  if (_gameBoard.snakeSpeed() - 3000 > 6000)
-    _gameBoard.addSnakeSpeed(-3000);
+  if (_gameBoard.snakeSpeed() - 1000 > 6000)
+    _gameBoard.addSnakeSpeed(-1000);
   else
     _gameBoard.setSnakeSpeed(6000);
 }
@@ -347,5 +348,5 @@ void	Core::reverseFruitEffect()
 			       (((*snakeIt)->direction() + 2) % 4));
     }
   _snakeDir = _gameBoard.snake().front()->direction();
-  _gameBoard.addScore(50);
+  _gameBoard.addScore(75);
 }

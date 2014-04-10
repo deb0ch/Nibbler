@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:28 2014 chauvo_t
-// Last update Thu Apr 10 22:48:26 2014 chauvo_t
+// Last update Fri Apr 11 00:36:54 2014 chauvo_t
 //
 
 #ifndef		NCURSESDISPLAY_H_
@@ -46,6 +46,7 @@ private:
   void			putSnake(const GameBoard & game) const;
   void			putFruits(const GameBoard & game) const;
   void			putBorder() const;
+  void			putScore(const GameBoard & game) const;
   void			putBasicFruit(const std::list<Fruit*>::const_iterator fruitIt) const;
   void			putMaxiFruit(const std::list<Fruit*>::const_iterator fruitIt) const;
   void			putSpeedFruit(const std::list<Fruit*>::const_iterator fruitIt) const;

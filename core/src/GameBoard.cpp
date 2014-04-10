@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 14:12:21 2014 chauvo_t
-// Last update Tue Apr  8 22:01:16 2014 chauvo_t
+// Last update Fri Apr 11 00:39:04 2014 chauvo_t
 //
 
 #include "../../interface/GameBoard.hh"
@@ -49,7 +49,7 @@ void	GameBoard::setScore(int score)
 
 void	GameBoard::addScore(int score)
 {
-  _score += score;
+  _score += (score * (this->snakeSpeed()) / 100.0);
 }
 
 void	GameBoard::setSnakeSpeed(int speed)

@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:14 2014 chauvo_t
-// Last update Thu Apr 10 23:04:59 2014 chauvo_t
+// Last update Fri Apr 11 00:37:15 2014 chauvo_t
 //
 
 #include "../include/NcursesDisplay.hh"
@@ -70,6 +70,7 @@ void	NcursesDisplay::update(const GameBoard & game)
   this->putSnake(game);
   this->putFruits(game);
   this->putBorder();
+  this->putScore(game);
   if (wrefresh(_win) == ERR)
     throw Exception("ncurses: refresh() error");
 }
@@ -168,6 +169,17 @@ void	NcursesDisplay::putBorder() const
     if (wattron(_win, COLOR_PAIR(AItem::WALL)) == ERR)
       std::cerr << "ncurses: attron() error" << std::endl;
   wborder(_win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+  if (_hasColors)
+    if (wattron(_win, COLOR_PAIR(AItem::WALL)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+}
+
+void	NcursesDisplay::putScore(const GameBoard & game) const
+{
+  if (_hasColors)
+    if (wattron(_win, COLOR_PAIR(AItem::WALL)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+  mvwprintw(_win, 0, 0, "Score: %d", game.score());
   if (_hasColors)
     if (wattron(_win, COLOR_PAIR(AItem::WALL)) == ERR)
       std::cerr << "ncurses: attron() error" << std::endl;
