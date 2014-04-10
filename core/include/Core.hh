@@ -5,20 +5,21 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Sun Apr  6 23:30:56 2014 chauvo_t
+// Last update Thu Apr 10 11:08:44 2014 chauvo_t
 //
 
 #ifndef		CORE_H_
 # define	CORE_H_
 
 # include <cstdlib>
-# include <dlfcn.h>
 # include <iostream>
 # include <string>
 # include <time.h>
 # include <vector>
 # include "../include/FruitFactory.hh"
+# include "../include/Randomizer.hh"
 # include "../include/Timer.hh"
+# include "../include/DlLoader.hh"
 # include "../../interface/Exception.hh"
 # include "../../interface/GameBoard.hh"
 # include "../../interface/IDisplay.hh"
@@ -28,23 +29,26 @@
 class	Core
 {
 public:
-  void			startGame(const std::vector<std::string> & libs, int width, int height);
+  void			startGame(int width, int height);
 
 public:
-  Core();
+  Core(const std::vector<std::string> & libs);
+
+public:
   ~Core() {}
 
 private:
+  Core();
   Core(const Core &);
   Core			&operator=(const Core &);
 
 private:
+  FruitFactory					_factory;
+  Randomizer					_randomizer;
   GameBoard					_gameBoard;
+  DlLoader					_display;
   void						(Core::*_keyHandlers[IDisplay::NIB_KEY_LAST])();
-  std::vector<std::string>			_libs;
-  std::vector<std::string>::iterator		_libsIt;
-  void						*_libHandle;
-  IDisplay					*_display;
+  void						(Core::*_collisionEffects[AItem::TYPE_LAST])();
   Timer						_timer;
   unsigned long					_currentTime;
   unsigned long					_previousTime;
@@ -52,24 +56,21 @@ private:
   int						_snakeSpeed; // unit: 1000 * tile per second
   bool						_gameOver;
   SnakeRing::eDirection				_snakeDir;
+  unsigned int					_growthCounter;
 
 private:			// Main private functions
-  void			openLib();
-  void			switchLib();
-  void			closeLib();
-  void			initGame(const std::vector<std::string> & libs, int width, int height);
+  void			initGame(int width, int height);
   void			initGameBoard(int width, int height);
   void			gameLoop();
   void			endGame();
 
-private:			// Utils
-  int			rangeRand(int from, int to);
-
 private:			// Game actions
   void			moveSnake();
   AItem::eType		checkCollision(int posx, int posy);
+  void			spawnPos(int* posx, int* posy);
   void			spawnBasicFruit();
-  void			spawnSpecialFruit(); // To do
+  void			spawnSpecialFruit();
+  void			tickFruits();
 
 private:			// Key handlers
   void			keyNoneHandler() {}
@@ -77,12 +78,22 @@ private:			// Key handlers
   void			keyDownHandler();
   void			keyLeftHandler();
   void			keyRightHandler();
-  void			keySpaceHandler();
-  void			keyEnterHandler();
+  void			keyDashHandler();
   void			keyEscHandler();
+  void			keySwitchHandler();
+  void			keyPauseHandler();
+  void			keyHadokenHandler();
 
-private:			// Fruits effects
-  void			fruitEffect(); // To do
+private:			// Collision effects
+  void			noneEffect() {}
+  void			wallEffect();
+  void			borderEffect();
+  void			snakeEffect();
+  void			basicFruitEffect();
+  void			maxiFruitEffect();
+  void			speedFruitEffect();
+  void			slowFruitEffect();
+  void			reverseFruitEffect();
 };
 
 #endif /* !CORE_H_ */

@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 18:21:18 2014 chauvo_t
-// Last update Fri Apr  4 23:16:39 2014 chauvo_t
+// Last update Mon Apr  7 21:26:28 2014 chauvo_t
 //
 
 #ifndef		TIMER_H_
@@ -18,7 +18,7 @@
 # include <string.h>
 # include <time.h>
 # include <unistd.h>
-# include "Exception.hh"
+# include "../../interface/Exception.hh"
 
 class Timer
 {

@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 10:16:12 2014 chauvo_t
-## Last update Sat Apr  5 16:02:49 2014 chauvo_t
+## Last update Thu Apr 10 11:18:43 2014 chauvo_t
 ##
 
 CXX			:= clang++
@@ -23,10 +23,13 @@ HDRDIR			+= ../interface
 
 SRCS			:=	main.cpp		\
 				AItem.cpp		\
+				ASpecialFruit.cpp	\
 				Core.cpp  		\
+				DlLoader.cpp		\
 				Exception.cpp		\
 				FruitFactory.cpp	\
 				GameBoard.cpp		\
+				Randomizer.cpp		\
 				SnakeRing.cpp		\
 				Timer.cpp
 

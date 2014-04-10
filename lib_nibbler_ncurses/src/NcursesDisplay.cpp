@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:14 2014 chauvo_t
-// Last update Sun Apr  6 23:35:09 2014 chauvo_t
+// Last update Thu Apr 10 23:04:59 2014 chauvo_t
 //
 
 #include "../include/NcursesDisplay.hh"
@@ -36,7 +36,11 @@ void	NcursesDisplay::init(const GameBoard & game) // To do: check error return v
 	std::cerr << "ncurses: use_default_colors() error" << std::endl;
       init_pair(AItem::SNAKE, COLOR_RED, COLOR_YELLOW);
       init_pair(AItem::WALL, COLOR_CYAN, COLOR_BLUE);
-      init_pair(AItem::FRUIT, COLOR_RED, COLOR_MAGENTA);
+      init_pair(AItem::BASIC_FRUIT, COLOR_RED, COLOR_MAGENTA);
+      init_pair(AItem::MAXI_FRUIT, COLOR_YELLOW, COLOR_RED);
+      init_pair(AItem::SPEED_FRUIT, COLOR_WHITE, COLOR_YELLOW);
+      init_pair(AItem::SLOW_FRUIT, COLOR_BLUE, COLOR_CYAN);
+      init_pair(AItem::REVERSE_FRUIT, COLOR_BLACK, COLOR_WHITE);
     }
   else
     _hasColors = false;
@@ -97,9 +101,13 @@ IDisplay::eKey	NcursesDisplay::getKey()
       else if (ch == KEY_RIGHT)
 	output = IDisplay::NIB_KEY_RIGHT;
       else if (ch == ' ')
-	output = IDisplay::NIB_KEY_SPACE;
-      else if (ch == KEY_ENTER)
-	output = IDisplay::NIB_KEY_ENTER;
+	output = IDisplay::NIB_KEY_DASH;
+      else if (ch == 27)
+	output = IDisplay::NIB_KEY_ESC;
+      else if (ch == '0' || ch == '\n')
+	output = IDisplay::NIB_KEY_SWITCH;
+      else if (ch == 'p' || ch == 'P')
+	output = IDisplay::NIB_KEY_PAUSE;
     }
   return (output);
 }
@@ -120,7 +128,7 @@ NcursesDisplay::~NcursesDisplay() {}
 
 // Private
 
-void	NcursesDisplay::putSnake(const GameBoard & game)
+void	NcursesDisplay::putSnake(const GameBoard & game) const
 {
   std::list<SnakeRing*>::const_iterator	snakeIt;
 
@@ -132,24 +140,29 @@ void	NcursesDisplay::putSnake(const GameBoard & game)
   mvwaddch(_win, game.snake().front()->posy() + 1, game.snake().front()->posx() + 1, '"');
   if (_hasColors)
     if (attroff(COLOR_PAIR(AItem::SNAKE)) == ERR)
-      std::cerr << "ncurses: attron() error" << std::endl;
+      std::cerr << "ncurses: attroff() error" << std::endl;
 }
 
-void	NcursesDisplay::putFruits(const GameBoard & game)
+void	NcursesDisplay::putFruits(const GameBoard & game) const
 {
   std::list<Fruit*>::const_iterator	fruitIt;
 
-  if (_hasColors)
-    if (wattron(_win, COLOR_PAIR(AItem::FRUIT)) == ERR)
-      std::cerr << "ncurses: attron() error" << std::endl;
   for (fruitIt = game.fruits().begin(); fruitIt != game.fruits().end(); ++fruitIt)
-    mvwaddch(_win, (*fruitIt)->posy() + 1, (*fruitIt)->posx() + 1, ' ');
-  if (_hasColors)
-    if (attroff(COLOR_PAIR(AItem::FRUIT)) == ERR)
-      std::cerr << "ncurses: attron() error" << std::endl;
+    {
+      if ((*fruitIt)->type() == AItem::BASIC_FRUIT)
+	this->putBasicFruit(fruitIt);
+      if ((*fruitIt)->type() == AItem::MAXI_FRUIT)
+	this->putMaxiFruit(fruitIt);
+      if ((*fruitIt)->type() == AItem::SPEED_FRUIT)
+	this->putSpeedFruit(fruitIt);
+      if ((*fruitIt)->type() == AItem::SLOW_FRUIT)
+	this->putSlowFruit(fruitIt);
+      if ((*fruitIt)->type() == AItem::REVERSE_FRUIT)
+	this->putReverseFruit(fruitIt);
+    }
 }
 
-void	NcursesDisplay::putBorder()
+void	NcursesDisplay::putBorder() const
 {
   if (_hasColors)
     if (wattron(_win, COLOR_PAIR(AItem::WALL)) == ERR)
@@ -158,4 +171,59 @@ void	NcursesDisplay::putBorder()
   if (_hasColors)
     if (wattron(_win, COLOR_PAIR(AItem::WALL)) == ERR)
       std::cerr << "ncurses: attron() error" << std::endl;
+}
+
+void	NcursesDisplay::putBasicFruit(const std::list<Fruit*>::const_iterator fruitIt) const
+{
+  if (_hasColors)
+    if (wattron(_win, COLOR_PAIR(AItem::BASIC_FRUIT)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+  mvwaddch(_win, (*fruitIt)->posy() + 1, (*fruitIt)->posx() + 1, ' ');
+  if (_hasColors)
+    if (attroff(COLOR_PAIR(AItem::BASIC_FRUIT)) == ERR)
+      std::cerr << "ncurses: attroff() error" << std::endl;
+}
+
+void	NcursesDisplay::putMaxiFruit(const std::list<Fruit*>::const_iterator fruitIt) const
+{
+  if (_hasColors)
+    if (wattron(_win, COLOR_PAIR(AItem::MAXI_FRUIT)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+  mvwaddch(_win, (*fruitIt)->posy() + 1, (*fruitIt)->posx() + 1, 'm');
+  if (_hasColors)
+    if (attroff(COLOR_PAIR(AItem::MAXI_FRUIT)) == ERR)
+      std::cerr << "ncurses: attroff() error" << std::endl;
+}
+
+void	NcursesDisplay::putSpeedFruit(const std::list<Fruit*>::const_iterator fruitIt) const
+{
+  if (_hasColors)
+    if (wattron(_win, COLOR_PAIR(AItem::SPEED_FRUIT)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+  mvwaddch(_win, (*fruitIt)->posy() + 1, (*fruitIt)->posx() + 1, 's');
+  if (_hasColors)
+    if (attroff(COLOR_PAIR(AItem::SPEED_FRUIT)) == ERR)
+      std::cerr << "ncurses: attroff() error" << std::endl;
+}
+
+void	NcursesDisplay::putSlowFruit(const std::list<Fruit*>::const_iterator fruitIt) const
+{
+  if (_hasColors)
+    if (wattron(_win, COLOR_PAIR(AItem::SLOW_FRUIT)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+  mvwaddch(_win, (*fruitIt)->posy() + 1, (*fruitIt)->posx() + 1, 'l');
+  if (_hasColors)
+    if (attroff(COLOR_PAIR(AItem::SLOW_FRUIT)) == ERR)
+      std::cerr << "ncurses: attroff() error" << std::endl;
+}
+
+void	NcursesDisplay::putReverseFruit(const std::list<Fruit*>::const_iterator fruitIt) const
+{
+  if (_hasColors)
+    if (wattron(_win, COLOR_PAIR(AItem::REVERSE_FRUIT)) == ERR)
+      std::cerr << "ncurses: attron() error" << std::endl;
+  mvwaddch(_win, (*fruitIt)->posy() + 1, (*fruitIt)->posx() + 1, 'r');
+  if (_hasColors)
+    if (attroff(COLOR_PAIR(AItem::REVERSE_FRUIT)) == ERR)
+      std::cerr << "ncurses: attroff() error" << std::endl;
 }

@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:28 2014 chauvo_t
-// Last update Sun Apr  6 22:13:32 2014 chauvo_t
+// Last update Thu Apr 10 22:48:26 2014 chauvo_t
 //
 
 #ifndef		NCURSESDISPLAY_H_
@@ -13,6 +13,7 @@
 
 # include <iostream>
 # include <ncurses.h>
+# include "../../interface/ASpecialFruit.hh"
 # include "../../interface/Exception.hh"
 # include "../../interface/IDisplay.hh"
 
@@ -42,9 +43,14 @@ private:
   int			_maxWidth;
 
 private:
-  void			putSnake(const GameBoard & game);
-  void			putFruits(const GameBoard & game);
-  void			putBorder();
+  void			putSnake(const GameBoard & game) const;
+  void			putFruits(const GameBoard & game) const;
+  void			putBorder() const;
+  void			putBasicFruit(const std::list<Fruit*>::const_iterator fruitIt) const;
+  void			putMaxiFruit(const std::list<Fruit*>::const_iterator fruitIt) const;
+  void			putSpeedFruit(const std::list<Fruit*>::const_iterator fruitIt) const;
+  void			putSlowFruit(const std::list<Fruit*>::const_iterator fruitIt) const;
+  void			putReverseFruit(const std::list<Fruit*>::const_iterator fruitIt) const;
 };
 
 #endif /* !NCURSESDISPLAY_H_ */

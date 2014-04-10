@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 17:53:45 2014 chauvo_t
-// Last update Sat Apr  5 10:57:57 2014 chauvo_t
+// Last update Wed Apr  9 11:17:42 2014 chauvo_t
 //
 
 #ifndef		AITEM_H_
@@ -18,8 +18,13 @@ public:
     {
       NONE,
       WALL,
+      BORDER,
       SNAKE,
-      FRUIT,
+      BASIC_FRUIT,
+      MAXI_FRUIT,
+      SPEED_FRUIT,
+      SLOW_FRUIT,
+      REVERSE_FRUIT,
       TYPE_LAST
     }			eType;
 
