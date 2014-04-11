@@ -97,18 +97,22 @@ void	Core::gameLoop()
 	_timer.milliSleep(1000.0 / (_gameBoard.snakeSpeed() / 1000.0)
 			  - (_currentTime - _previousTime));
     }
-  this->keyPauseHandler();
 }
 
 void	Core::endGame()
 {
-  std::list<SnakeRing*>::iterator	snakeIt;
   std::list<Fruit*>::iterator		fruitIt;
 
+  while (!_gameBoard.snake().empty())
+    {
+      delete _gameBoard.snake().back();
+      _gameBoard.snake().pop_back();
+      _display.getDisplay()->update(_gameBoard);
+      _timer.milliSleep(_gameBoard.snakeSpeed() * 20000);
+    }
   for (fruitIt = _gameBoard.fruits().begin(); fruitIt != _gameBoard.fruits().end(); ++fruitIt)
     delete *fruitIt;
-  for (snakeIt = _gameBoard.snake().begin(); snakeIt != _gameBoard.snake().end(); ++snakeIt)
-    delete *snakeIt;
+  this->keyPauseHandler();
   _display.closeLib();
 }
 
