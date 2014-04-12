@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 17:25:33 2014 chauvo_t
-// Last update Thu Apr 10 11:08:44 2014 chauvo_t
+// Last update Fri Apr 11 22:39:39 2014 chauvo_t
 //
 
 #ifndef		CORE_H_
@@ -50,8 +50,6 @@ private:
   void						(Core::*_keyHandlers[IDisplay::NIB_KEY_LAST])();
   void						(Core::*_collisionEffects[AItem::TYPE_LAST])();
   Timer						_timer;
-  unsigned long					_currentTime;
-  unsigned long					_previousTime;
   int						_fps; // unit: frame per second
   int						_snakeSpeed; // unit: 1000 * tile per second
   bool						_gameOver;

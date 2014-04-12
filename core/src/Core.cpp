@@ -40,8 +40,6 @@ Core::Core(const std::vector<std::string> & libs)
   _collisionEffects[AItem::SPEED_FRUIT] = &Core::speedFruitEffect;
   _collisionEffects[AItem::SLOW_FRUIT] = &Core::slowFruitEffect;
   _collisionEffects[AItem::REVERSE_FRUIT] = &Core::reverseFruitEffect;
-  _currentTime = _timer.getMilliTime();
-  _previousTime = _timer.getMilliTime();
   _gameOver = false;
 }
 
@@ -50,7 +48,6 @@ Core::Core(const std::vector<std::string> & libs)
 void	Core::initGame(int width, int height)
 {
   this->initGameBoard(width, height);
-  _display.openLib(_gameBoard);
   _display.openLib(_gameBoard);
   _fps = _display.getDisplay()->getFps();
   _gameBoard.setSnakeSpeed(8000);
@@ -75,27 +72,33 @@ void	Core::initGameBoard(int width, int height)
 
 void	Core::gameLoop()
 {
-  IDisplay::eKey	key;
+  unsigned long	currentTime;
+  unsigned long	prevFpsTime;
+  unsigned long	prevSnkTime;
 
+  currentTime = _timer.getMilliTime();
+  prevFpsTime = _timer.getMilliTime();
+  prevSnkTime = _timer.getMilliTime();
   _gameOver = false;
-  key = IDisplay::NIB_KEY_NONE;
   while (_gameOver == false)
     {
-      _currentTime = _timer.getMilliTime();
-      if (_currentTime - _previousTime > 1000.0 / (_gameBoard.snakeSpeed() / 1000.0))
+      currentTime = _timer.getMilliTime();
+      if (currentTime - prevSnkTime >= 1000.0 / (_gameBoard.snakeSpeed() / 1000.0))
 	{
-	  key = _display.getDisplay()->getKey();
-	  (this->*_keyHandlers[key])();
+	  (this->*_keyHandlers[_display.getDisplay()->getKey()])();
 	  this->moveSnake();
 	  if (_randomizer.probaRand(1.0 / 30.0))
 	    this->spawnSpecialFruit();
 	  this->tickFruits();
-	  _previousTime = _currentTime;
+	  prevSnkTime = currentTime;
+	}
+      if (currentTime - prevFpsTime >= 1000.0 / _fps)
+	{
 	  _display.getDisplay()->update(_gameBoard);
+	  prevFpsTime = currentTime;
 	}
       else
-	_timer.milliSleep(1000.0 / (_gameBoard.snakeSpeed() / 1000.0)
-			  - (_currentTime - _previousTime));
+	_timer.milliSleep((1000.0 / _fps) - (currentTime - prevFpsTime));
     }
 }
 
@@ -103,12 +106,13 @@ void	Core::endGame()
 {
   std::list<Fruit*>::iterator		fruitIt;
 
+  _timer.milliSleep(1000);
   while (!_gameBoard.snake().empty())
     {
       delete _gameBoard.snake().back();
       _gameBoard.snake().pop_back();
       _display.getDisplay()->update(_gameBoard);
-      _timer.milliSleep(_gameBoard.snakeSpeed() * 20000);
+      _timer.milliSleep(1000.0 / (_gameBoard.snakeSpeed() / 1000.0));
     }
   for (fruitIt = _gameBoard.fruits().begin(); fruitIt != _gameBoard.fruits().end(); ++fruitIt)
     delete *fruitIt;

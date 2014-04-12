@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Sat Apr  5 20:32:14 2014 chauvo_t
-// Last update Fri Apr 11 00:37:15 2014 chauvo_t
+// Last update Fri Apr 11 22:58:27 2014 chauvo_t
 //
 
 #include "../include/NcursesDisplay.hh"
@@ -18,7 +18,7 @@ extern "C"
   }
 }
 
-void	NcursesDisplay::init(const GameBoard & game) // To do: check error return values
+void	NcursesDisplay::init(const GameBoard & game)
 {
   if (initscr() == NULL)
     throw Exception("ncurses: initscr() error");
@@ -35,7 +35,7 @@ void	NcursesDisplay::init(const GameBoard & game) // To do: check error return v
       if (use_default_colors() == ERR)
 	std::cerr << "ncurses: use_default_colors() error" << std::endl;
       init_pair(AItem::SNAKE, COLOR_RED, COLOR_YELLOW);
-      init_pair(AItem::WALL, COLOR_CYAN, COLOR_BLUE);
+      init_pair(AItem::WALL, COLOR_WHITE, COLOR_BLUE);
       init_pair(AItem::BASIC_FRUIT, COLOR_RED, COLOR_MAGENTA);
       init_pair(AItem::MAXI_FRUIT, COLOR_YELLOW, COLOR_RED);
       init_pair(AItem::SPEED_FRUIT, COLOR_WHITE, COLOR_YELLOW);
@@ -60,7 +60,7 @@ void	NcursesDisplay::init(const GameBoard & game) // To do: check error return v
 
 int	NcursesDisplay::getFps() const
 {
-  return (10);
+  return (50);
 }
 
 void	NcursesDisplay::update(const GameBoard & game)
