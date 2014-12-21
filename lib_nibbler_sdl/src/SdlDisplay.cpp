@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Fri Apr  4 00:30:05 2014 
+// Last update Mon Apr  7 15:47:40 2014 chauvo_t
 //
 
 # include "../include/SdlDisplay.hh"
@@ -34,6 +34,7 @@ void		SdlDisplay::close() const
   SDL_FreeSurface(this->_fruit);
   SDL_FreeSurface(this->_fruit2);
   SDL_FreeSurface(this->_screen);
+  SDL_Quit();
 }
 
 void		SdlDisplay::update(const GameBoard & game)
@@ -65,7 +66,12 @@ IDisplay::eKey		SdlDisplay::getKey()
 	  else if (event.key.keysym.sym == SDLK_RIGHT)
 	    output = IDisplay::NIB_KEY_RIGHT;
 	  else if (event.key.keysym.sym == SDLK_SPACE)
-	    output = IDisplay::NIB_KEY_SPACE;
+	    output = IDisplay::NIB_KEY_DASH;
+	  else if (event.key.keysym.sym == SDLK_p)
+	    output = IDisplay::NIB_KEY_PAUSE;
+	  else if (event.key.keysym.sym == SDLK_RETURN
+		   || event.key.keysym.sym == SDLK_KP0)
+	    output = IDisplay::NIB_KEY_SWITCH;
 	}
     }
   return (output);

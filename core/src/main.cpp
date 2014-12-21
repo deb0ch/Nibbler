@@ -5,7 +5,7 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Thu Apr  3 19:38:10 2014 chauvo_t
-// Last update Sun Apr  6 22:25:22 2014 chauvo_t
+// Last update Tue Apr  8 22:16:24 2014 chauvo_t
 //
 
 #include <iostream>
@@ -14,11 +14,8 @@
 #include "../include/FruitFactory.hh"
 #include "../include/Commute.hpp"
 
-FruitFactory	*FruitFactory::_fruitFactory = NULL;
-
 int				main(int ac, char** av)
 {
-  Core				core;
   std::vector<std::string>	libs;
   int				mapWidth;
   int				mapHeight;
@@ -26,12 +23,9 @@ int				main(int ac, char** av)
 
   if (ac < 4
       || (mapWidth = commute<int>(av[1])) < 6
-      // || (mapWidth = commute<int>(av[1])) > 32
-      || (mapHeight = commute<int>(av[2])) < 6
-      // || (mapHeight = commute<int>(av[2])) > 26)
-      )
+      || (mapHeight = commute<int>(av[2])) < 6)
     {
-      std::cerr << "Usage : " << av[0] << "[6 < width < 32] [6 < height < 26] [libXXX.so] ..."
+      std::cerr << "Usage : " << av[0] << "[6 < width] [6 < height] [libXXX.so] ..."
 		<< std::endl;
       return(1);
     }
@@ -41,10 +35,10 @@ int				main(int ac, char** av)
       libs.push_back(av[i]);
       ++i;
     }
+  Core	core(libs);
   try
     {
-      core.startGame(libs, mapWidth, mapHeight);
-      FruitFactory::deleteInstance();
+      core.startGame(mapWidth, mapHeight);
     }
   catch (Exception e)
     {

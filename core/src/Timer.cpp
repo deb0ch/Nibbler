@@ -5,9 +5,10 @@
 // Login   <chauvo_t@epitech.net>
 //
 // Started on  Wed Apr  2 18:23:43 2014 chauvo_t
-// Last update Thu Apr  3 14:38:03 2014 chauvo_t
+// Last update Fri Apr 11 22:47:54 2014 chauvo_t
 //
 
+#include <iostream>
 #include "../include/Timer.hh"
 
 // Public:
@@ -29,7 +30,8 @@ unsigned long	Timer::getMilliTime()
 
 void		Timer::milliSleep(unsigned long delay) const
 {
-  if (usleep(delay / 1000) == -1)
+  // std::cerr << delay * 1000 << std::endl;
+  if (usleep(delay * 1000) == -1)
     throw Exception("usleep error: " + std::string(strerror(errno)));
 }
 

@@ -5,7 +5,7 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:07 2014 bourge_i
-// Last update Sun Apr  6 23:15:23 2014 Maxime Bourgeois
+// Last update Mon Apr  7 15:48:05 2014 chauvo_t
 //
 
 #include "../include/OpenglDisplay.hh"
@@ -25,8 +25,10 @@ static void	manageKeyboard(unsigned char key, int x, int y)
   (void)x; (void)y;
   if (key == 27)
     g_key = IDisplay::NIB_KEY_ESC;
-  if (key == '\n')
-    g_key = IDisplay::NIB_KEY_ENTER;
+  if (key == '\n' || key == '0')
+    g_key = IDisplay::NIB_KEY_SWITCH;
+  if (key == 'p' || key == 'P')
+    g_key = IDisplay::NIB_KEY_PAUSE;
   return ;
 }
 
