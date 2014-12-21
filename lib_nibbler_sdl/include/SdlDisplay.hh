@@ -5,16 +5,17 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Sat Apr  5 19:58:34 2014 laguet_p
-// Last update Fri Apr  4 00:07:43 2014 
+// Last update Sun Dec 21 15:53:25 2014 chauvo_t
 //
 
-#ifndef		SDL_H_
-# define	SDL_H_
+#ifndef SDL_H_
+# define SDL_H_
 
 # include <iostream>
 # include <string>
 # include <fstream>
 # include <SDL/SDL.h>
+# include "ExecFinder.hh"
 # include "../../interface/Exception.hh"
 # include "../../interface/IDisplay.hh"
 
@@ -52,6 +53,7 @@ private:
   SDL_Rect		_snakePos;
   SDL_Rect		_fruitPos;
   SDL_Rect		_backgroundPos;
+  ExecFinder		_execFinder;
 
 public:
   void			init(const GameBoard & game);

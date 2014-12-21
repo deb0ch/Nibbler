@@ -5,7 +5,7 @@
 // Login   <laguet_p@epitech.net>
 //
 // Started on  Tue Apr  1 21:22:02 2014 laguet_p
-// Last update Mon Apr  7 15:47:40 2014 chauvo_t
+// Last update Sun Dec 21 16:00:23 2014 chauvo_t
 //
 
 # include "../include/SdlDisplay.hh"
@@ -85,14 +85,14 @@ void		SdlDisplay::snakeIterator(const GameBoard & game)
   while (it != game.snake().end())
     {
       if (it == game.snake().begin())
-	snakeHead(game);
+	this->snakeHead(game);
       else if ((*it) == game.snake().back())
-	snakeEnd(game);
+	this->snakeEnd(game);
       else
-	snakeBody(it);
+	this->snakeBody(it);
       this->_snakePos.x = (*it)->posx() * NB_PIX_X;
       this->_snakePos.y = (*it)->posy() * NB_PIX_Y;
-      snakePart();
+      this->snakePart();
       ++it;
     }
 }
@@ -154,34 +154,34 @@ void		SdlDisplay::fruitIterator(const GameBoard & game)
 
 void		SdlDisplay::snakeLoad(const GameBoard & game)
 {
-  this->_snakeHead0 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head0.bmp");
+  this->_snakeHead0 = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head0.bmp").c_str());
   if (this->_snakeHead0 == NULL)
     throw Exception("[ERROR] : Snake_head0 failed LoadBMP");
-  this->_snakeHead1 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head1.bmp");
+  this->_snakeHead1 = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head1.bmp").c_str());
   if (this->_snakeHead1 == NULL)
     throw Exception("[ERROR] : Snake_head1 failed LoadBMP");
-  this->_snakeHead2 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head2.bmp");
+  this->_snakeHead2 = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head2.bmp").c_str());
   if (this->_snakeHead2 == NULL)
     throw Exception("[ERROR] : Snake_head2 failed LoadBMP");
-  this->_snakeHead3 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head3.bmp");
+  this->_snakeHead3 = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/snake_head/snake_head3.bmp").c_str());
   if (this->_snakeHead3 == NULL)
     throw Exception("[ERROR] : Snake_head3 failed LoadBMP");
-  this->_snakeEnd1 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_end/snake_end1.bmp");
+  this->_snakeEnd1 = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/snake_end/snake_end1.bmp").c_str());
   if (this->_snakeEnd1 == NULL)
     throw Exception("[ERROR] : Snake_end1 failed LoadBMP");
-  this->_snakeEnd2 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_end/snake_end0.bmp");
+  this->_snakeEnd2 = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/snake_end/snake_end0.bmp").c_str());
   if (this->_snakeEnd2 == NULL)
     throw Exception("[ERROR] : Snake_end2 failed LoadBMP");
-  this->_snakeBody0 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody00.bmp");
+  this->_snakeBody0 = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody00.bmp").c_str());
   if (this->_snakeBody0 == NULL)
     throw Exception("[ERROR] : SnakeBody0 failed LoadBMP");
-  this->_snakeBody1 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody01.bmp");
+  this->_snakeBody1 = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody01.bmp").c_str());
   if (this->_snakeBody1 == NULL)
     throw Exception("[ERROR] : SnakeBody1 failed LoadBMP");
-  this->_snakeBody2 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody02.bmp");
+  this->_snakeBody2 = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody02.bmp").c_str());
   if (this->_snakeBody2 == NULL)
     throw Exception("[ERROR] : SnakeBody2  failed LoadBMP");
-  this->_snakeBody3 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody03.bmp");
+  this->_snakeBody3 = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/snake_body/snakeBody03.bmp").c_str());
   if (this->_snakeBody3 == NULL)
     throw Exception("[ERROR] : SnakeBody3 failed LoadBMP");
   snakeIterator(game);
@@ -189,10 +189,10 @@ void		SdlDisplay::snakeLoad(const GameBoard & game)
 
 void		SdlDisplay::fruitLoad(const GameBoard & game)
 {
-  this->_fruit = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/fruit.bmp");
+  this->_fruit = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/fruit.bmp").c_str());
   if (this->_fruit == NULL)
     throw Exception("[ERROR] : fruit failed LoadBMP");
-  this->_fruit2 = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/fruit02.bmp");
+  this->_fruit2 = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/fruit02.bmp").c_str());
   if (this->_fruit2 == NULL)
     throw Exception("[ERROR] : fruit02 failed LoadBMP");
   fruitIterator(game);
@@ -215,7 +215,7 @@ void		SdlDisplay::background()
 
   this->_backgroundPos.x = 0;
   this->_backgroundPos.y = 0;
-  this->_backgroundDisplay = SDL_LoadBMP("lib_nibbler_sdl/sprit/bmp_sdl/jungle.bmp");
+  this->_backgroundDisplay = SDL_LoadBMP((_execFinder() + "lib_nibbler_sdl/sprit/bmp_sdl/jungle.bmp").c_str());
   if (this->_backgroundDisplay == NULL)
     throw Exception("[ERROR] : Background failed LoadBMP");
   SDL_BlitSurface(this->_backgroundDisplay, NULL, this->_screen, &(this->_backgroundPos));

@@ -50,7 +50,7 @@ void	Core::initGame(int width, int height)
   this->initGameBoard(width, height);
   _display.openLib(_gameBoard);
   _fps = _display.getDisplay()->getFps();
-  _gameBoard.setSnakeSpeed(8000);
+  _gameBoard.setSnakeSpeed(SNAKE_INIT_SPEED);
   _growthCounter = 0;
   _snakeDir = SnakeRing::RIGHT;
 }
@@ -320,27 +320,27 @@ void	Core::basicFruitEffect()
 {
   _growthCounter += 1;
   _gameBoard.addScore(10);
-  _gameBoard.addSnakeSpeed(20);
+  _gameBoard.addSnakeSpeed(100);
 }
 
 void	Core::maxiFruitEffect()
 {
   _growthCounter += 3;
   _gameBoard.addScore(50);
-  _gameBoard.addSnakeSpeed(50);
+  _gameBoard.addSnakeSpeed(250);
 }
 
 void	Core::speedFruitEffect()
 {
-  _gameBoard.addSnakeSpeed(1000);
+  _gameBoard.addSnakeSpeed(1500);
 }
 
 void	Core::slowFruitEffect()
 {
-  if (_gameBoard.snakeSpeed() - 1000 > 6000)
-    _gameBoard.addSnakeSpeed(-1000);
+  if (_gameBoard.snakeSpeed() - 1500 > SNAKE_MIN_SPEED)
+    _gameBoard.addSnakeSpeed(-1500);
   else
-    _gameBoard.setSnakeSpeed(6000);
+    _gameBoard.setSnakeSpeed(SNAKE_MIN_SPEED);
 }
 
 void	Core::reverseFruitEffect()

@@ -5,7 +5,7 @@
 ## Login   <chauvo_t@epitech.net>
 ##
 ## Started on  Tue Apr  1 22:16:44 2014 chauvo_t
-## Last update Sun Apr  6 15:30:02 2014 chauvo_t
+## Last update Sun Dec 21 15:45:25 2014 chauvo_t
 ##
 
 CXX			:= clang
@@ -20,8 +20,11 @@ OBJDIR			:= build
 
 HDRDIR			:= include
 HDRDIR			+= ../interface
+HDRDIR			+= ../ExecFinder
 
-SRCS			:=	SdlDisplay.cpp
+SRCS			:=	\
+				ExecFinder.cpp \
+				SdlDisplay.cpp
 
 OBJS			:= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 SRCS			:= $(addprefix $(SRCDIR)/, $(SRCS))
