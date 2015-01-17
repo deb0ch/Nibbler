@@ -5,7 +5,7 @@
 // Login   <max@epitech.net>
 //
 // Started on  Sat Apr  5 21:20:07 2014 bourge_i
-// Last update Sun Dec 21 16:13:27 2014 chauvo_t
+// Last update Sat Jan 17 13:14:11 2015 chauvo_t
 //
 
 #include "../include/OpenglDisplay.hh"
@@ -22,7 +22,8 @@ extern "C"
 
 static void	manageKeyboard(unsigned char key, int x, int y)
 {
-  (void)x; (void)y;
+  (void)x;
+  (void)y;
   if (key == 27)
     g_key = IDisplay::NIB_KEY_ESC;
   if (key == '\n' || key == '0' || key == '.')
@@ -48,9 +49,9 @@ static void	manageDirection(int key, int x, int y)
 {
   (void)x; (void)y;
   if (key == GLUT_KEY_RIGHT)
-    g_key = IDisplay::NIB_KEY_LEFT;
-  if (key == GLUT_KEY_LEFT)
     g_key = IDisplay::NIB_KEY_RIGHT;
+  if (key == GLUT_KEY_LEFT)
+    g_key = IDisplay::NIB_KEY_LEFT;
   if (key == GLUT_KEY_UP)
     g_key = IDisplay::NIB_KEY_UP;
   if (key == GLUT_KEY_DOWN)
@@ -66,7 +67,6 @@ void			OpenglDisplay::init(const GameBoard & game)
 {
   int argc = 1;
   char *argv[1] = {(char*)"Something"};
-
   float r1;
   float r2;
 
@@ -80,18 +80,15 @@ void			OpenglDisplay::init(const GameBoard & game)
       r2 = (float)game.height() / game.width();
       r1 = 1;
     }
-
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGBA | GLUT_SINGLE);
-
   glutInitWindowSize((game.width() * BLOCKPX), (game.height() * BLOCKPX));
-
   glutInitWindowPosition(glutGet(GLUT_SCREEN_WIDTH) / 2 - (game.width() * BLOCKPX) / 2,
   			 glutGet(GLUT_SCREEN_HEIGHT) / 2 - (game.height() * BLOCKPX) / 2);
   glutCreateWindow("NIBBLER OPENGL/GLUT");
 
   glMatrixMode(GL_PROJECTION);
-  glOrtho(0, game.height() / r2, 0, game.width() / r1, -1, 1);
+  glOrtho(0, game.height() / r2, game.width() / r1, 0, 1, -1);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
@@ -109,10 +106,8 @@ void			OpenglDisplay::update(const GameBoard & game)
 {
   glClearColor(0, 0.1, 0, 0);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
   this->displaySnake(game);
   this->displayFruits(game);
-
   glutSwapBuffers();
   return ;
 }
@@ -133,7 +128,6 @@ void			OpenglDisplay::displaySnake(const GameBoard & game)
       r2 = (float)game.height() / game.width();
       r1 = 1;
     }
-
   it = game.snake().begin();
   while (it != game.snake().end())
     {
